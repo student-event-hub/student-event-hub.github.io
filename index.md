@@ -20,16 +20,13 @@ Student Events include time happening, review system (Like/Dislike or Review by 
 
 The image above is an example of what the All Events Page and Your Events Page might look like, [based on an existing student life events webpage](https://manoa.hawaii.edu/studentlife/events/)
 
-# Use Case Ideas:
-- Users can add events to their calendar
-- Being able to find future and current events (specifically events from student life and development (SLD))
-- Users can create events to the public list of events for others to see
-
-
-# Beyond the Basics
-- Users can interact with a custom website AI called ChatSLE for questions, solutions, inquiries, and suggestions for events. (Optional) 
+# Goals
 - Events are filterable by time/likeability/categories 
 - Each User has their own component, “Your Events Page”, which users can events to their own calendar and filter their calendar via event categories
 - Each User can review an event in the Your Events Page with a like/dislike button and/or comment button with all comments sections
 - Page Admins will be able to see users that added events to their calendars in the All Events Page
 - Admins can DELETE events from All Events Page and User’s Event Page
+- Users can add events to their calendar
+- Being able to find future and current events (specifically events from student life and development (SLD))
+- Users can create events to the public list of events for others to see
+ 
