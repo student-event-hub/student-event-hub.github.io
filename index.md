@@ -1,10 +1,17 @@
 # Student Event Hub
 # Overview
+
 ## The Problem
 Students have trouble finding events on Campus, students are busy and need reminders. Need digitalized calendar board
 
 ## Solution
 Create a digitized calendar board to help users to keep track of and find SLE Events, through adding events to their calendar, finding events through filtering, reviewing events, and finding current and future events.
+
+## Team
+Jayden Cruz 
+Ahron Natividad
+Kadon Nakano
+Philip Low
 
 # Our Approach
 Student Events will include the time that each event will occur, a review system (Like/Dislike or Review by comment section), the place of event, description, categories, owner, and buttons to add to each user’s calendar
@@ -28,7 +35,12 @@ Student Events will include the time that each event will occur, a review system
 - Your Events Page
 - Log in/Signup Page
 
+This image is a link to an already existing student life events webpage (https://manoa.hawaii.edu/studentlife/events/)
 <img width="500px" class="float-center" src="./public/images/events_page_mockup.png">
 
-The image above is an example of what the All Events Page and Your Events Page might look like, [based on an existing student life events webpage](https://manoa.hawaii.edu/studentlife/events/)
+And this image is our modern mockup page created by one of our team members to simulate how the website will be expanded
+<img width="500px" class="float-center" src="./doc/mockup1.jpeg">
+<img width="500px" class="float-center" src="./doc/mockup2.jpeg">
+<img width="500px" class="float-center" src="./doc/mockup3.jpeg">
+<img width="500px" class="float-center" src="./doc/mockup4.jpeg">
 
