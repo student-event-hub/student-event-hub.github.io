@@ -38,8 +38,8 @@ This image is a link to an already existing student life events webpage (https:/
 <img width="500px" class="float-center" src="./public/images/events_page_mockup.png">
 
 And this image is our modern mockup page created by one of our team members to simulate how the website will be expanded
-<img width="500px" class="float-center" src="./doc/mockup1.jpeg">
-<img width="500px" class="float-center" src="./doc/mockup2.jpeg">
-<img width="500px" class="float-center" src="./doc/mockup3.jpeg">
-<img width="500px" class="float-center" src="./doc/mockup4.jpeg">
+<img width="500px"  src="./doc/mockup1.jpeg">
+<img width="500px"  src="./doc/mockup2.jpeg">
+<img width="500px"  src="./doc/mockup3.jpeg">
+<img width="500px"  src="./doc/mockup4.jpeg">
 
