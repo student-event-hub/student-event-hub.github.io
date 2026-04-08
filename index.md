@@ -35,11 +35,11 @@ Student Events will include the time that each event will occur, a review system
 - Log in/Signup Page
 
 - This image is a link to an already existing student life events webpage (https://manoa.hawaii.edu/studentlife/events/)
+- And these other images below is our modern mockup page created by one of our team members to simulate how the website will be expanded
 <img width="500px" class="float-center" src="./public/images/events_page_mockup.png">
 
-- And this image is our modern mockup page created by one of our team members to simulate how the website will be expanded
 <img width="500px"  class="float-center" src="./doc/mockup1.jpeg">
-<img width="500px"  class="float-left" src="./doc/mockup2.jpeg">
-<img width="500px"  class="float-right" src="./doc/mockup3.jpeg">
+<img width="500px"  class="float-center" src="./doc/mockup2.jpeg">
+<img width="500px"  class="float-center" src="./doc/mockup3.jpeg">
 <img width="500px"  class="float-center" src="./doc/mockup4.jpeg">
 
