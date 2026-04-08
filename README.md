@@ -1,1 +1,1 @@
-# bowfolios-nextjs
+# Student-event-hub
