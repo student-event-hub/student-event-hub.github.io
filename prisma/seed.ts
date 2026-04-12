@@ -6,37 +6,42 @@ const prisma = new PrismaClient();
 
 async function main() {
   console.log('Seeding the database');
-  config.defaultProjects.forEach(async (project) => {
-    console.log(`  Creating/Updating project ${project.name}`);
-    project.interests.forEach(async (interest) => {
-      // console.log(`Project ${project.name} ${interest}`);
+  config.defaultEvents.forEach(async (event) => {
+    console.log(`  Creating/Updating event ${event.name}`);
+    event.interests.forEach(async (interest) => {
+      // console.log(`Event ${event.name} ${interest}`);
       await prisma.interest.upsert({
         where: { name: interest },
         update: {},
         create: { name: interest },
       });
-      const dbProject = await prisma.project.upsert({
-        where: { name: project.name },
+      const dbEvent = await prisma.event.upsert({
+        where: { name: event.name },
         update: {},
         create: {
-          name: project.name,
-          description: project.description,
-          homepage: project.homepage,
-          picture: project.picture,
+          name: event.name,
+          description: event.description,
+          picture: event.picture,
+          startTime: event.startTime,
+          endTime: event.endTime,
+          location: event.location,
+          owner: event.owner,
+          creator: event.creator,
+          signedUp: event.signedUp,
         },
       });
-      project.interests.forEach(async (intere) => {
+      event.interests.forEach(async (intere) => {
         const dbInterest = await prisma.interest.findUnique({
           where: { name: intere },
         });
-        // console.log(`${dbProject.name} ${dbInterest!.name}, ${dbInterest}`);
-        const dbProjectInterest = await prisma.projectInterest.findMany({
-          where: { projectId: dbProject.id, interestId: dbInterest!.id },
+        // console.log(`${dbEvent.name} ${dbInterest!.name}, ${dbInterest}`);
+        const dbEventInterest = await prisma.eventInterest.findMany({
+          where: { eventId: dbEvent.id, interestId: dbInterest!.id },
         });
-        if (dbProjectInterest.length === 0) {
-          await prisma.projectInterest.create({
+        if (dbEventInterest.length === 0) {
+          await prisma.eventInterest.create({
             data: {
-              projectId: dbProject.id,
+              eventId: dbEvent.id,
               interestId: dbInterest!.id,
             },
           });
@@ -70,6 +75,7 @@ async function main() {
       update: {},
       create: {
         email: profile.email,
+        username: profile.username,
         firstName: profile.firstName,
         lastName: profile.lastName,
         bio: profile.bio,
@@ -94,21 +100,21 @@ async function main() {
         });
       }
     });
-    // Upsert/Create the profile projects
-    profile.projects.forEach(async (project) => {
-      // console.log(`Project member ${dbProfile.firstName} ${project}`);
-      const dbProject = await prisma.project.findFirst({
-        where: { name: project },
+    // Upsert/Create the profile events
+    profile.events.forEach(async (event) => {
+      // console.log(`Event member ${dbProfile.firstName} ${event}`);
+      const dbEvent = await prisma.event.findFirst({
+        where: { name: event },
       });
-      const dbProfileProject = await prisma.profileProject.findMany({
-        where: { profileId: dbProfile.id, projectId: dbProject!.id },
+      const dbProfileEvent = await prisma.profileEvent.findMany({
+        where: { profileId: dbProfile.id, eventId: dbEvent!.id },
       });
-      if (dbProfileProject.length === 0 && dbProject !== null) {
-        // Create the profile project
-        await prisma.profileProject.create({
+      if (dbProfileEvent.length === 0 && dbEvent !== null) {
+        // Create the profile event
+        await prisma.profileEvent.create({
           data: {
             profileId: dbProfile.id,
-            projectId: dbProject.id,
+            eventId: dbEvent.id,
           },
         });
       }

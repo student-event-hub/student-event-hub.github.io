@@ -1,6 +1,7 @@
 {
     "defaultProfiles": [
       {
+        "username": "Philip_Johnson",
         "firstName": "Philip",
         "lastName": "Johnson",
         "bio": "I am a Professor and like to paddle outrigger canoes.",
@@ -9,7 +10,7 @@
           "Software Engineering",
           "Climate Change"
         ],
-        "projects":[
+        "events":[
           "RadGrad",
           "Open Power Quality"
         ],
@@ -17,6 +18,7 @@
         "email": "johnson@hawaii.edu"
       },
       {
+        "username": "Henri_Casanova",
         "firstName": "Henri",
         "lastName": "Casanova",
         "bio": "In my spare time, I like to scuba dive.",
@@ -25,13 +27,14 @@
           "HPC",
           "Distributed Computing"
         ],
-        "projects":[
+        "events":[
           "WRENCH"
         ],
         "picture": "http://www.ics.hawaii.edu/wp-content/uploads/2013/08/Henri_Casanova1.jpg",
         "email": "henric@hawaii.edu"
       },
       {
+        "username": "Carleton_Moore",
         "firstName": "Carleton",
         "lastName": "Moore",
         "bio": "Every summer, I enjoy visiting Portland, Oregon.",
@@ -40,13 +43,14 @@
           "Software Engineering",
           "Renewable Energy"
         ],
-        "projects":[
+        "events":[
           "RadGrad"
         ],
         "picture": "https://github.com/cammoore.png",
         "email": "cmoore@hawaii.edu"
       },
       {
+        "username": "Anthony_Criste",
         "firstName": "Anthony",
         "lastName": "Christe",
         "bio": "I enjoy competitive bicycle racing.",
@@ -55,13 +59,14 @@
           "AI",
           "Distributed Computing"
         ],
-        "projects":[
+        "events":[
           "Open Power Quality"
         ],
         "picture": "https://anthonyjchriste.github.io/images/me.png",
         "email": "achriste@hawaii.edu"
       },
       {
+        "username": "Jason_Leigh",
         "firstName": "Jason",
         "lastName": "Leigh",
         "bio": "I escaped from Chicago and moved to Hawaii in 2014.",
@@ -69,13 +74,14 @@
         "interests": [
           "Visualization"
         ],
-        "projects":[
+        "events":[
           "Cyber Canoe"
         ],
         "picture": "http://www.ics.hawaii.edu/wp-content/uploads/2013/08/Jason_Leigh-2014.jpg",
         "email": "leighj@hawaii.edu"
       },
       {
+        "username": "Serge_Negrashov",
         "firstName": "Serge",
         "lastName": "Negrashov",
         "bio": "Most weekends, you can find me on my 8 foot dinghy.",
@@ -83,51 +89,71 @@
         "interests": [
           "Scalable IP Networks"
         ],
-        "projects":[
+        "events":[
           "Open Power Quality"
         ],
         "picture": "https://sergey-negrashov.github.io/images/serge.jpg",
         "email": "sin8@hawaii.edu"
       }
     ],
-    "defaultProjects": [
+    "defaultEvents": [
       {
         "name": "Open Power Quality",
-        "homepage": "https://openpowerquality.org",
         "description": "Open source hardware and software for distributed power quality data collection, analysis, and visualization.",
         "interests": [
           "Software Engineering",
           "Renewable Energy"
         ],
-        "picture": "https://avatars0.githubusercontent.com/u/4641939"
+        "picture": "https://avatars0.githubusercontent.com/u/4641939",
+        "startTime": "2020-8-4T14:00:00.000Z",
+        "endTime": "2020-8-4T17:00:00.000Z",
+        "location": "POST Building",
+        "owner": "Philip Johnson, Anthony Criste, & Serge Negrashov",
+        "creator": "Philip_Johnson",
+        "signedUp": 3
       },
       {
         "name": "RadGrad",
-        "homepage": "https://radgrad.org",
         "description": "Growing awesome computer scientists, one graduate at a time.",
         "interests": [
           "Educational Technology"
         ],
-        "picture": "https://www.radgrad.org/img/radgrad_logo.png"
+        "picture": "https://www.radgrad.org/img/radgrad_logo.png",
+        "startTime": "2024-7-26T12:00:00.000Z",
+        "endTime": "2024-7-26T14:00:00.000Z",
+        "location": "POST Building",
+        "owner": "Carleton Moore & Philip Johnson",
+        "creator": "Carleton_Moore",
+        "signedUp": 2
       },
       {
         "name": "WRENCH",
-        "homepage": "https://wrench-project.org",
         "description": "WRENCH is an open-source library for developing simulators for large-scale scientific computation",
         "interests": [
           "Distributed Computing"
         ],
-        "picture": "https://wrench-project.org/images/logo-vertical.png"
+        "picture": "https://wrench-project.org/images/logo-vertical.png",
+        "startTime": "2023-1-12T8:00:00.000Z",
+        "endTime": "2023-1-12T12:00:00.000Z",
+        "location": "POST Building",
+        "owner": "Henri Casanova",
+        "creator": "Henri_Casanova",
+        "signedUp": 1
       },
       {
         "name": "Cyber Canoe",
-        "homepage": "http://lava.manoa.hawaii.edu/blog/2014/07/11/cyber-canoe-cyber-infrastructure-enabled-collaborative-analysis-navigation-and-observation-environment/",
         "description": "Software for Unity projects involving stereoscopic resolution driven by 9 PCs with a GeForce 980 graphics card.",
         "interests": [
           "Unity",
           "Visualization"
         ],
-        "picture": "https://www.hawaii.edu/its/wp-content/uploads/sites/2/2019/01/LAVAlogo-300x192-300x192.png"
+        "picture": "https://www.hawaii.edu/its/wp-content/uploads/sites/2/2019/01/LAVAlogo-300x192-300x192.png",
+        "startTime": "2019-1-17T18:00:00.000Z",
+        "endTime": "2019-1-17T20:00:00.000Z",
+        "location":"POST Building",
+        "owner": "Jason Leigh",
+        "creator": "Jason_Leigh",
+        "signedUp": 1
       }
     ],
     "loadAssetsFile":  false

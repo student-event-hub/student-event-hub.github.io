@@ -54,11 +54,11 @@ model Event {
   startTime    DateTime
   endTime      DateTime
   location     String
-  upvotes      Int
-  downvotes    Int
+  upvotes      Int             @default(0)
+  downvotes    Int             @default(0)
   owner        String
   creator      String
-  signedUp     Int
+  signedUp     Int             @default(1)
   ProfileEvent ProfileEvent[]
 }
 
