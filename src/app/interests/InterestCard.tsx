@@ -19,10 +19,10 @@ const InterestCard = ({ interest }: { interest: InterestCardData }) => (
           roundedCircle
         />
       ))}
-      {interest.projectPictures.map((p) => (
+      {interest.eventPictures.map((p) => (
         <TooltipImage
           className={undefined}
-          key={`project-${p!.name}`}
+          key={`event-${p!.name}`}
           src={p?.picture ? p.picture : ''}
           name={p!.name}
           width={50}

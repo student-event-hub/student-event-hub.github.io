@@ -12,12 +12,12 @@ const ProfileCardHelper = async ({ profile }: { profile: Profile }) => {
     where: { id: { in: profileInterests.map((profileInterest) => profileInterest.interestId) } },
   });
   const interestNames = interests.map((interest) => interest.name);
-  const profileProjects = await prisma.profileProject.findMany({
+  const profileEvents = await prisma.profileEvent.findMany({
     where: { profileId: profile.id },
   });
-  console.log('profileProjects: ', profileProjects);
-  const projects = await prisma.project.findMany({
-    where: { id: { in: profileProjects.map((profileProject) => profileProject.projectId) } },
+  console.log('profileEvents: ', profileEvents);
+  const events = await prisma.event.findMany({
+    where: { id: { in: profileEvents.map((profileEvent) => profileEvent.eventId) } },
   });
   const profileData: ProfileCardData = {
     firstName: profile.firstName,
@@ -26,8 +26,8 @@ const ProfileCardHelper = async ({ profile }: { profile: Profile }) => {
     bio: profile.bio,
     title: profile.title,
     picture: profile.picture,
+    events,
     interests: interestNames,
-    projects,
   };
   return <ProfileCard profile={profileData} />;
 };

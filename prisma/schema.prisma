@@ -9,9 +9,13 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider  = "postgresql"
+  // for local development
+  // url      = env("student_event_hub_DATABASE_URL")
+  // for Vercel
+  url       = env("student_event_hub_PRISMA_DATABASE_URL")
+  // directUrl = env("student_event_hub_POSTGRES_URL_NON_POOLING")
 }
-
 enum Role {
   USER
   ADMIN

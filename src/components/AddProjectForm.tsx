@@ -9,7 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import swal from 'sweetalert';
 import Multiselect from 'multiselect-react-dropdown';
 import { Interest, User } from '@prisma/client';
-import { AddProjectSchema, IProject } from '@/lib/validationSchemas';
+import { AddEventSchema, IEvent } from '@/lib/validationSchemas';
 import { upsertProject } from '@/lib/dbActions';
 
 const AddProjectForm = ({ interests, participants }: { interests: Interest[]; participants: User[] }) => {
@@ -23,10 +23,10 @@ const AddProjectForm = ({ interests, participants }: { interests: Interest[]; pa
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(AddProjectSchema),
+    resolver: yupResolver(AddEventSchema),
   });
 
-  const onSubmit = async (data: IProject) => {
+  const onSubmit = async (data: IEvent) => {
     const result = await upsertProject(data);
     if (result) {
       swal('Success!', 'Project data saved successfully!', 'success');

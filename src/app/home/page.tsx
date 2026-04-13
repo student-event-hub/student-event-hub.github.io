@@ -1,14 +1,15 @@
 /* eslint-disable import/extensions */
 import React from 'react';
-import { getServerSession } from 'next-auth';
-import { Profile, Interest, Project } from '@prisma/client';
+// import { getServerSession } from 'next-auth';
+import { auth } from '@/lib/auth';
+import { Profile, Interest, Event } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { loggedInProtectedPage } from '@/lib/page-protection';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+// import authOptions from '@/lib/authOptions';
 import HomePage from './HomePage';
 
 const HomePageHelper = async () => {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   // console.log(session);
   loggedInProtectedPage(
     session as {
@@ -21,8 +22,8 @@ const HomePageHelper = async () => {
   });
   const interests = await prisma.interest.findMany();
   // const allInterestNames = interests.map((interest) => interest.name);
-  const projects = await prisma.project.findMany();
-  // const allProjectNames = projects.map((project) => project.name);
+  const events = await prisma.event.findMany();
+  // const allEventNames = events.map((event) => event.name);
   const profileInterests = await prisma.profileInterest.findMany({
     where: { profileId: profile!.id },
   });
@@ -30,20 +31,20 @@ const HomePageHelper = async () => {
     const i = interests.find((interest) => interest.id === profileInterest.interestId);
     return i as Interest;
   });
-  const profileProjects = await prisma.profileProject.findMany({
+  const profileEvents = await prisma.profileEvent.findMany({
     where: { profileId: profile!.id },
   });
-  const proProjects: Project[] = profileProjects.map((profileProject) => {
-    const p = projects.find((project) => project.id === profileProject.projectId);
-    return p as Project;
+  const proEvents: Event[] = profileEvents.map((profileEvent) => {
+    const p = events.find((event) => event.id === profileEvent.eventId);
+    return p as Event;
   });
   return (
     <HomePage
       profile={profile as Profile}
       interests={interests}
-      projects={projects}
+      events={events}
       profileInterests={proInterests}
-      profileProjects={proProjects}
+      profileEvents={proEvents}
     />
   );
 };

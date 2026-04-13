@@ -1,13 +1,14 @@
 /* eslint-disable import/extensions */
 import { Container } from 'react-bootstrap';
-import { getServerSession } from 'next-auth';
+import { auth } from '@/lib/auth';
+// import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 import AddProjectForm from '@/components/AddProjectForm';
 import { loggedInProtectedPage } from '@/lib/page-protection';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+// import authOptions from '@/lib/authOptions';
 
 const AddProjectPage = async () => {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   loggedInProtectedPage(
     session as {
       user: { email: string; id: string; randomKey: string };

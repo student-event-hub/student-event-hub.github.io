@@ -43,58 +43,62 @@ export async function createUser(credentials: { email: string; password: string 
   });
 }
 
-export async function createProject(project: any) {
-  // console.log(`createProject data: ${JSON.stringify(project, null, 2)}`);
-  const dbProject = await prisma.project.create({
-    data: project,
+export async function createEvent(event: any) {
+  // console.log(`createEvent data: ${JSON.stringify(event, null, 2)}`);
+  const dbEvent = await prisma.event.create({
+    data: event,
   });
-  return dbProject;
+  return dbEvent;
 }
 
-export async function upsertProject(project: any) {
-  // console.log(`upsertProject data: ${JSON.stringify(project, null, 2)}`);
-  const dbProject = await prisma.project.upsert({
-    where: { name: project.name },
+export async function upsertEvent(event: any) {
+  // console.log(`upsertEvent data: ${JSON.stringify(event, null, 2)}`);
+  const dbEvent = await prisma.event.upsert({
+    where: { name: event.name },
     update: {},
     create: {
-      name: project.name,
-      description: project.description,
-      homepage: project.homepage,
-      picture: project.picture,
+      name: event.name,
+      description: event.description,
+      picture: event.picture,
+      startTime: event.startTime,
+      endTime: event.endTime,
+      location: event.location,
+      owner: event.owner,
+      creator: event.creator,
     },
   });
-  project.interests.forEach(async (intere: string) => {
+  event.interests.forEach(async (intere: string) => {
     const dbInterest = await prisma.interest.findUnique({
       where: { name: intere },
     });
-    // console.log(`${dbProject.name} ${dbInterest!.name}`);
-    const dbProjectInterest = await prisma.projectInterest.findMany({
-      where: { projectId: dbProject.id, interestId: dbInterest!.id },
+    // console.log(`${dbEvent.name} ${dbInterest!.name}`);
+    const dbEventInterest = await prisma.eventInterest.findMany({
+      where: { eventId: dbEvent.id, interestId: dbInterest!.id },
     });
-    if (dbProjectInterest.length === 0) {
-      await prisma.projectInterest.create({
+    if (dbEventInterest.length === 0) {
+      await prisma.eventInterest.create({
         data: {
-          projectId: dbProject.id,
+          eventId: dbEvent.id,
           interestId: dbInterest!.id,
         },
       });
     }
   });
-  project.participants.forEach(async (email: string) => {
+  event.participants.forEach(async (email: string) => {
     const dbProfile = await prisma.profile.findUnique({
       where: { email },
     });
-    const dbProfileProject = await prisma.profileProject.findMany({
-      where: { projectId: dbProject.id, profileId: dbProfile!.id },
+    const dbProfileEvent = await prisma.profileEvent.findMany({
+      where: { eventId: dbEvent.id, profileId: dbProfile!.id },
     });
-    if (dbProfileProject.length === 0) {
-      await prisma.profileProject.create({
+    if (dbProfileEvent.length === 0) {
+      await prisma.profileEvent.create({
         data: {
-          projectId: dbProject.id,
+          eventId: dbEvent.id,
           profileId: dbProfile!.id,
         },
       });
     }
   });
-  return dbProject;
+  return dbEvent;
 }

@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export interface IProject {
+export interface IEvent {
   name: string;
   homepage?: string;
   picture?: string;
@@ -9,7 +9,7 @@ export interface IProject {
   participants?: (string | undefined)[] | undefined;
 }
 
-export const AddProjectSchema = Yup.object().shape({
+export const AddEventSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
   homepage: Yup.string().optional().url('Homepage must be a valid URL'),
   picture: Yup.string().optional(),
@@ -24,7 +24,7 @@ export interface IProfile {
   email: string;
   bio?: string;
   interests?: (string | undefined)[] | undefined;
-  projects?: (string | undefined)[] | undefined;
+  events?: (string | undefined)[] | undefined;
 }
 
 export const ProfileSchema = Yup.object().shape({
@@ -33,5 +33,5 @@ export const ProfileSchema = Yup.object().shape({
   email: Yup.string().required('Email is required').email('Email must be a valid email'),
   bio: Yup.string().optional(),
   interests: Yup.array().of(Yup.string()),
-  projects: Yup.array().of(Yup.string()),
+  events: Yup.array().of(Yup.string()),
 });

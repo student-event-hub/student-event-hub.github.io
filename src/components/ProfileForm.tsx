@@ -9,27 +9,27 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import swal from 'sweetalert';
 import Multiselect from 'multiselect-react-dropdown';
 import { IProfile, ProfileSchema } from '@/lib/validationSchemas';
-import { Interest, Profile, Project } from '@prisma/client';
+import { Interest, Profile, Event } from '@prisma/client';
 import { updateProfile } from '@/lib/dbActions';
 
 const ProfileForm = ({
   profile,
   interests,
-  projects,
+  events,
   profileInterests,
-  profileProjects,
+  profileEvents,
 }: {
   profile: Profile;
   interests: Interest[];
-  projects: Project[];
+  events: Event[];
   profileInterests: Interest[];
-  profileProjects: Project[];
+  profileEvents: Event[];
 }) => {
   const formPadding = 'py-1';
   const interestNames = interests.map((interest) => interest.name);
   const profileInterestNames = profileInterests.map((interest) => interest.name);
-  const projectNames = projects.map((project) => project.name);
-  const profileProjectNames = profileProjects.map((project) => project.name);
+  const eventNames = events.map((event) => event.name);
+  const profileEventNames = profileEvents.map((event) => event.name);
   const {
     register,
     handleSubmit,
@@ -44,10 +44,10 @@ const ProfileForm = ({
     console.log(data);
     const result = await updateProfile(data);
     if (result) {
-      swal('Success!', 'Project data saved successfully!', 'success');
+      swal('Success!', 'Event data saved successfully!', 'success');
       reset();
     } else {
-      swal('Error!', 'Failed to save project data!', 'error');
+      swal('Error!', 'Failed to save event data!', 'error');
     }
   };
   return (
@@ -116,21 +116,21 @@ const ProfileForm = ({
                 </Form.Group>
               </Col>
               <Col xs={6}>
-                <Form.Group controlId="projects">
-                  <Form.Label>Projects</Form.Label>
+                <Form.Group controlId="events">
+                  <Form.Label>Events</Form.Label>
                   <Controller
                     control={control}
-                    name="projects"
+                    name="events"
                     render={({ field: { onChange } }) => (
                       <Multiselect
-                        options={projectNames}
+                        options={eventNames}
                         isObject={false}
                         // showCheckbox
                         hidePlaceholder
                         closeOnSelect={false}
                         onSelect={onChange}
                         onRemove={onChange}
-                        selectedValues={profileProjectNames}
+                        selectedValues={profileEventNames}
                       />
                     )}
                   />

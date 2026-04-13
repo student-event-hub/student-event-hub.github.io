@@ -1,4 +1,4 @@
-import { Project } from '@prisma/client';
+import { Event } from '@prisma/client';
 
 export type ProfileCardData = {
   email: string;
@@ -7,6 +7,6 @@ export type ProfileCardData = {
   lastName: string | null;
   picture: string | null;
   title: string | null;
-  projects: Project[];
+  events: Event[];
   interests: string[];
 };

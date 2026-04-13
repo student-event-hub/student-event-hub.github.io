@@ -14,19 +14,19 @@ const InterestCardHelper = async ({ interest }: { interest: Interest }) => {
   // console.log('profiles: ', profiles);
   const profileImages = profiles.map((profile) => ({ name: profile.email, picture: profile.picture }));
   // console.log('profileImages: ', profileImages);
-  const projectInterests = await prisma.projectInterest.findMany({
+  const eventInterests = await prisma.eventInterest.findMany({
     where: { interestId: interest.id },
   });
-  const projects = await prisma.project.findMany({
-    where: { id: { in: projectInterests.map((projectInterest) => projectInterest.projectId) } },
+  const events = await prisma.event.findMany({
+    where: { id: { in: eventInterests.map((eventInterest) => eventInterest.eventId) } },
   });
-  // console.log('projects: ', projects);
-  const projectImages = projects.map((project) => ({ name: project.name, picture: project.picture }));
-  // console.log('projectImages: ', projectImages);
+  // console.log('events: ', events);
+  const eventImages = events.map((event) => ({ name: event.name, picture: event.picture }));
+  // console.log('eventImages: ', eventImages);
   const interestData = {
     name: interest.name,
     profilePictures: profileImages,
-    projectPictures: projectImages,
+    eventPictures: eventImages,
   };
   return <InterestCard interest={interestData} />;
 };

@@ -1,6 +1,6 @@
 import { Profile } from '@prisma/client';
 
-export type ProjectCardData = {
+export type EventCardData = {
   name: string;
   homepage: string | null;
   picture: string | null;

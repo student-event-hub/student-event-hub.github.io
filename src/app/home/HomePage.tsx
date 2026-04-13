@@ -6,21 +6,21 @@ import React from 'react';
 import { Container, Col } from 'react-bootstrap';
 import { PageIDs } from '@/utilities/ids';
 import pageStyle from '@/utilities/pageStyle';
-import { Profile, Interest, Project } from '@prisma/client';
+import { Profile, Interest, Event } from '@prisma/client';
 import ProfileForm from '@/components/ProfileForm';
 
 const HomePage = ({
   profile,
   interests,
-  projects,
+  events,
   profileInterests,
-  profileProjects,
+  profileEvents,
 }: {
   profile: Profile;
   interests: Interest[];
-  projects: Project[];
+  events: Event[];
   profileInterests: Interest[];
-  profileProjects: Project[];
+  profileEvents: Event[];
 }) => (
   <Container id={PageIDs.homePage} style={pageStyle}>
     <Col>
@@ -28,9 +28,9 @@ const HomePage = ({
       <ProfileForm
         profile={profile}
         interests={interests}
-        projects={projects}
+        events={events}
         profileInterests={profileInterests}
-        profileProjects={profileProjects}
+        profileEvents={profileEvents}
       />
     </Col>
   </Container>

@@ -6,5 +6,5 @@ export type PictureInfo = {
 export type InterestCardData = {
   name: string;
   profilePictures: (PictureInfo | null)[];
-  projectPictures: (PictureInfo | null)[];
+  eventPictures: (PictureInfo | null)[];
 };

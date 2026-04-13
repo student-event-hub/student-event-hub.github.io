@@ -3,20 +3,20 @@ import { Container, Row } from 'react-bootstrap';
 import { prisma } from '@/lib/prisma';
 import { PageIDs } from '@/utilities/ids';
 import pageStyle from '@/utilities/pageStyle';
-import ProjectCardHelper from './ProjectCardHelper';
+import EventCardHelper from './EventCardHelper';
 
-const ProjectsPage = async () => {
-  const projects = await prisma.project.findMany();
-  projects.sort((a, b) => a.name.localeCompare(b.name));
+const EventsPage = async () => {
+  const events = await prisma.event.findMany();
+  events.sort((a, b) => a.name.localeCompare(b.name));
   return (
-    <Container id={PageIDs.projectsPage} style={pageStyle}>
+    <Container id={PageIDs.eventsPage} style={pageStyle}>
       <Row xs={1} md={2} lg={4} className="g-2">
-        {projects.map((project) => (
-          <ProjectCardHelper key={project.id} project={project} />
+        {events.map((event) => (
+          <EventCardHelper key={event.id} event={event} />
         ))}
       </Row>
     </Container>
   );
 };
 
-export default ProjectsPage;
+export default EventsPage;

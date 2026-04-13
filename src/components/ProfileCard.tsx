@@ -34,13 +34,13 @@ const ProfileCard = ({ profile }: { profile: ProfileCardData }) => (
             </Badge>
           ))}
         </Card.Text>
-        <h5>Projects</h5>
-        {profile.projects.map((project) => (
+        <h5>Events</h5>
+        {profile.events.map((event) => (
           <TooltipImage
-            key={project.name}
-            src={project.picture ? project.picture : ''}
+            key={event.name}
+            src={event.picture ? event.picture : ''}
             width={50}
-            name={project.name}
+            name={event.name}
             roundedCircle
             className="mx-1"
           />
