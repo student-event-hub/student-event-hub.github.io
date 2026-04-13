@@ -1,14 +1,15 @@
 /* eslint-disable import/extensions */
 import React from 'react';
-import { getServerSession } from 'next-auth';
+// import { getServerSession } from 'next-auth';
+import { auth } from '@/lib/auth';
 import { Profile, Interest, Project } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { loggedInProtectedPage } from '@/lib/page-protection';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+// import { authOptions } from '../api/auth/[...nextauth]/route';
 import HomePage from './HomePage';
 
 const HomePageHelper = async () => {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   // console.log(session);
   loggedInProtectedPage(
     session as {

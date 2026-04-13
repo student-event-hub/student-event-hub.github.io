@@ -22,8 +22,8 @@ async function main() {
           name: event.name,
           description: event.description,
           picture: event.picture,
-          startTime: event.startTime,
-          endTime: event.endTime,
+          startTime: new Date(event.year, event.month, event.day, event.startHour, event.startMinute),
+          endTime: new Date(event.year, event.month, event.day, event.endHour, event.endMinute),
           location: event.location,
           owner: event.owner,
           creator: event.creator,
@@ -42,6 +42,44 @@ async function main() {
           await prisma.eventInterest.create({
             data: {
               eventId: dbEvent.id,
+              interestId: dbInterest!.id,
+            },
+          });
+        }
+      });
+    });
+  });
+  config.defaultProjects.forEach(async (project) => {
+    console.log(`  Creating/Updating project ${project.name}`);
+    project.interests.forEach(async (interest) => {
+      // console.log(`Project ${project.name} ${interest}`);
+      await prisma.interest.upsert({
+        where: { name: interest },
+        update: {},
+        create: { name: interest },
+      });
+      const dbProject = await prisma.project.upsert({
+        where: { name: project.name },
+        update: {},
+        create: {
+          name: project.name,
+          homepage: project.homepage,
+          description: project.description,
+          picture: project.picture,
+        },
+      });
+      project.interests.forEach(async (intere) => {
+        const dbInterest = await prisma.interest.findUnique({
+          where: { name: intere },
+        });
+        // console.log(`${dbEvent.name} ${dbInterest!.name}, ${dbInterest}`);
+        const dbProjectInterest = await prisma.projectInterest.findMany({
+          where: { projectId: dbProject.id, interestId: dbInterest!.id },
+        });
+        if (dbProjectInterest.length === 0) {
+          await prisma.projectInterest.create({
+            data: {
+              projectId: dbProject.id,
               interestId: dbInterest!.id,
             },
           });

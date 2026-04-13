@@ -109,6 +109,7 @@ export async function updateProfile(profile: any) {
       bio: profile.bio,
     },
     create: {
+      username: profile.username,
       firstName: profile.firstName,
       lastName: profile.lastName,
       bio: profile.bio,

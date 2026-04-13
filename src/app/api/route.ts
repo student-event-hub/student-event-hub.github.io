@@ -1,16 +1,3 @@
-import { getServerSession } from 'next-auth/next';
-import { NextResponse } from 'next/server';
-import { authOptions } from './auth/[...nextauth]/route';
+import { handlers } from '@/lib/auth';
 
-export default async function GET() {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    return new NextResponse(JSON.stringify({ error: 'unauthorized' }), {
-      status: 401,
-    });
-  }
-
-  // console.log('GET API', session)
-  return NextResponse.json({ authenticated: !!session });
-}
+export const { GET, POST } = handlers;

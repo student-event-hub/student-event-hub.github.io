@@ -10,6 +10,11 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  // for local development
+  // url      = env("student_event_hub_DATABASE_URL")
+  // for Vercel
+  url      = env("student_event_hub_PRISMA_DATABASE_URL")
+  // directUrl = env("student_event_hub_POSTGRES_URL_NON_POOLING")
 }
 
 enum Role {
@@ -35,14 +40,16 @@ model Profile {
   picture   String?
   interests ProfileInterest[]
   events    ProfileEvent[]
+  projects  ProfileProject[]
 }
 
 model Interest {
-  id            Int               @id @default(autoincrement())
-  name          String            @unique
-  profiles      ProfileInterest[]
-  events        ProfileEvent[]
-  EventInterest EventInterest[]
+  id              Int               @id @default(autoincrement())
+  name            String            @unique
+  profiles        ProfileInterest[]
+  events          ProfileEvent[]
+  EventInterest   EventInterest[]
+  ProjectInterest ProjectInterest[]
 }
 
 model Event {
@@ -85,5 +92,31 @@ model EventInterest {
   eventId    Int
   interestId Int
   event      Event    @relation(fields: [eventId], references: [id])
+  interest   Interest @relation(fields: [interestId], references: [id])
+}
+
+model Project {
+  id          Int               @id @default(autoincrement())
+  name        String            @unique
+  homepage    String?
+  description String?
+  picture     String?
+  profiles    ProfileProject[]
+  interests   ProjectInterest[]
+}
+
+model ProfileProject {
+  id        Int     @id @default(autoincrement())
+  profileId Int
+  projectId Int
+  profile   Profile @relation(fields: [profileId], references: [id])
+  project   Project @relation(fields: [projectId], references: [id])
+}
+
+model ProjectInterest {
+  id         Int      @id @default(autoincrement())
+  projectId  Int
+  interestId Int
+  project    Project  @relation(fields: [projectId], references: [id])
   interest   Interest @relation(fields: [interestId], references: [id])
 }
