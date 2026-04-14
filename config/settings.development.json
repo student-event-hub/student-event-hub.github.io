@@ -11,8 +11,8 @@
           "Climate Change"
         ],
         "events":[
-          "RadGrad",
-          "Open Power Quality"
+          "RadGrad Paper Publication Celebration",
+          "Open Power Quality Paper Publication Celebration"
         ],
         "projects":[
           "RadGrad",
@@ -32,7 +32,7 @@
           "Distributed Computing"
         ],
         "events":[
-          "WRENCH"
+          "WRENCH Paper Publication Celebration"
         ],
         "projects":[
           "WRENCH"
@@ -51,7 +51,7 @@
           "Renewable Energy"
         ],
         "events":[
-          "RadGrad"
+          "RadGrad Paper Publication Celebration"
         ],
         "projects":[
           "RadGrad"
@@ -70,7 +70,7 @@
           "Distributed Computing"
         ],
         "events":[
-          "Open Power Quality"
+          "Open Power Quality Paper Publication Celebration"
         ],
         "projects":[
           "Open Power Quality"
@@ -88,7 +88,7 @@
           "Visualization"
         ],
         "events":[
-          "Cyber Canoe"
+          "Cyber Canoe Update Celebration"
         ],
         "projects":[
           "Cyber Canoe"
@@ -106,7 +106,7 @@
           "Scalable IP Networks"
         ],
         "events":[
-          "Open Power Quality"
+          "Open Power Quality Paper Publication Celebration"
         ],
         "projects":[
           "Open Power Quality"
@@ -117,7 +117,7 @@
     ],
     "defaultEvents": [
       {
-        "name": "Open Power Quality",
+        "name": "Open Power Quality Paper Publication Celebration",
         "description": "Open source hardware and software for distributed power quality data collection, analysis, and visualization.",
         "interests": [
           "Software Engineering",
@@ -137,7 +137,7 @@
         "signedUp": 3
       },
       {
-        "name": "RadGrad",
+        "name": "RadGrad Paper Publication Celebration",
         "description": "Growing awesome computer scientists, one graduate at a time.",
         "interests": [
           "Educational Technology"
@@ -156,7 +156,7 @@
         "signedUp": 2
       },
       {
-        "name": "WRENCH",
+        "name": "WRENCH Paper Publication Celebration",
         "description": "WRENCH is an open-source library for developing simulators for large-scale scientific computation",
         "interests": [
           "Distributed Computing"
@@ -175,7 +175,7 @@
         "signedUp": 1
       },
       {
-        "name": "Cyber Canoe",
+        "name": "Cyber Canoe Update Celebration",
         "description": "Software for Unity projects involving stereoscopic resolution driven by 9 PCs with a GeForce 980 graphics card.",
         "interests": [
           "Unity",
