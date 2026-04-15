@@ -48,7 +48,7 @@ const NavBar: React.FC = () => {
             </Nav.Link>
             <Nav.Link
               id={ComponentIDs.projectsMenuItem}
-              active={pathname === '/projects'}
+              active={pathname === '/projects' /* TODO: remove when mo longer needed */}
               href="/projects"
               key="projects"
             >
@@ -56,11 +56,27 @@ const NavBar: React.FC = () => {
             </Nav.Link>
             <Nav.Link
               id={ComponentIDs.interestsMenuItem}
-              active={pathname === '/interests'}
+              active={pathname === '/interests' /* TODO: remove when mo longer needed */}
               href="/interests"
               key="interests"
             >
               Interests
+            </Nav.Link>
+            <Nav.Link
+              id={ComponentIDs.allEventsMenuItem}
+              active={pathname === '/events'}
+              href="/events"
+              key="allEvents"
+            >
+              All Events
+            </Nav.Link>
+            <Nav.Link
+              id={ComponentIDs.yourEventsMenuItem}
+              active={pathname === '/your-events'}
+              href="/your-events"
+              key="yourEvents"
+            >
+              Your Events
             </Nav.Link>
             {currentUser
               ? [
