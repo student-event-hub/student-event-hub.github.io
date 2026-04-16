@@ -17,12 +17,10 @@ Here is our Vercel link to our deployment:
 <a href = "https://student-event-hub.vercel.app/" >Student Hub</a>
 
 # M1 Project
-The goal of our Milestone 1 was to set up mockup pages and be able to have our project uploaded into Vercel with a base of a working home page.
 <a href = "https://github.com/orgs/student-event-hub/projects/1">M1</a>
 
 
 # M2 Project 
-The goal of Milestone 2 is to have our at least 4 other other webpages aside from our homepage to be up and running.
 <a href = "https://github.com/orgs/student-event-hub/projects/2"> M2 </a>
 
 # Updates:
