@@ -1,21 +1,19 @@
-import { Col, Container } from 'react-bootstrap';
-
 /* The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 const Footer = () => (
-  <footer className="footer mt-auto py-3 landing-blue-background">
-    <Container>
-      <Col className="text-center" style={{ color: '#FFF2F2' }}>
-        The Bowfolios Project
-        <br />
-        University of Hawaii
-        <br />
-        Honolulu, HI 96822
-        <br />
-        <a style={{ color: '#FFF2F2' }} href="https://bowfolios.github.io">
-          https://bowfolios.github.io
-        </a>
-      </Col>
-    </Container>
+  <footer className="text-center py-3" style={{ backgroundColor: '#2D336B', color: '#FFF2F2' }}>
+    <p style={{ margin: 0 }}>
+      © 2026 Student Event Hub — Built for the UH Community
+    </p>
+    <p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.7 }}>
+      Jayden Cruz · Ahron Natividad · Kadon Nakano · Philip Low
+    </p>
+
+    <a
+      style={{ color: '#FFF2F2', margin: 0, fontSize: '0.85rem', opacity: 0.7 }}
+      href="https://student-event-hub.github.io/"
+    >
+      https://student-event-hub.github.io/
+    </a>
   </footer>
 );
 
