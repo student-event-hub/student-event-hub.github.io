@@ -3,9 +3,9 @@
 
 /* Create some Bowfolio CSS variables. */
 :root {
-  --bowfolio-navbar-bg: #376551;
+  --bowfolio-navbar-bg: #2D336B;
   --bowfolio-navbar-bg-rgb: 55, 101, 81;
-  --bowfolio-navbar-text: white;
+  --bowfolio-navbar-text: #FFF2F2;
   --bowfolio-navbar-highlight-text: var(--bs-gray-500);
 }
 /* Change bootstrap variable values.
@@ -52,7 +52,7 @@ html, body {
 }
 
 /* Landing page color blocking */
-.landing-green-background {
+.landing-blue-background {
   background-color: var(--bowfolio-navbar-bg);
   color: var(--bowfolio-navbar-text);
   padding-top: 20px;
@@ -67,4 +67,18 @@ html, body {
 .reset-margins {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+/* Override the list item styles on the landing page to match the design. */
+.landing-list-item-blue {
+  background-color: transparent !important;
+  color: #FFF2F2 !important;
+  width: 60% !important;
+}
+
+.landing-list-item-white {
+  background-color: transparent !important;
+  color: #2D336B !important;
+  width: 60% !important;
+  border-color: #2D336B !important;
 }

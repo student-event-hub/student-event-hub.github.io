@@ -16,14 +16,21 @@ Jayden Cruz, Ahron Natividad, Kadon Nakano, Philip Low
 Student Events will include the time that each event will occur, a review system (Like/Dislike or Review by comment section), the place of event, description, categories, owner, and buttons to add to each user’s calendar
 
 # Deployment
-https://student-event-hub.vercel.app/
+Here is our Vercel link to our deployment:
+<a href = "https://student-event-hub.vercel.app/" >Student Hub</a>
 
 # M1 Project
-https://github.com/orgs/student-event-hub/projects/1
+<a href = "https://github.com/orgs/student-event-hub/projects/1">M1</a>
 
 
 # M2 Project 
-https://github.com/orgs/student-event-hub/projects/2/views/1
+<a href = "https://github.com/orgs/student-event-hub/projects/2"> M2 </a>
+
+# Updates:
+<img width="500px"  class="float-center" src="./doc/homepage1.png">
+<img width="500px"  class="float-center" src="./doc/homepage2.png">
+
+
 
 # Goals of Implementation
 - Events are filterable by time/likeability/categories 
