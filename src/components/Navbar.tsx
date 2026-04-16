@@ -25,7 +25,7 @@ const NavBar: React.FC = () => {
         <Navbar.Brand href="/" className="align-items-center">
           <span style={{ fontWeight: 800, fontSize: '24px' }}>
             <Image src="/images/logo.png" width={50} style={{ marginBottom: 3 }} alt="Bowfolios" />
-            Bowfolios
+            Student Event Hub
           </span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls={ComponentIDs.basicNavbarNav} />
