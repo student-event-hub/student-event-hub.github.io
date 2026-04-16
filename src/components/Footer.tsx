@@ -9,7 +9,7 @@ const Footer = () => (
     </p>
 
     <a
-      style={{ color: '#FFF2F2', margin: 0, fontSize: '0.85rem', opacity: 0.7 }} 
+      style={{ color: '#FFF2F2', margin: 0, fontSize: '0.85rem', opacity: 0.7 }}
       href="https://student-event-hub.github.io/"
     >
       https://student-event-hub.github.io/
