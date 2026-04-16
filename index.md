@@ -20,7 +20,7 @@ Student Events will include the time that each event will occur, a review system
 
 
 # M2 Project 
-< a href = "https://github.com/orgs/student-event-hub/projects/2/views/1">M2</a>
+< a href = "https://github.com/orgs/student-event-hub/projects/2"> M2 </a>
 
 # Goals of Implementation
 - Events are filterable by time/likeability/categories 
