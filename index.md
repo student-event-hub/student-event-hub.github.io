@@ -14,7 +14,7 @@ Student Events will include the time that each event will occur, a review system
 
 # Deployment
 Here is our Vercel link to our deployment:
-<a href = "https://student-event-hub.vercel.app/" >Deployment</a>
+<a href = "https://student-event-hub.vercel.app/" >Student Hub</a>
 
 # M1 Project
 The goal of our Milestone 1 was to set up mockup pages and be able to have our project uploaded into Vercel with a base of a working home page.
