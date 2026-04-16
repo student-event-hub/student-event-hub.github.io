@@ -15,6 +15,13 @@ Student Events will include the time that each event will occur, a review system
 # Deployment
 <a href = "https://student-event-hub.vercel.app/">
 
+# M1 Project
+<a href = "https://github.com/orgs/student-event-hub/projects/1">
+
+
+# M2 Project 
+<a href = "https://github.com/orgs/student-event-hub/projects/2/views/1">
+
 # Goals of Implementation
 - Events are filterable by time/likeability/categories 
 - Each User has their own component, “Your Events Page”, which users can events to their own calendar and filter their calendar via event categories
