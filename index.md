@@ -13,7 +13,7 @@ Jayden Cruz, Ahron Natividad, Kadon Nakano, Philip Low
 Student Events will include the time that each event will occur, a review system (Like/Dislike or Review by comment section), the place of event, description, categories, owner, and buttons to add to each user’s calendar
 
 # Deployment
-<a href = "https://student-event-hub.vercel.app/">
+"https://student-event-hub.vercel.app/"
 
 # M1 Project
 <a href = "https://github.com/orgs/student-event-hub/projects/1">
