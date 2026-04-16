@@ -25,7 +25,7 @@ const NavBar: React.FC = () => {
         <Navbar.Brand href="/" className="align-items-center">
           <span style={{ fontWeight: 800, fontSize: '24px' }}>
             <Image src="/images/logo.png" width={50} style={{ marginBottom: 3 }} alt="Bowfolios" />
-            Bowfolios
+            Student Event Hub
           </span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls={ComponentIDs.basicNavbarNav} />
@@ -48,7 +48,7 @@ const NavBar: React.FC = () => {
             </Nav.Link>
             <Nav.Link
               id={ComponentIDs.projectsMenuItem}
-              active={pathname === '/projects'}
+              active={pathname === '/projects' /* TODO: remove when mo longer needed */}
               href="/projects"
               key="projects"
             >
@@ -56,11 +56,27 @@ const NavBar: React.FC = () => {
             </Nav.Link>
             <Nav.Link
               id={ComponentIDs.interestsMenuItem}
-              active={pathname === '/interests'}
+              active={pathname === '/interests' /* TODO: remove when mo longer needed */}
               href="/interests"
               key="interests"
             >
               Interests
+            </Nav.Link>
+            <Nav.Link
+              id={ComponentIDs.allEventsMenuItem}
+              active={pathname === '/events'}
+              href="/events"
+              key="allEvents"
+            >
+              All Events
+            </Nav.Link>
+            <Nav.Link
+              id={ComponentIDs.yourEventsMenuItem}
+              active={pathname === '/your-events'}
+              href="/your-events"
+              key="yourEvents"
+            >
+              Your Events
             </Nav.Link>
             {currentUser
               ? [
