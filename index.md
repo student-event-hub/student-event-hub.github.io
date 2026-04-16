@@ -25,7 +25,7 @@ The goal of our Milestone 1 was to set up mockup pages and be able to have our p
 The goal of Milestone 2 is to have our at least 4 other other webpages aside from our homepage to be up and running.
 <a href = "https://github.com/orgs/student-event-hub/projects/2"> M2 </a>
 
-Updates:
+# Updates:
 <img width="500px"  class="float-center" src="./doc/homepage1.png">
 <img width="500px"  class="float-center" src="./doc/homepage2.png">
 
