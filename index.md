@@ -7,13 +7,13 @@ Students have trouble finding events on Campus, students are busy and need remin
 Create a digitized calendar board to help users to keep track of and find SLE Events, through adding events to their calendar, finding events through filtering, reviewing events, and finding current and future events.
 
 ## Team
-Jayden Cruz 
-Ahron Natividad
-Kadon Nakano
-Philip Low
+Jayden Cruz, Ahron Natividad, Kadon Nakano, Philip Low
 
 # Our Approach
 Student Events will include the time that each event will occur, a review system (Like/Dislike or Review by comment section), the place of event, description, categories, owner, and buttons to add to each user’s calendar
+
+# Deployment
+<a src = "https://student-event-hub.vercel.app/">
 
 # Goals of Implementation
 - Events are filterable by time/likeability/categories 
