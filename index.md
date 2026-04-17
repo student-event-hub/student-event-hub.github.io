@@ -1,5 +1,7 @@
 # Student Event Hub - Overview
 
+<a href = "https://github.com/student-event-hub">Link to our Github Organization</a>
+
 ## The Problem
 Students have trouble finding events on Campus, students are busy and need reminders. Need digitalized calendar board
 
