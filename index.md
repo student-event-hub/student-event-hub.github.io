@@ -9,7 +9,7 @@ Students have trouble finding events on Campus, students are busy and need remin
 Create a digitized calendar board to help users to keep track of and find SLE Events, through adding events to their calendar, finding events through filtering, reviewing events, and finding current and future events.
 
 ## Team
-<a href = "https://jaydenpc.github.io/"> Jayden Cruz </a>, Ahron Natividad, Kadon Nakano, Philip Low
+<a href = "https://jaydenpc.github.io/"> Jayden Cruz </a>, <a href="https://ahron4.github.io/"> Ahron Natividad </a>, <a href="https://kadonnakano.github.io/"> Kadon Nakano </a>, <a href="https://philip-r-low.github.io/essays/final-project-idea.html"> Philip Low </a>
 
 ## Team Contract
 <a href = "https://docs.google.com/document/d/1d2C_VM08IDHJyN53gbJdZNoIxGdcvA6N47JhRgeNg94/edit?usp=sharing" >Our Team Contract</a>
