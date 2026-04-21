@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import NextAuth, { type DefaultSession } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { prisma } from './prisma';
 
 declare module 'next-auth' {
