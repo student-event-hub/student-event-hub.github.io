@@ -31,37 +31,6 @@ const NavBar: React.FC = () => {
         <Navbar.Toggle aria-controls={ComponentIDs.basicNavbarNav} />
         <Navbar.Collapse id={ComponentIDs.basicNavbarNav}>
           <Nav className="me-auto justify-content-start">
-            {currentUser ? (
-              <Nav.Link id={ComponentIDs.homeMenuItem} active={pathname === '/home'} href="/home" key="home">
-                Home
-              </Nav.Link>
-            ) : (
-              ''
-            )}
-            <Nav.Link
-              id={ComponentIDs.profilesMenuItem}
-              active={pathname === '/profiles'}
-              href="/profiles"
-              key="profiles"
-            >
-              Profiles
-            </Nav.Link>
-            <Nav.Link
-              id={ComponentIDs.projectsMenuItem}
-              active={pathname === '/projects' /* TODO: remove when mo longer needed */}
-              href="/projects"
-              key="projects"
-            >
-              Projects
-            </Nav.Link>
-            <Nav.Link
-              id={ComponentIDs.interestsMenuItem}
-              active={pathname === '/interests' /* TODO: remove when mo longer needed */}
-              href="/interests"
-              key="interests"
-            >
-              Interests
-            </Nav.Link>
             <Nav.Link
               id={ComponentIDs.allEventsMenuItem}
               active={pathname === '/events'}
@@ -70,6 +39,17 @@ const NavBar: React.FC = () => {
             >
               All Events
             </Nav.Link>
+
+            {currentUser // Section for navbar components that should only be visible to logged in users.
+              ? [
+                            <Nav.Link
+                              id={ComponentIDs.addEventMenuItem}
+                              active={pathname === '/createEvent'}
+                              href="/createEvent"
+                              key="createEvent"
+                            >
+              Create Event
+                            </Nav.Link>,
             <Nav.Link
               id={ComponentIDs.yourEventsMenuItem}
               active={pathname === '/your-events'}
@@ -77,9 +57,7 @@ const NavBar: React.FC = () => {
               key="yourEvents"
             >
               Your Events
-            </Nav.Link>
-            {currentUser
-              ? [
+            </Nav.Link>,
                   <Nav.Link
                     id={ComponentIDs.addProjectMenuItem}
                     active={pathname === '/addProject'}
