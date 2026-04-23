@@ -62,7 +62,6 @@ const EventCard = ({ event, onLikeClick }: Props) => {
             {event.location}
           </Card.Text>
           <Card.Text>{event.description}</Card.Text>
-          <Button variant="primary">View Details</Button>
           <div className="d-flex gap-2 mt-3">
             <Button variant="secondary" size="sm" className="flex-fill">
               Edit Event
