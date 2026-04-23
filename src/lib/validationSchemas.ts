@@ -35,3 +35,23 @@ export const ProfileSchema = Yup.object().shape({
   interests: Yup.array().of(Yup.string()),
   projects: Yup.array().of(Yup.string()),
 });
+
+export interface IEvent {
+  name: string;
+  picture?: string;
+  description: string;
+  date: Date;
+  location: string;
+  interests?: (string | undefined)[] | undefined;
+  participants?: (string | undefined)[] | undefined;
+}
+
+export const CreateEventSchema = Yup.object().shape({
+  name: Yup.string().required('Name is required'),
+  picture: Yup.string().optional(),
+  description: Yup.string().required('Description is required'),
+  date: Yup.date().required('Date is required'),
+  location: Yup.string().required('Location is required'),
+  interests: Yup.array().of(Yup.string()),
+  participants: Yup.array().of(Yup.string()),
+});
