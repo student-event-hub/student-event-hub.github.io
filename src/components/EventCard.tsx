@@ -32,6 +32,16 @@ const EventCard = ({ event }: Props) => (
 
         <Card.Text>{event.description}</Card.Text>
 
+        <div className="d-flex gap-2 mt-3">
+          <Button variant="secondary" size="sm" className="flex-fill">
+            Edit Event
+          </Button>
+          <Button variant="primary" size="sm" className="flex-fill">
+            View Details
+          </Button>
+          <Button variant="success" size="sm" className="flex-fill">
+            Add Event
+          </Button>
         <div className="d-flex justify-content-between">
           <Button variant="secondary">Edit Event</Button>
           <Button variant="primary">View Details</Button>
