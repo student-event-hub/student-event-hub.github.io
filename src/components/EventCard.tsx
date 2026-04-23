@@ -27,6 +27,7 @@ const EventCard = ({ event }: Props) => (
 
         <Card.Text>
           <strong>Location:</strong>
+          {' '}
           {event.location}
         </Card.Text>
 
@@ -42,9 +43,6 @@ const EventCard = ({ event }: Props) => (
           <Button variant="success" size="sm" className="flex-fill">
             Add Event
           </Button>
-        <div className="d-flex justify-content-between">
-          <Button variant="secondary">Edit Event</Button>
-          <Button variant="primary">View Details</Button>
         </div>
       </Card.Body>
     </Card>
