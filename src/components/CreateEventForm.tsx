@@ -56,13 +56,6 @@ const CreateEventForm = ({ interests, participants }: { interests: Interest[]; p
                   <Form.Text className="text-danger">{errors.picture?.message}</Form.Text>
                 </Form.Group>
               </Col>
-              <Col xs={4}>
-                <Form.Group controlId="homepage">
-                  <Form.Label>Homepage</Form.Label>
-                  <Form.Control type="text" {...register('homepage')} />
-                  <Form.Text className="text-danger">{errors.homepage?.message}</Form.Text>
-                </Form.Group>
-              </Col>
             </Row>
             <Row className={formPadding}>
               <Form.Group controlId="description">
