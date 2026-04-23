@@ -24,11 +24,12 @@ const EventCard = ({ event }: Props) => (
         <Card.Subtitle className="mb-2 text-muted">
           {event.date}
         </Card.Subtitle>
+
         <Card.Text>
           <strong>Location:</strong>
-          {' '}
           {event.location}
         </Card.Text>
+
         <Card.Text>{event.description}</Card.Text>
 
         <div className="d-flex gap-2 mt-3">
@@ -41,6 +42,9 @@ const EventCard = ({ event }: Props) => (
           <Button variant="success" size="sm" className="flex-fill">
             Add Event
           </Button>
+        <div className="d-flex justify-content-between">
+          <Button variant="secondary">Edit Event</Button>
+          <Button variant="primary">View Details</Button>
         </div>
       </Card.Body>
     </Card>
