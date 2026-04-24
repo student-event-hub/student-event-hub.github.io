@@ -55,3 +55,29 @@ export const CreateEventSchema = Yup.object().shape({
   interests: Yup.array().of(Yup.string()),
   participants: Yup.array().of(Yup.string()),
 });
+
+export interface IEditProject {
+  startTime: string;
+  endTime: string;
+  owners?: (string | undefined)[] | undefined;
+  description: string;
+  names?: (string | undefined)[] | undefined;
+  category?: string;
+  picture?: string;
+}
+
+export const EditProjectSchema = Yup.object().shape({
+  startTime: Yup.string().required('Start time is required'),
+  endTime: Yup.string()
+    .required('End time is required')
+    .test('is-after-start', 'End time must be after start time', function (value) {
+      const { startTime } = this.parent;
+      if (!startTime || !value) return true;
+      return value > startTime;
+    }),
+  owners: Yup.array().of(Yup.string()),
+  description: Yup.string().required('Description is required'),
+  names: Yup.array().of(Yup.string()),
+  category: Yup.string().optional(),
+  picture: Yup.string().optional(),
+});

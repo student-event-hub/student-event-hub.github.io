@@ -3,6 +3,7 @@
 'use client';
 
 import { Card, Col, Button } from 'react-bootstrap';
+import Link from 'next/link';
 
 type Event = {
   id: number;
@@ -34,9 +35,11 @@ const EventCard = ({ event }: Props) => (
         <Card.Text>{event.description}</Card.Text>
 
         <div className="d-flex gap-2 mt-3">
-          <Button variant="secondary" size="sm" className="flex-fill">
-            Edit Event
-          </Button>
+          <Link href={`/edit?id=${event.id}`} passHref>
+            <Button variant="secondary" size="sm" className="flex-fill">
+              Edit Event
+            </Button>
+          </Link>
           <Button variant="primary" size="sm" className="flex-fill">
             View Details
           </Button>
