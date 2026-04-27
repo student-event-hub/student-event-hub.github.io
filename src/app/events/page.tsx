@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+/* eslint-disable react/jsx-no-bind */
 
 'use client';
 
@@ -9,7 +10,7 @@ import { PageIDs } from '@/utilities/ids';
 import pageStyle from '@/utilities/pageStyle';
 import EventsCard, { Event } from '@/components/EventCard';
 
-const events = [
+const initialEvents: Event[] = [
   {
     id: 1,
     title: 'Beach Cleanup',
@@ -17,6 +18,8 @@ const events = [
     location: 'Ewa Beach Park',
     description: 'Join us to help clean up the beach and protect marine life.',
     liked: '0',
+    likeCount: 0,
+    dislikeCount: 0,
   },
   {
     id: 2,
@@ -25,6 +28,8 @@ const events = [
     location: 'Honolulu Tech Hub',
     description: 'Meet professionals and students in the tech industry.',
     liked: '0',
+    likeCount: 0,
+    dislikeCount: 0,
   },
   {
     id: 3,
@@ -33,24 +38,47 @@ const events = [
     location: 'Waikiki',
     description: 'Enjoy local food, live music, and cultural performances.',
     liked: '0',
+    likeCount: 0,
+    dislikeCount: 0,
   },
 ];
 
 const EventsPage = () => {
-  const [likesList, setLikesList] = useState(Array(events.length).fill('0'));
-  function handleLike(n: string, e: Event) {
-    if (n === e.liked) {
-      e.liked = '0';
-      const nextLikes = likesList.slice();
-      nextLikes[e.id] = '0';
-      setLikesList(nextLikes);
-    } else {
-      e.liked = n;
-      const nextLikes = likesList.slice();
-      nextLikes[e.id] = n;
-      setLikesList(nextLikes);
-    }
+  const [events, setEvents] = useState<Event[]>(initialEvents);
+
+  function handleLike(eventId: number, value: string) {
+    setEvents((prevEvents) => prevEvents.map((event) => {
+      if (event.id !== eventId) {
+        return event;
+      }
+
+      let newLikeCount = event.likeCount;
+      let newDislikeCount = event.dislikeCount;
+      let newLiked = value;
+
+      if (event.liked === '1') {
+        newLikeCount -= 1;
+      } else if (event.liked === '2') {
+        newDislikeCount -= 1;
+      }
+
+      if (event.liked === value) {
+        newLiked = '0';
+      } else if (value === '1') {
+        newLikeCount += 1;
+      } else if (value === '2') {
+        newDislikeCount += 1;
+      }
+
+      return {
+        ...event,
+        liked: newLiked,
+        likeCount: newLikeCount,
+        dislikeCount: newDislikeCount,
+      };
+    }));
   }
+
   return (
     <Container id={PageIDs.allEventsPage} style={pageStyle}>
       <div
@@ -96,11 +124,12 @@ const EventsPage = () => {
           <EventsCard
             key={event.id}
             event={event}
-            onLikeClick={(n: string) => handleLike(n, event)}
+            onLikeClick={handleLike}
           />
         ))}
       </Row>
     </Container>
   );
 };
+
 export default EventsPage;
