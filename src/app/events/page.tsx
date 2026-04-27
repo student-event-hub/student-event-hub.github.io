@@ -18,8 +18,8 @@ const initialEvents: Event[] = [
     location: 'Ewa Beach Park',
     description: 'Join us to help clean up the beach and protect marine life.',
     liked: '0',
-    likeCount: 0,
-    dislikeCount: 0,
+    likeCount: 1,
+    dislikeCount: 2,
   },
   {
     id: 2,
@@ -28,8 +28,8 @@ const initialEvents: Event[] = [
     location: 'Honolulu Tech Hub',
     description: 'Meet professionals and students in the tech industry.',
     liked: '0',
-    likeCount: 0,
-    dislikeCount: 0,
+    likeCount: 3,
+    dislikeCount: 5,
   },
   {
     id: 3,
