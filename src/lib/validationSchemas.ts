@@ -61,9 +61,11 @@ export interface IEditProject {
   endTime: string;
   owners?: (string | undefined)[] | undefined;
   description: string;
-  names?: (string | undefined)[] | undefined;
+  names?: string;
   category?: string;
   picture?: string;
+  location?: string;
+  eventName?: string;
 }
 
 export const EditProjectSchema = Yup.object().shape({
@@ -77,7 +79,9 @@ export const EditProjectSchema = Yup.object().shape({
     }),
   owners: Yup.array().of(Yup.string()),
   description: Yup.string().required('Description is required'),
-  names: Yup.array().of(Yup.string()),
+  names: Yup.string().optional(),
   category: Yup.string().optional(),
   picture: Yup.string().optional(),
+  location: Yup.string().optional(),
+  eventName: Yup.string().optional(),
 });

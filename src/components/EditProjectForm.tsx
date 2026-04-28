@@ -8,13 +8,12 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import swal from 'sweetalert';
 import Multiselect from 'multiselect-react-dropdown';
-import { Interest, User } from '@prisma/client';
+import { User } from '@prisma/client';
 import { EditProjectSchema, IEditProject } from '@/lib/validationSchemas';
 import { upsertProject } from '@/lib/dbActions';
 
-const EditProjectForm = ({ interests, participants }: { interests: Interest[]; participants: User[] }) => {
+const EditProjectForm = ({ participants }: { participants: User[] }) => {
   const formPadding = 'py-1';
-  const interestNames = interests.map((interest) => interest.name);
   const participantNames = participants.map((participant) => participant.email);
   const categories = ['STEM', 'Art', 'Music', 'Sports', 'Technology', 'Business', 'Health', 'Social'];
   const {
@@ -42,6 +41,20 @@ const EditProjectForm = ({ interests, participants }: { interests: Interest[]; p
       <Card>
         <Card.Body>
           <Form onSubmit={handleSubmit(onSubmit)}>
+            <Row className={formPadding}>
+              <Form.Group controlId="location">
+                <Form.Label>Location</Form.Label>
+                <Form.Control type="text" {...register('location')} />
+                <Form.Text className="text-danger">{errors.location?.message}</Form.Text>
+              </Form.Group>
+            </Row>
+            <Row className={formPadding}>
+              <Form.Group controlId="eventName">
+                <Form.Label>Name of Event</Form.Label>
+                <Form.Control type="text" {...register('eventName')} />
+                <Form.Text className="text-danger">{errors.eventName?.message}</Form.Text>
+              </Form.Group>
+            </Row>
             <Row className={formPadding}>
               <Col xs={6}>
                 <Form.Group controlId="startTime">
@@ -93,22 +106,8 @@ const EditProjectForm = ({ interests, participants }: { interests: Interest[]; p
               <Col xs={6}>
                 <Form.Group controlId="names">
                   <Form.Label>Names</Form.Label>
-                  <Controller
-                    control={control}
-                    name="names"
-                    render={({ field: { value, onChange } }) => (
-                      <Multiselect
-                        options={interestNames}
-                        isObject={false}
-                        showCheckbox
-                        hidePlaceholder
-                        closeOnSelect={false}
-                        onSelect={onChange}
-                        onRemove={onChange}
-                        selectedValues={value}
-                      />
-                    )}
-                  />
+                  <Form.Control type="text" {...register('names')} />
+                  <Form.Text className="text-danger">{errors.names?.message}</Form.Text>
                 </Form.Group>
               </Col>
               <Col xs={6}>
