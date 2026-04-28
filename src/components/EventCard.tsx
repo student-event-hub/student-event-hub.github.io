@@ -8,6 +8,7 @@ import { HandThumbsDown, HandThumbsUp } from 'react-bootstrap-icons';
 
 export type Event = {
   id: number;
+  picture: string;
   title: string;
   date: string;
   location: string;
@@ -15,6 +16,9 @@ export type Event = {
   liked: string;
   likeCount: number;
   dislikeCount: number;
+  owner?: string;
+  startTime?: string;
+  endTime?: string;
 };
 
 type Props = {
@@ -57,11 +61,33 @@ const EventCard = ({ event, onLikeClick }: Props) => {
             </Stack>
           </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{event.date}</Card.Subtitle>
+
           <Card.Text>
-            <strong>Location:</strong>
+            <strong>Location: </strong>
             {event.location}
           </Card.Text>
-          <Card.Text>{event.description}</Card.Text>
+          <Card.Text>
+            <strong>Owner: </strong>
+            {event.owner}
+          </Card.Text>
+          <Card.Text>
+            <strong>Description: </strong>
+            {event.description.length > 100 ? `${event.description.substring(0, 100)}...` : event.description}
+          </Card.Text>
+          <Card.Text>
+            <strong>Start Time: </strong>
+            {event.owner ? new Date(event.startTime!).toLocaleString() : 'N/A'}
+          </Card.Text>
+          <Card.Text>
+            <strong>End Time: </strong>
+            {event.owner ? new Date(event.endTime!).toLocaleString() : 'N/A'}
+          </Card.Text>
+          <Card.Img
+            variant="bottom"
+            src={event.picture}
+            alt={`${event.title} picture`}
+            style={{ objectFit: 'cover', maxHeight: '300px' }}
+          />
           <div className="d-flex gap-2 mt-3">
             <Button variant="secondary" size="sm" className="flex-fill">
               Edit Event

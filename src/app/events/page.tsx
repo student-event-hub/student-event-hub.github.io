@@ -13,6 +13,9 @@ import EventsCard, { Event } from '@/components/EventCard';
 const initialEvents: Event[] = [
   {
     id: 1,
+    owner: 'Alex Johnson',
+    startTime: '2026-04-25T09:00:00',
+    endTime: '2026-04-25T12:00:00',
     title: 'Beach Cleanup',
     date: 'April 25, 2026',
     location: 'Ewa Beach Park',
@@ -20,9 +23,14 @@ const initialEvents: Event[] = [
     liked: '0',
     likeCount: 1,
     dislikeCount: 2,
+    // eslint-disable-next-line max-len
+    picture: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhY2glMjBjbGVhbnVwfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60',
   },
   {
     id: 2,
+    owner: 'Emily Nguyen',
+    startTime: '2026-05-01T18:00:00',
+    endTime: '2026-05-01T21:00:00',
     title: 'Tech Networking Night',
     date: 'May 2, 2026',
     location: 'Honolulu Tech Hub',
@@ -30,9 +38,14 @@ const initialEvents: Event[] = [
     liked: '0',
     likeCount: 3,
     dislikeCount: 5,
+    // eslint-disable-next-line max-len
+    picture: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaCUyMG5ldHdvcmtpbmclMjBldmVudHxlbnwwfHwwfHww&auto=format&fit=crop&w=800&q=60',
   },
   {
     id: 3,
+    owner: 'Jayden Cruz',
+    startTime: '2026-05-15T18:00:00',
+    endTime: '2026-05-15T21:00:00',
     title: 'Food Festival',
     date: 'May 10, 2026',
     location: 'Waikiki',
@@ -40,6 +53,8 @@ const initialEvents: Event[] = [
     liked: '0',
     likeCount: 0,
     dislikeCount: 0,
+    // eslint-disable-next-line max-len
+    picture: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMGZlc3RpdmFsJTIwZXZlbnR8ZW58MHx8MHx8fHww&auto=format&fit=crop&w=800&q=60',
   },
 ];
 
