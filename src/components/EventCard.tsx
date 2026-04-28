@@ -1,26 +1,17 @@
 /* eslint-disable import/extensions */
 /* eslint-disable react/no-array-index-key */
 
-'use client';
-
 import { Card, Col, Button, ToggleButton, Stack } from 'react-bootstrap';
 import { HandThumbsDown, HandThumbsUp } from 'react-bootstrap-icons';
-
-export type Event = {
-  id: number;
-  title: string;
-  date: string;
-  location: string;
-  description: string;
-  liked: string;
-};
+import { EventCardData } from '@/app/lib/EventCardData';
 
 type Props = {
-  event: Event;
+  event: EventCardData;
+  likeVal: String;
   onLikeClick: Function;
 };
 
-const EventCard = ({ event, onLikeClick }: Props) => {
+const EventCard = ({ event, likeVal, onLikeClick }: Props) => {
   const likeDislike: { name: string; value: string; variant: string; icon: typeof HandThumbsUp }[] = [
     { name: 'Like', value: '1', variant: 'outline-primary', icon: HandThumbsUp },
     { name: 'Dislike', value: '2', variant: 'outline-danger', icon: HandThumbsDown },
@@ -32,7 +23,7 @@ const EventCard = ({ event, onLikeClick }: Props) => {
           <Card.Title>
             <Stack direction="horizontal">
               <div>
-                {event.title}
+                {event.name}
               </div>
               <div className="ms-auto">
                 {likeDislike.map((radio, idx) => (
@@ -43,7 +34,7 @@ const EventCard = ({ event, onLikeClick }: Props) => {
                     variant={radio.variant}
                     name={radio.name}
                     value={radio.value}
-                    checked={event.liked === radio.value}
+                    checked={likeVal === radio.value}
                     onChange={(e) => onLikeClick(e.currentTarget.value)}
                     className="justify-content-left"
                   >
@@ -54,7 +45,8 @@ const EventCard = ({ event, onLikeClick }: Props) => {
             </Stack>
           </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
-            {event.date}
+            {`${event.eventDate}
+            ${event.startTime}-${event.endTime}`}
           </Card.Subtitle>
           <Card.Text>
             <strong>Location:</strong>
