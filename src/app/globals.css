@@ -30,6 +30,10 @@ html, body {
   flex-direction: column;
 }
 
+main {
+  flex: 1;
+}
+
 
 /* Color the light Brand and links with dark color */
 .bg-light span, .bg-light a {
