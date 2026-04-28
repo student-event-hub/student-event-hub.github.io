@@ -24,7 +24,7 @@ const NavBar: React.FC = () => {
       <Container>
         <Navbar.Brand href="/" className="align-items-center">
           <span style={{ fontWeight: 800, fontSize: '24px' }}>
-            <Image src="/images/logo.png" width={50} style={{ marginBottom: 3 }} alt="Bowfolios" />
+            <Image src="/images/logo_blue.png" width={50} style={{ marginBottom: 3 }} alt="Bowfolios" />
             Student Event Hub
           </span>
         </Navbar.Brand>

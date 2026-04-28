@@ -3,8 +3,8 @@
 
 /* Create some Bowfolio CSS variables. */
 :root {
-  --bowfolio-navbar-bg: #2D336B;
-  --bowfolio-navbar-bg-rgb: 55, 101, 81;
+  --bowfolio-navbar-bg: #38429c;
+  --bowfolio-navbar-bg-rgb: 33, 38, 85;
   --bowfolio-navbar-text: #FFF2F2;
   --bowfolio-navbar-highlight-text: var(--bs-gray-500);
 }
