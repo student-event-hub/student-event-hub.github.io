@@ -24,7 +24,7 @@ const NavBar: React.FC = () => {
       <Container>
         <Navbar.Brand href="/" className="align-items-center">
           <span style={{ fontWeight: 800, fontSize: '24px' }}>
-            <Image src="/images/logo.png" width={50} style={{ marginBottom: 3 }} alt="Bowfolios" />
+            <Image src="/images/logo_blue.png" width={50} style={{ marginBottom: 3 }} alt="Bowfolios" />
             Student Event Hub
           </span>
         </Navbar.Brand>
@@ -58,14 +58,6 @@ const NavBar: React.FC = () => {
             >
               Your Events
             </Nav.Link>,
-                  <Nav.Link
-                    id={ComponentIDs.addProjectMenuItem}
-                    active={pathname === '/addProject'}
-                    href="/addProject"
-                    key="addP"
-                  >
-                    Add Project
-                  </Nav.Link>,
                   <Nav.Link
                     id={ComponentIDs.filterMenuItem}
                     active={pathname === '/filter'}
