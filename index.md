@@ -34,14 +34,13 @@ Here is our Vercel link to our deployment:
 # M3 Project
 <a href = "https://github.com/orgs/student-event-hub/projects/4"> M3 </a>
 
-# Updates:
+# Updates/User Guide:
 <img width="500px"  class="float-center" src="./doc/update1.png">
 <img width="500px"  class="float-center" src="./doc/update2.png">
 <img width="500px"  class="float-center" src="./doc/update3.png">
 <img width="500px"  class="float-center" src="./doc/update4.png">
 <img width="500px"  class="float-center" src="./doc/update5.png">
 
-# User Guide:
 
 # Developer Guide
 
