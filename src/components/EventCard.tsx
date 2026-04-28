@@ -16,6 +16,7 @@ const EventCard = ({ event, likeVal, onLikeClick }: Props) => {
     { name: 'Like', value: '1', variant: 'outline-primary', icon: HandThumbsUp },
     { name: 'Dislike', value: '2', variant: 'outline-danger', icon: HandThumbsDown },
   ];
+
   return (
     <Col>
       <Card>
@@ -26,19 +27,21 @@ const EventCard = ({ event, likeVal, onLikeClick }: Props) => {
                 {event.name}
               </div>
               <div className="ms-auto">
-                {likeDislike.map((radio, idx) => (
+                {likeDislike.map((radio) => (
                   <ToggleButton
-                    key={idx}
-                    id={radio.name}
+                    key={radio.value}
+                    id={`${event.id}-${radio.name}`}
                     type="radio"
                     variant={radio.variant}
-                    name={radio.name}
+                    name={`like-dislike-${event.id}`}
                     value={radio.value}
                     checked={likeVal === radio.value}
-                    onChange={(e) => onLikeClick(e.currentTarget.value)}
+                    onChange={(e) => onLikeClick(event.id, e.currentTarget.value)}
                     className="justify-content-left"
                   >
                     <radio.icon />
+                    {' '}
+                    {radio.value === '1' ? event.upvotes : event.downvotes}
                   </ToggleButton>
                 ))}
               </div>
@@ -50,7 +53,6 @@ const EventCard = ({ event, likeVal, onLikeClick }: Props) => {
           </Card.Subtitle>
           <Card.Text>
             <strong>Location:</strong>
-            {' '}
             {event.location}
           </Card.Text>
           <Card.Text>{event.description}</Card.Text>
