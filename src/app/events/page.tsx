@@ -13,7 +13,7 @@ import EventsCard, { Event } from '@/components/EventCard';
 const initialEvents: Event[] = [
   {
     id: 1,
-    owner: 'Alex Johnson',
+    owner: ['Alex Johnson'],
     startTime: '2026-04-25T09:00:00',
     endTime: '2026-04-25T12:00:00',
     title: 'Beach Cleanup',
@@ -28,7 +28,7 @@ const initialEvents: Event[] = [
   },
   {
     id: 2,
-    owner: 'Emily Nguyen',
+    owner: ['Emily Nguyen'],
     startTime: '2026-05-01T18:00:00',
     endTime: '2026-05-01T21:00:00',
     title: 'Tech Networking Night',
@@ -43,7 +43,7 @@ const initialEvents: Event[] = [
   },
   {
     id: 3,
-    owner: 'Jayden Cruz',
+    owner: ['Jayden Cruz', 'John Cruz'],
     startTime: '2026-05-15T18:00:00',
     endTime: '2026-05-15T21:00:00',
     title: 'Food Festival',

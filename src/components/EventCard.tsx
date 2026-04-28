@@ -16,7 +16,7 @@ export type Event = {
   liked: string;
   likeCount: number;
   dislikeCount: number;
-  owner?: string;
+  owner?: string[];
   startTime?: string;
   endTime?: string;
 };
@@ -67,8 +67,10 @@ const EventCard = ({ event, onLikeClick }: Props) => {
             {event.location}
           </Card.Text>
           <Card.Text>
-            <strong>Owner: </strong>
-            {event.owner}
+            <strong>Owner(s): </strong>
+            {event.owner && event.owner.length > 0
+              ? event.owner.join(', ')
+              : 'No owners listed'}
           </Card.Text>
           <Card.Text>
             <strong>Description: </strong>
