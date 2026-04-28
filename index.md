@@ -41,6 +41,109 @@ Here is our Vercel link to our deployment:
 # User Guide:
 
 # Developer Guide
+First, [install PostgreSQL](https://www.postgresql.org/download/). Then create a database for your application.
+
+```
+
+$ createdb nextjs-application-template
+Password:
+$
+
+```
+
+Second, go to [https://github.com/ics-software-engineering/nextjs-application-template](https://github.com/ics-software-engineering/nextjs-application-template), and click the "Use this template" button. Complete the dialog box to create a new repository that you own that is initialized with this template's files.
+
+Third, go to your newly created repository, and click the "Clone or download" button to download your new GitHub repo to your local file system. Using [GitHub Desktop](https://desktop.github.com/) is a great choice if you use MacOS or Windows.
+
+Fourth, cd into the directory of your local copy of the repo, and install third party libraries with:
+
+```
+
+$ npm install
+
+```
+
+Fifth, create a `.env` file from the `sample.env`. Edit the line `DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"` to match your setup. Replace `mydb` with the PostgreSQL database that you created in the first step (in the example for this step the database is `nextjs-application-template`). replace `johndoe:randompassword` with a username and password you created for this db. If you did not create a user for this database, you can use the `postgress` user with the password you set when you installed postgress. Note: this is not a recommdened practice since the `postgres` user is an admin with full access to postgres. 
+
+See the Prisma docs [Connect your database](https://www.prisma.io/docs/prisma-orm/add-to-existing-project/postgresql#3-connect-your-database). 
+
+Then run the Prisma migration `npx prisma migrate dev` to set up the PostgreSQL tables.
+
+```
+$ npx prisma migrate dev
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+Datasource "db": PostgreSQL database "mydb", schema "public" at "localhost:5432"
+
+Applying migration `20260301195634_init`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 20260301195634_init/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
+
+$
+
+```
+
+Create the Prisma Client by running the command `npx prisma generate`. This will create the Prisma Client in the `generated/prisma` directory, which is used by the application to interact with the database.
+
+```
+$ npx prisma generate
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma/schema.prisma.
+
+Generated Prisma Client (7.4.2) to ./generated/prisma in 80ms
+ 
+```
+
+Then seed the database with the `/config/settings.development.json` data using `npm run seed`.
+
+```
+
+$ npm run seed  
+
+> nextjs-application-template-s26@0.1.0 seed
+> npx tsx src/seed.ts
+
+Seeding the database
+  Creating user: admin@foo.com with role: ADMIN
+  Creating user: john@foo.com with role: USER
+  Adding stuff: {"name":"Basket","quantity":3,"owner":"john@foo.com","condition":"excellent"}
+  Adding stuff: {"name":"Bicycle","quantity":2,"owner":"john@foo.com","condition":"poor"}
+  Adding stuff: {"name":"Banana","quantity":2,"owner":"admin@foo.com","condition":"good"}
+  Adding stuff: {"name":"Boogie Board","quantity":2,"owner":"admin@foo.com","condition":"excellent"}
+$
+
+```
+
+## Running the system
+
+Once the libraries are installed and the database seeded, you can run the application by invoking the "dev" script in the [package.json file](https://github.com/ics-software-engineering/nextjs-application-template/blob/master/app/package.json):
+
+```
+
+$ npm run dev
+
+> nextjs-application-template-s26@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://XXX.XXX.XXX.XXX:3000
+- Environments: .env
+
+✓ Starting...
+✓ Ready in 821ms
+
+```
+
 
 
 
