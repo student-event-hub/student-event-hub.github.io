@@ -35,6 +35,10 @@ Here is our Vercel link to our deployment:
 <img width="500px"  class="float-center" src="./doc/homepage1.png">
 <img width="500px"  class="float-center" src="./doc/homepage2.png">
 
+# User Guide:
+
+# Developer Guide
+
 
 
 # Goals of Implementation
