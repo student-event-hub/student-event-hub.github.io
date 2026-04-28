@@ -50,8 +50,7 @@ const EventCard = ({ event, likeVal, onLikeClick }: Props) => {
             </Stack>
           </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
-            {`${event.eventDate}
-            ${event.startTime}-${event.endTime}`}
+            {`${event.eventDate}`}
           </Card.Subtitle>
           <Card.Text>
             <strong>Location: </strong>
@@ -69,11 +68,11 @@ const EventCard = ({ event, likeVal, onLikeClick }: Props) => {
           </Card.Text>
           <Card.Text>
             <strong>Start Time: </strong>
-            {event.owner ? new Date(event.startTime!).toLocaleString() : 'N/A'}
+            {event.startTime}
           </Card.Text>
           <Card.Text>
             <strong>End Time: </strong>
-            {event.owner ? new Date(event.endTime!).toLocaleString() : 'N/A'}
+            {event.endTime}
           </Card.Text>
           <Card.Img
             variant="bottom"

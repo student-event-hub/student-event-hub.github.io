@@ -28,6 +28,7 @@ const EventCardHelper = async ({ event, likeVal, onLikeClick }: Props) => {
   const eventData: EventCardData = {
     id: event.id,
     name: event.name,
+    owner: event.owner,
     picture: event.picture,
     eventDate: event.startTime.toLocaleDateString(),
     startTime: event.startTime.toLocaleTimeString(),
