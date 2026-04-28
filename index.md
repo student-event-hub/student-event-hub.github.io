@@ -31,6 +31,9 @@ Here is our Vercel link to our deployment:
 # M2 Project 
 <a href = "https://github.com/orgs/student-event-hub/projects/2"> M2 </a>
 
+# M3 Project
+<a href = "https://github.com/orgs/student-event-hub/projects/4"> M3 </a>
+
 # Updates:
 <img width="500px"  class="float-center" src="./doc/homepage1.png">
 <img width="500px"  class="float-center" src="./doc/homepage2.png">
