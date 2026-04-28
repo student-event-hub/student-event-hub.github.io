@@ -25,9 +25,10 @@ export type Event = {
 type Props = {
   event: Event;
   onLikeClick: (eventId: number, value: string) => void;
+  canLike: boolean;
 };
 
-const EventCard = ({ event, onLikeClick }: Props) => {
+const EventCard = ({ event, onLikeClick, canLike }: Props) => {
   const likeDislike: { name: string; value: string; variant: string; icon: typeof HandThumbsUp }[] = [
     { name: 'Like', value: '1', variant: 'outline-primary', icon: HandThumbsUp },
     { name: 'Dislike', value: '2', variant: 'outline-danger', icon: HandThumbsDown },
@@ -50,6 +51,7 @@ const EventCard = ({ event, onLikeClick }: Props) => {
                     name={`like-dislike-${event.id}`}
                     value={radio.value}
                     checked={event.liked === radio.value}
+                    disabled={!canLike}
                     onChange={(e) => onLikeClick(event.id, e.currentTarget.value)}
                     className="justify-content-left"
                   >

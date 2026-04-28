@@ -4,6 +4,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { Button, Container, Form, Row } from 'react-bootstrap';
 import { FunnelFill, Search } from 'react-bootstrap-icons';
 import { PageIDs } from '@/utilities/ids';
@@ -60,6 +61,8 @@ const initialEvents: Event[] = [
 
 const EventsPage = () => {
   const [events, setEvents] = useState<Event[]>(initialEvents);
+  const { status } = useSession();
+  const isSignedIn = status === 'authenticated';
 
   function handleLike(eventId: number, value: string) {
     setEvents((prevEvents) => prevEvents.map((event) => {
@@ -140,6 +143,7 @@ const EventsPage = () => {
             key={event.id}
             event={event}
             onLikeClick={handleLike}
+            canLike={isSignedIn}
           />
         ))}
       </Row>
