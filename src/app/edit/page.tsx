@@ -14,13 +14,13 @@ const EditProjectPage = async () => {
       user: { email: string; id: string; randomKey: string };
     } | null,
   );
-  const interests = await prisma.interest.findMany();
+  // const interests = await prisma.interest.findMany();
   const participants = await prisma.user.findMany();
 
   return (
     <Container>
       <h1 className="text-center">Edit Project</h1>
-      <EditProjectForm interests={interests} participants={participants} />
+      <EditProjectForm participants={participants} /* interests={interests} */ />
     </Container>
   );
 };
