@@ -13,22 +13,22 @@ import { Event } from '@prisma/client';
 import { getAllEvents } from '../lib/dbActions';
 
 let initialEvents: Event[] = [];
-/* getAllEvents().then(
-  function (value) { initialEvents = value; },
-); */
 
 const EventsPage = () => {
+  const [events, setEvents] = useState<Event[]>(initialEvents);
+  const [likes, setLikes] = useState(Array(events.length).fill('0'));
   useEffect(() => {
     const fetchData = async () => {
       getAllEvents().then(
-        function (value) { initialEvents = value; },
+        function (value) {
+          initialEvents = value;
+        },
       );
     };
     fetchData();
+    setEvents(initialEvents);
+    setLikes(Array(initialEvents.length).fill('0'));
   }, []);
-  const [events, setEvents] = useState<Event[]>(initialEvents);
-  const [likes, setLikes] = useState(Array(events.length).fill('0'));
-
   function handleLike(eventId: number, value: string) {
     setEvents((prevEvents) => prevEvents.map((event) => {
       if (event.id !== eventId) {
