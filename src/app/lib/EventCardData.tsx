@@ -1,6 +1,7 @@
 import { Profile } from '@prisma/client';
 
 export type EventCardData = {
+  id: number;
   name: string;
   picture: string | null;
   description: string | null;

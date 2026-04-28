@@ -98,3 +98,9 @@ export async function upsertProject(project: any) {
   });
   return dbProject;
 }
+
+export async function getAllEvents() {
+  // console.log(`getAllEvents`);
+  // eslint-disable-next-line @typescript-eslint/return-await
+  return await prisma.event.findMany();
+}
