@@ -4,6 +4,7 @@
 'use client';
 
 import { Card, Col, Button, ToggleButton, Stack } from 'react-bootstrap';
+import Link from 'next/link';
 import { HandThumbsDown, HandThumbsUp } from 'react-bootstrap-icons';
 
 export type Event = {
@@ -91,9 +92,11 @@ const EventCard = ({ event, onLikeClick }: Props) => {
             style={{ objectFit: 'cover', maxHeight: '300px' }}
           />
           <div className="d-flex gap-2 mt-3">
-            <Button variant="secondary" size="sm" className="flex-fill">
-              Edit Event
-            </Button>
+            <Link href={`/edit?id=${event.id}`}>
+              <Button variant="secondary" size="sm" className="flex-fill">
+                Edit Event
+              </Button>
+            </Link>
             <Button variant="primary" size="sm" className="flex-fill">
               View Details
             </Button>
