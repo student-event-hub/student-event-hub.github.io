@@ -59,14 +59,6 @@ const NavBar: React.FC = () => {
               Your Events
             </Nav.Link>,
                   <Nav.Link
-                    id={ComponentIDs.addProjectMenuItem}
-                    active={pathname === '/addProject'}
-                    href="/addProject"
-                    key="addP"
-                  >
-                    Add Project
-                  </Nav.Link>,
-                  <Nav.Link
                     id={ComponentIDs.filterMenuItem}
                     active={pathname === '/filter'}
                     href="/filter"

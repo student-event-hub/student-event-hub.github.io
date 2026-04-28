@@ -1,7 +1,9 @@
 /* eslint-disable import/extensions */
 /* eslint-disable react/no-array-index-key */
+/* eslint-disable no-nested-ternary */
 
 import { Card, Col, Button, ToggleButton, Stack } from 'react-bootstrap';
+import Link from 'next/link';
 import { HandThumbsDown, HandThumbsUp } from 'react-bootstrap-icons';
 import { EventCardData } from '@/app/lib/EventCardData';
 
@@ -52,14 +54,39 @@ const EventCard = ({ event, likeVal, onLikeClick }: Props) => {
             ${event.startTime}-${event.endTime}`}
           </Card.Subtitle>
           <Card.Text>
-            <strong>Location:</strong>
+            <strong>Location: </strong>
             {event.location}
           </Card.Text>
-          <Card.Text>{event.description}</Card.Text>
+          <Card.Text>
+            <strong>Owner(s): </strong>
+            {event.owner}
+          </Card.Text>
+          <Card.Text>
+            <strong>Description: </strong>
+            {event.description === null
+              ? 'N/A'
+              : (event.description.length > 100 ? `${event.description.substring(0, 100)}...` : event.description)}
+          </Card.Text>
+          <Card.Text>
+            <strong>Start Time: </strong>
+            {event.owner ? new Date(event.startTime!).toLocaleString() : 'N/A'}
+          </Card.Text>
+          <Card.Text>
+            <strong>End Time: </strong>
+            {event.owner ? new Date(event.endTime!).toLocaleString() : 'N/A'}
+          </Card.Text>
+          <Card.Img
+            variant="bottom"
+            src={event.picture === null ? undefined : event.picture}
+            alt={`${event.name} picture`}
+            style={{ objectFit: 'cover', maxHeight: '300px' }}
+          />
           <div className="d-flex gap-2 mt-3">
-            <Button variant="secondary" size="sm" className="flex-fill">
-              Edit Event
-            </Button>
+            <Link href={`/edit?id=${event.id}`}>
+              <Button variant="secondary" size="sm" className="flex-fill">
+                Edit Event
+              </Button>
+            </Link>
             <Button variant="primary" size="sm" className="flex-fill">
               View Details
             </Button>

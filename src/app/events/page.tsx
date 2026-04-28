@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable react/jsx-no-bind */
 
-import { Button, Container, Form, Row } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 import { FunnelFill, Search } from 'react-bootstrap-icons';
 import { PageIDs } from '@/utilities/ids';
 import { prisma } from '@/lib/prisma';
