@@ -19,7 +19,7 @@ const EditProjectPage = async () => {
 
   return (
     <Container>
-      <h1 className="text-center">Edit Project</h1>
+      <h1 className="text-center">Edit Event</h1>
       <EditProjectForm interests={interests} participants={participants} />
     </Container>
   );
