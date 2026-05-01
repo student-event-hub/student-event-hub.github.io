@@ -41,6 +41,9 @@ Here is our Vercel link to our deployment:
 <img width="500px"  class="float-center" src="./doc/update4.png">
 <img width="500px"  class="float-center" src="./doc/update5.png">
 
+Each user can log in and see from the different events from the All Events tab and be able to add events to their own Your Events tab which shows different events that they have saved. Each event on the all events tab hold different information where each user can review the event with a like/dislike and be able to filter/search through the events.
+
+Each user can also create their own events and edit already existing events through the Create Event tab on the navbar and the edit event button in the All Events tab.
 
 # Developer Guide
 
