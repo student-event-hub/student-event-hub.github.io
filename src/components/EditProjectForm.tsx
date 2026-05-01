@@ -2,7 +2,8 @@
 
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Form, Button, Col, Container, Card, Row } from 'react-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,29 +11,74 @@ import swal from 'sweetalert';
 import Multiselect from 'multiselect-react-dropdown';
 import { User } from '@prisma/client';
 import { EditProjectSchema, IEditProject } from '@/lib/validationSchemas';
-import { upsertProject } from '@/lib/dbActions';
+import { updateEvent } from '@/lib/dbActions';
 
-const EditProjectForm = ({ participants }: { participants: User[] }) => {
+type EventData = {
+  id: number;
+  name: string;
+  description: string | null;
+  location: string;
+  startTime: string;
+  endTime: string;
+  originalStartISO: string;
+  originalEndISO: string;
+  owner: string;
+  picture: string | null;
+} | null;
+
+const EditProjectForm = ({ participants, event }: { participants: User[]; event: EventData }) => {
+  const router = useRouter();
   const formPadding = 'py-1';
   const participantNames = participants.map((participant) => participant.email);
   const categories = ['STEM', 'Art', 'Music', 'Sports', 'Technology', 'Business', 'Health', 'Social'];
+
+  const defaultValues = event
+    ? {
+      eventName: event.name,
+      description: event.description ?? '',
+      location: event.location,
+      startTime: event.startTime,
+      endTime: event.endTime,
+      owners: [event.owner],
+      picture: event.picture ?? '',
+    }
+    : {};
+
   const {
     register,
     handleSubmit,
     control,
     reset,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(EditProjectSchema),
+  } = useForm<IEditProject>({
+    resolver: yupResolver(EditProjectSchema) as any,
+    defaultValues,
   });
 
+  useEffect(() => {
+    if (event) {
+      reset({
+        eventName: event.name,
+        description: event.description ?? '',
+        location: event.location,
+        startTime: event.startTime,
+        endTime: event.endTime,
+        owners: [event.owner],
+        picture: event.picture ?? '',
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [event]);
+
   const onSubmit = async (data: IEditProject) => {
-    const result = await upsertProject(data);
-    if (result) {
-      swal('Success!', 'Project data edited successfully!', 'success');
-      reset();
-    } else {
-      swal('Error!', 'Failed to edit project data!', 'error');
+    if (!event) return;
+    try {
+      await updateEvent(event.id, data, event.originalStartISO, event.originalEndISO);
+      await swal('Success!', 'Event updated successfully!', 'success');
+      router.refresh();
+      router.back();
+    } catch {
+      swal('Error!', 'Failed to update event!', 'error');
     }
   };
 
@@ -42,17 +88,17 @@ const EditProjectForm = ({ participants }: { participants: User[] }) => {
         <Card.Body>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Row className={formPadding}>
-              <Form.Group controlId="location">
-                <Form.Label>Location</Form.Label>
-                <Form.Control type="text" {...register('location')} />
-                <Form.Text className="text-danger">{errors.location?.message}</Form.Text>
-              </Form.Group>
-            </Row>
-            <Row className={formPadding}>
               <Form.Group controlId="eventName">
                 <Form.Label>Name of Event</Form.Label>
                 <Form.Control type="text" {...register('eventName')} />
                 <Form.Text className="text-danger">{errors.eventName?.message}</Form.Text>
+              </Form.Group>
+            </Row>
+            <Row className={formPadding}>
+              <Form.Group controlId="location">
+                <Form.Label>Location</Form.Label>
+                <Form.Control type="text" {...register('location')} />
+                <Form.Text className="text-danger">{errors.location?.message}</Form.Text>
               </Form.Group>
             </Row>
             <Row className={formPadding}>

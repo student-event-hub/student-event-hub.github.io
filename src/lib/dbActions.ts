@@ -99,6 +99,28 @@ export async function upsertProject(project: any) {
   return dbProject;
 }
 
+export async function updateEvent(id: number, data: any, originalStartISO: string, originalEndISO: string) {
+  const combineDateTime = (originalISO: string, timeHHMM: string): Date => {
+    const datePart = originalISO.split('T')[0];
+    return new Date(`${datePart}T${timeHHMM}:00`);
+  };
+
+  const updatedEvent = await prisma.event.update({
+    where: { id },
+    data: {
+      ...(data.eventName && { name: data.eventName }),
+      description: data.description ?? null,
+      location: data.location ?? undefined,
+      startTime: combineDateTime(originalStartISO, data.startTime),
+      endTime: combineDateTime(originalEndISO, data.endTime),
+      ...(data.owners?.[0] && { owner: data.owners[0] }),
+      picture: data.picture || null,
+    },
+  });
+
+  return updatedEvent;
+}
+
 export async function updateProfile(profile: any) {
   console.log(`updateProfile data: ${JSON.stringify(profile, null, 2)}`);
   const dbProfile = await prisma.profile.upsert({
