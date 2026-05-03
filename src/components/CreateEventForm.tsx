@@ -8,15 +8,12 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import swal from 'sweetalert';
 import Multiselect from 'multiselect-react-dropdown';
-import { Interest, User } from '@prisma/client';
+import { User } from '@prisma/client';
 import { EditProjectSchema, IEditProject } from '@/lib/validationSchemas';
-// import { upsertProject } from '@/lib/dbActions';
-import createEventAction from '@/lib/actions';
-// import { create } from 'domain';
+import { upsertProject } from '@/lib/dbActions';
 
-const CreateEventForm = ({ participants }: { interests: Interest[]; participants: User[] }) => {
+const CreateEventForm = ({ participants }: { participants: User[] }) => {
   const formPadding = 'py-1';
-  // const interestNames = interests.map((interest) => interest.name);
   const categories = ['STEM', 'Art', 'Music', 'Sports', 'Technology', 'Business', 'Health', 'Social'];
   const participantNames = participants.map((participant) => participant.email);
   const {
@@ -30,12 +27,12 @@ const CreateEventForm = ({ participants }: { interests: Interest[]; participants
   });
 
   const onSubmit = async (data: IEditProject) => {
-    const result = await createEventAction(data);
+    const result = await upsertProject(data);
     if (result) {
-      swal('Success!', 'Event data saved successfully!', 'success');
+      swal('Success!', 'Project data saved successfully!', 'success');
       reset();
     } else {
-      swal('Error!', 'Failed to save event data!', 'error');
+      swal('Error!', 'Failed to save project data!', 'error');
     }
   };
 
@@ -145,7 +142,7 @@ const CreateEventForm = ({ participants }: { interests: Interest[]; participants
               </Col>
             </Row>
             <Button variant="primary" type="submit">
-              Create
+              Update
             </Button>
           </Form>
         </Card.Body>

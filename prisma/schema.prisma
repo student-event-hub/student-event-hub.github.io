@@ -63,7 +63,7 @@ model Event {
   location     String
   upvotes      Int             @default(0)
   downvotes    Int             @default(0)
-  owner        String
+  owner        String[]
   creator      String
   signedUp     Int             @default(1)
   ProfileEvent ProfileEvent[]
