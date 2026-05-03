@@ -51,23 +51,6 @@ export async function createEvent(event: any) {
   return dbEvent;
 }
 
-/*
-export async function editEvent(event: any) {
-  // console.log(`editEvent data: ${JSON.stringify(event, null, 2)}`);
-  const dbEvent = await prisma.event.update({
-    where: { name: event.name },
-    data: {
-      location: event.location,
-      eventName: event.eventName,
-      description: event.description,
-      homepage: event.homepage,
-      picture: event.picture,
-    },
-  });
-  return dbEvent;
-}
-  */
-
 export async function createProject(project: any) {
   // console.log(`createProject data: ${JSON.stringify(project, null, 2)}`);
   const dbProject = await prisma.project.create({
