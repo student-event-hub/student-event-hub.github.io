@@ -10,11 +10,13 @@ import swal from 'sweetalert';
 import Multiselect from 'multiselect-react-dropdown';
 import { Interest, User } from '@prisma/client';
 import { EditProjectSchema, IEditProject } from '@/lib/validationSchemas';
-import { upsertProject } from '@/lib/dbActions';
+// import { upsertProject } from '@/lib/dbActions';
+import createEventAction from '@/lib/actions';
+// import { create } from 'domain';
 
-const CreateEventForm = ({ interests, participants }: { interests: Interest[]; participants: User[] }) => {
+const CreateEventForm = ({ participants }: { interests: Interest[]; participants: User[] }) => {
   const formPadding = 'py-1';
-  const interestNames = interests.map((interest) => interest.name);
+  // const interestNames = interests.map((interest) => interest.name);
   const categories = ['STEM', 'Art', 'Music', 'Sports', 'Technology', 'Business', 'Health', 'Social'];
   const participantNames = participants.map((participant) => participant.email);
   const {
@@ -28,12 +30,12 @@ const CreateEventForm = ({ interests, participants }: { interests: Interest[]; p
   });
 
   const onSubmit = async (data: IEditProject) => {
-    const result = await upsertProject(data);
+    const result = await createEventAction(data);
     if (result) {
-      swal('Success!', 'Project data saved successfully!', 'success');
+      swal('Success!', 'Event data saved successfully!', 'success');
       reset();
     } else {
-      swal('Error!', 'Failed to save project data!', 'error');
+      swal('Error!', 'Failed to save event data!', 'error');
     }
   };
 
@@ -143,7 +145,7 @@ const CreateEventForm = ({ interests, participants }: { interests: Interest[]; p
               </Col>
             </Row>
             <Button variant="primary" type="submit">
-              Update
+              Create
             </Button>
           </Form>
         </Card.Body>
