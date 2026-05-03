@@ -1,10 +1,8 @@
 /* eslint-disable import/extensions */
 import { Container } from 'react-bootstrap';
-// import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 import CreateEventForm from '@/components/CreateEventForm';
 import { loggedInProtectedPage } from '@/lib/page-protection';
-// import { authOptions } from '../api/auth/[...nextauth]/route';
 import { auth } from '@/lib/auth';
 
 const CreateEventPage = async () => {
@@ -14,13 +12,13 @@ const CreateEventPage = async () => {
       user: { email: string; id: string; randomKey: string };
     } | null,
   );
-  const interests = await prisma.interest.findMany();
+
   const participants = await prisma.user.findMany();
 
   return (
     <Container>
       <h1 className="text-center">Create Event</h1>
-      <CreateEventForm interests={interests} participants={participants} />
+      <CreateEventForm participants={participants} />
     </Container>
   );
 };
