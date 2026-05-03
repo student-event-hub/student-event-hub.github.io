@@ -132,7 +132,7 @@
         "endHour": 19,
         "endMinute": 0,
         "location": "ICSpace, POST 318B",
-        "owner": "ACM Manoa",
+        "owner": ["ACM Manoa"],
         "creator": "Philip_Johnson",
         "signedUp": 3
       },
@@ -152,7 +152,7 @@
         "endHour": 15,
         "endMinute": 0,
         "location": "Campus Center Ballroom",
-        "owner": "UH Career Services",
+        "owner": ["UH Career Services"],
         "creator": "Carleton_Moore",
         "signedUp": 5
       },
@@ -172,7 +172,7 @@
         "endHour": 20,
         "endMinute": 0,
         "location": "POST Building",
-        "owner": "ICS Department",
+        "owner": ["ICS Department"],
         "creator": "Henri_Casanova",
         "signedUp": 4
       },
@@ -192,7 +192,7 @@
         "endHour": 16,
         "endMinute": 0,
         "location": "Campus Center Courtyard",
-        "owner": "UH Multicultural Center",
+        "owner": ["UH Multicultural Center"],
         "creator": "Jason_Leigh",
         "signedUp": 2
       },
@@ -212,7 +212,7 @@
         "endHour": 15,
         "endMinute": 30,
         "location": "POST 318B",
-        "owner": "ICS Department",
+        "owner": ["ICS Department"],
         "creator": "Philip_Johnson",
         "signedUp": 1
       },
@@ -232,7 +232,7 @@
         "endHour": 13,
         "endMinute": 0,
         "location": "UH Manoa Recreation Fields",
-        "owner": "UH Intramurals",
+        "owner": ["UH Intramurals"],
         "creator": "Serge_Negrashov",
         "signedUp": 2
       }

@@ -8,13 +8,12 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import swal from 'sweetalert';
 import Multiselect from 'multiselect-react-dropdown';
-import { Interest, User } from '@prisma/client';
+import { User } from '@prisma/client';
 import { EditProjectSchema, IEditProject } from '@/lib/validationSchemas';
 import { upsertProject } from '@/lib/dbActions';
 
-const CreateEventForm = ({ interests, participants }: { interests: Interest[]; participants: User[] }) => {
+const CreateEventForm = ({ participants }: { participants: User[] }) => {
   const formPadding = 'py-1';
-  const interestNames = interests.map((interest) => interest.name);
   const categories = ['STEM', 'Art', 'Music', 'Sports', 'Technology', 'Business', 'Health', 'Social'];
   const participantNames = participants.map((participant) => participant.email);
   const {
@@ -50,10 +49,10 @@ const CreateEventForm = ({ interests, participants }: { interests: Interest[]; p
               </Form.Group>
             </Row>
             <Row className={formPadding}>
-              <Form.Group controlId="eventName">
+              <Form.Group controlId="name">
                 <Form.Label>Name of Event</Form.Label>
-                <Form.Control type="text" {...register('eventName')} />
-                <Form.Text className="text-danger">{errors.eventName?.message}</Form.Text>
+                <Form.Control type="text" {...register('name')} />
+                <Form.Text className="text-danger">{errors.name?.message}</Form.Text>
               </Form.Group>
             </Row>
             <Row className={formPadding}>
