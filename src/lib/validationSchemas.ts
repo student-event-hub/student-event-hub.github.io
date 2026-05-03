@@ -65,7 +65,7 @@ export interface IEditProject {
   category?: string;
   picture?: string;
   location?: string;
-  eventName?: string;
+  name?: string;
 }
 
 export const EditProjectSchema = Yup.object().shape({
@@ -83,5 +83,5 @@ export const EditProjectSchema = Yup.object().shape({
   category: Yup.string().optional(),
   picture: Yup.string().optional(),
   location: Yup.string().optional(),
-  eventName: Yup.string().optional(),
+  name: Yup.string().optional(),
 });
