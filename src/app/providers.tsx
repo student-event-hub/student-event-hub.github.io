@@ -1,12 +1,15 @@
 'use client';
 
 import { SessionProvider } from 'next-auth/react';
+import { Session } from 'next-auth';
 
 type Props = {
-  // eslint-disable-next-line react/require-default-props
   children?: React.ReactNode;
+  session?: Session | null;
 };
 
-const Providers = ({ children }: Props) => <SessionProvider>{children}</SessionProvider>;
+const Providers = ({ children, session }: Props) => (
+  <SessionProvider session={session}>{children}</SessionProvider>
+);
 
 export default Providers;

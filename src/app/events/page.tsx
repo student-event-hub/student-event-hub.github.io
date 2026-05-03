@@ -8,9 +8,9 @@ import { prisma } from '@/lib/prisma';
 import pageStyle from '@/utilities/pageStyle';
 import CardGrid from './CardGrid';
 
-const events = await prisma.event.findMany();
-
-const EventsPage = async () => (
+const EventsPage = async () => {
+  const events = await prisma.event.findMany();
+  return (
   <Container id={PageIDs.allEventsPage} style={pageStyle}>
     <div
       style={{
@@ -52,6 +52,7 @@ const EventsPage = async () => (
     </div>
     <CardGrid initialEvents={events} />
   </Container>
-);
+  );
+};
 
 export default EventsPage;

@@ -11,8 +11,8 @@
           "Climate Change"
         ],
         "events":[
-          "RadGrad Paper Publication Celebration",
-          "Open Power Quality Paper Publication Celebration"
+          "ACM Manoa Fall Kickoff",
+          "Guest Lecture: AI in the Real World"
         ],
         "projects":[
           "RadGrad",
@@ -32,7 +32,7 @@
           "Distributed Computing"
         ],
         "events":[
-          "WRENCH Paper Publication Celebration"
+          "ICS Hackathon 2026"
         ],
         "projects":[
           "WRENCH"
@@ -51,7 +51,7 @@
           "Renewable Energy"
         ],
         "events":[
-          "RadGrad Paper Publication Celebration"
+          "UH Manoa Spring Career Fair"
         ],
         "projects":[
           "RadGrad"
@@ -70,7 +70,7 @@
           "Distributed Computing"
         ],
         "events":[
-          "Open Power Quality Paper Publication Celebration"
+          "ICS Hackathon 2026"
         ],
         "projects":[
           "Open Power Quality"
@@ -88,7 +88,7 @@
           "Visualization"
         ],
         "events":[
-          "Cyber Canoe Update Celebration"
+          "International Culture Fest"
         ],
         "projects":[
           "Cyber Canoe"
@@ -106,7 +106,7 @@
           "Scalable IP Networks"
         ],
         "events":[
-          "Open Power Quality Paper Publication Celebration"
+          "Campus Volleyball Tournament"
         ],
         "projects":[
           "Open Power Quality"
@@ -117,82 +117,124 @@
     ],
     "defaultEvents": [
       {
-        "name": "Open Power Quality Paper Publication Celebration",
-        "description": "Open source hardware and software for distributed power quality data collection, analysis, and visualization.",
+        "name": "ACM Manoa Fall Kickoff",
+        "description": "Kick off the new semester with the ACM Manoa chapter! Meet fellow CS students, learn about upcoming events, and enjoy free food.",
         "interests": [
           "Software Engineering",
-          "Renewable Energy"
+          "Technology"
         ],
-        "picture": "https://avatars0.githubusercontent.com/u/4641939",
-        "year": 2020,
-        "month": 8,
-        "day": 4,
-        "startHour": 14,
+        "picture": "https://picsum.photos/seed/acm/400/300",
+        "year": 2026,
+        "month": 7,
+        "day": 28,
+        "startHour": 17,
         "startMinute": 0,
-        "endHour": 17,
+        "endHour": 19,
         "endMinute": 0,
-        "location": "POST Building",
-        "owner": "Philip Johnson, Anthony Criste, & Serge Negrashov",
+        "location": "ICSpace, POST 318B",
+        "owner": ["ACM Manoa"],
         "creator": "Philip_Johnson",
         "signedUp": 3
       },
       {
-        "name": "RadGrad Paper Publication Celebration",
-        "description": "Growing awesome computer scientists, one graduate at a time.",
+        "name": "UH Manoa Spring Career Fair",
+        "description": "Connect with top employers from tech, engineering, and business industries. Bring your resume and dress professionally.",
         "interests": [
-          "Educational Technology"
+          "Business",
+          "Technology"
         ],
-        "picture": "https://www.radgrad.org/img/radgrad_logo.png",
-        "year": 2024,
-        "month": 7,
-        "day": 26,
-        "startHour": 12,
+        "picture": "https://picsum.photos/seed/career/400/300",
+        "year": 2027,
+        "month": 0,
+        "day": 25,
+        "startHour": 10,
         "startMinute": 0,
-        "endHour": 14,
+        "endHour": 15,
         "endMinute": 0,
-        "location": "POST Building",
-        "owner": "Carleton Moore & Philip Johnson",
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Career Services"],
         "creator": "Carleton_Moore",
-        "signedUp": 2
+        "signedUp": 5
       },
       {
-        "name": "WRENCH Paper Publication Celebration",
-        "description": "WRENCH is an open-source library for developing simulators for large-scale scientific computation",
+        "name": "ICS Hackathon 2026",
+        "description": "A 12-hour hackathon open to all UH Manoa students. Form teams, build something awesome, and compete for prizes.",
         "interests": [
-          "Distributed Computing"
+          "Software Engineering",
+          "AI"
         ],
-        "picture": "https://wrench-project.org/images/logo-vertical.png",
-        "year": 2023,
-        "month": 1,
-        "day": 12,
+        "picture": "https://picsum.photos/seed/hackathon/400/300",
+        "year": 2026,
+        "month": 9,
+        "day": 10,
         "startHour": 8,
-        "startMinute": 0,
-        "endHour": 12,
-        "endMinute": 0,
-        "location": "POST Building",
-        "owner": "Henri Casanova",
-        "creator": "Henri_Casanova",
-        "signedUp": 1
-      },
-      {
-        "name": "Cyber Canoe Update Celebration",
-        "description": "Software for Unity projects involving stereoscopic resolution driven by 9 PCs with a GeForce 980 graphics card.",
-        "interests": [
-          "Unity",
-          "Visualization"
-        ],
-        "picture": "https://www.hawaii.edu/its/wp-content/uploads/sites/2/2019/01/LAVAlogo-300x192-300x192.png",
-        "year": 2019,
-        "month": 1,
-        "day": 17,
-        "startHour": 18,
         "startMinute": 0,
         "endHour": 20,
         "endMinute": 0,
-        "location":"POST Building",
-        "owner": "Jason Leigh",
+        "location": "POST Building",
+        "owner": ["ICS Department"],
+        "creator": "Henri_Casanova",
+        "signedUp": 4
+      },
+      {
+        "name": "International Culture Fest",
+        "description": "Celebrate the diversity of UH Manoa with food, performances, and exhibits representing cultures from around the world.",
+        "interests": [
+          "Social",
+          "Art"
+        ],
+        "picture": "https://picsum.photos/seed/culture/400/300",
+        "year": 2026,
+        "month": 10,
+        "day": 5,
+        "startHour": 11,
+        "startMinute": 0,
+        "endHour": 16,
+        "endMinute": 0,
+        "location": "Campus Center Courtyard",
+        "owner": ["UH Multicultural Center"],
         "creator": "Jason_Leigh",
+        "signedUp": 2
+      },
+      {
+        "name": "Guest Lecture: AI in the Real World",
+        "description": "Industry professionals share how AI is being applied across healthcare, finance, and software today. Q&A session included.",
+        "interests": [
+          "AI",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/ailecture/400/300",
+        "year": 2026,
+        "month": 8,
+        "day": 15,
+        "startHour": 14,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 30,
+        "location": "POST 318B",
+        "owner": ["ICS Department"],
+        "creator": "Philip_Johnson",
         "signedUp": 1
+      },
+      {
+        "name": "Campus Volleyball Tournament",
+        "description": "Grab your friends and sign up for the semester intramural volleyball tournament. All skill levels welcome!",
+        "interests": [
+          "Sports",
+          "Social"
+        ],
+        "picture": "https://picsum.photos/seed/volleyball/400/300",
+        "year": 2026,
+        "month": 9,
+        "day": 20,
+        "startHour": 9,
+        "startMinute": 0,
+        "endHour": 13,
+        "endMinute": 0,
+        "location": "UH Manoa Recreation Fields",
+        "owner": ["UH Intramurals"],
+        "creator": "Serge_Negrashov",
+        "signedUp": 2
       }
     ],
     "defaultProjects": [
