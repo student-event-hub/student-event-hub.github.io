@@ -81,7 +81,7 @@ const EventCard = ({ event, likeVal, onLikeClick }: Props) => {
             style={{ objectFit: 'cover', maxHeight: '300px' }}
           />
           <div className="d-flex gap-2 mt-3">
-            <Link href={`/edit?id=${event.id}`}>
+            <Link href={`/editEvent/${event.id}`}>
               <Button variant="secondary" size="sm" className="flex-fill">
                 Edit Event
               </Button>

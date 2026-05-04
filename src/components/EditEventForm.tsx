@@ -7,37 +7,67 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import swal from 'sweetalert';
 import Multiselect from 'multiselect-react-dropdown';
 import { Interest, User } from '@prisma/client';
-import { CreateEventSchema, IEvent } from '@/lib/validationSchemas';
-import { addEvent } from '@/lib/dbActions';
+import { useRouter } from 'next/navigation';
+import { EditEventSchema, IEditEvent } from '@/lib/validationSchemas';
+import { upsertEvent } from '@/lib/dbActions';
 
-type Props = {
-  interests: Interest[];
-  participants: User[];
-  creator: string;
+type EventWithInterests = {
+  id: number;
+  name: string;
+  description: string | null;
+  picture: string | null;
+  location: string;
+  owner: string[];
+  startTime: Date;
+  endTime: Date;
+  interests: { interest: { name: string } }[];
 };
 
-const CreateEventForm = ({ interests, participants, creator }: Props) => {
+type Props = {
+  event: EventWithInterests;
+  interests: Interest[];
+  participants: User[];
+};
+
+const EditEventForm = ({ event, interests, participants }: Props) => {
+  const router = useRouter();
   const formPadding = 'py-1';
   const interestNames = interests.map((i) => i.name);
   const participantEmails = participants.map((p) => p.email);
+
+  const date = event.startTime.toISOString().split('T')[0];
+  const startTime = event.startTime.toISOString().split('T')[1].substring(0, 5);
+  const endTime = event.endTime.toISOString().split('T')[1].substring(0, 5);
+  const existingInterests = event.interests.map((ei) => ei.interest.name);
 
   const {
     register,
     handleSubmit,
     control,
-    reset,
     formState: { errors },
-  } = useForm<IEvent>({
-    resolver: yupResolver(CreateEventSchema),
+  } = useForm<IEditEvent>({
+    resolver: yupResolver(EditEventSchema),
+    defaultValues: {
+      id: event.id,
+      name: event.name,
+      description: event.description ?? '',
+      picture: event.picture ?? '',
+      location: event.location,
+      owner: event.owner.join(', '),
+      date,
+      startTime,
+      endTime,
+      interests: existingInterests,
+    },
   });
 
-  const onSubmit = async (data: IEvent) => {
-    const result = await addEvent(data, creator);
-    if (result) {
-      swal('Success!', 'Event created successfully!', 'success');
-      reset();
-    } else {
-      swal('Error!', 'Failed to create event!', 'error');
+  const onSubmit = async (data: IEditEvent) => {
+    try {
+      await upsertEvent({ ...data, id: Number(data.id) });
+      swal('Success!', 'Event updated successfully!', 'success');
+      setTimeout(() => router.push('/events'), 1500);
+    } catch {
+      swal('Error!', 'Failed to update event!', 'error');
     }
   };
 
@@ -46,6 +76,7 @@ const CreateEventForm = ({ interests, participants, creator }: Props) => {
       <Card>
         <Card.Body>
           <Form onSubmit={handleSubmit(onSubmit)}>
+            <input type="hidden" {...register('id')} />
             <Row className={formPadding}>
               <Col xs={6}>
                 <Form.Group controlId="name">
@@ -153,7 +184,7 @@ const CreateEventForm = ({ interests, participants, creator }: Props) => {
               </Col>
             </Row>
             <Button variant="primary" type="submit" className="mt-2">
-              Create Event
+              Update Event
             </Button>
           </Form>
         </Card.Body>
@@ -162,4 +193,4 @@ const CreateEventForm = ({ interests, participants, creator }: Props) => {
   );
 };
 
-export default CreateEventForm;
+export default EditEventForm;

@@ -43,11 +43,41 @@ export async function createUser(credentials: { email: string; password: string 
   });
 }
 
-export async function createEvent(event: any) {
-  // console.log(`createEvent data: ${JSON.stringify(event, null, 2)}`);
+export async function addEvent(event: any, creator: string) {
+  const startDateTime = new Date(`${event.date}T${event.startTime}:00`);
+  const endDateTime = new Date(`${event.date}T${event.endTime}:00`);
+
   const dbEvent = await prisma.event.create({
-    data: event,
+    data: {
+      name: event.name,
+      description: event.description || null,
+      picture: event.picture || null,
+      startTime: startDateTime,
+      endTime: endDateTime,
+      location: event.location,
+      owner: [event.owner],
+      creator,
+    },
   });
+
+  if (event.interests?.length > 0) {
+    for (const interestName of event.interests) {
+      const dbInterest = await prisma.interest.findUnique({ where: { name: interestName } });
+      if (dbInterest) {
+        await prisma.eventInterest.create({ data: { eventId: dbEvent.id, interestId: dbInterest.id } });
+      }
+    }
+  }
+
+  if (event.participants?.length > 0) {
+    for (const email of event.participants) {
+      const dbProfile = await prisma.profile.findUnique({ where: { email } });
+      if (dbProfile) {
+        await prisma.profileEvent.create({ data: { eventId: dbEvent.id, profileId: dbProfile.id } });
+      }
+    }
+  }
+
   return dbEvent;
 }
 
@@ -127,6 +157,36 @@ export async function updateEvent(id: number, data: any, originalStartISO: strin
   });
 
   return updatedEvent;
+}
+
+export async function upsertEvent(event: any) {
+  const startDateTime = new Date(`${event.date}T${event.startTime}:00`);
+  const endDateTime = new Date(`${event.date}T${event.endTime}:00`);
+
+  const dbEvent = await prisma.event.update({
+    where: { id: event.id },
+    data: {
+      name: event.name,
+      description: event.description || null,
+      picture: event.picture || null,
+      startTime: startDateTime,
+      endTime: endDateTime,
+      location: event.location,
+      owner: [event.owner],
+    },
+  });
+
+  await prisma.eventInterest.deleteMany({ where: { eventId: dbEvent.id } });
+  if (event.interests?.length > 0) {
+    for (const interestName of event.interests) {
+      const dbInterest = await prisma.interest.findUnique({ where: { name: interestName } });
+      if (dbInterest) {
+        await prisma.eventInterest.create({ data: { eventId: dbEvent.id, interestId: dbInterest.id } });
+      }
+    }
+  }
+
+  return dbEvent;
 }
 
 export async function updateProfile(profile: any) {

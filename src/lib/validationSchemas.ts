@@ -39,21 +39,41 @@ export const ProfileSchema = Yup.object().shape({
 export interface IEvent {
   name: string;
   picture?: string;
-  description: string;
-  date: Date;
+  description?: string;
+  date: string;
+  startTime: string;
+  endTime: string;
   location: string;
-  interests?: (string | undefined)[] | undefined;
-  participants?: (string | undefined)[] | undefined;
+  owner: string;
+  interests?: (string | undefined)[];
+  participants?: (string | undefined)[];
 }
 
 export const CreateEventSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
   picture: Yup.string().optional(),
-  description: Yup.string().required('Description is required'),
-  date: Yup.date().required('Date is required'),
+  description: Yup.string().optional(),
+  date: Yup.string().required('Date is required'),
+  startTime: Yup.string().required('Start time is required'),
+  endTime: Yup.string()
+    .required('End time is required')
+    .test('is-after-start', 'End time must be after start time', function (value) {
+      const { startTime } = this.parent;
+      if (!startTime || !value) return true;
+      return value > startTime;
+    }),
   location: Yup.string().required('Location is required'),
+  owner: Yup.string().required('Owner is required'),
   interests: Yup.array().of(Yup.string()),
   participants: Yup.array().of(Yup.string()),
+});
+
+export interface IEditEvent extends IEvent {
+  id: number;
+}
+
+export const EditEventSchema = CreateEventSchema.shape({
+  id: Yup.number().required(),
 });
 
 export interface IEditProject {

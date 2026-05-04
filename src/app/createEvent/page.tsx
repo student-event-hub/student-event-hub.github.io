@@ -12,12 +12,14 @@ const CreateEventPage = async () => {
       user: { email: string; id: string; randomKey: string };
     } | null,
   );
+  const interests = await prisma.interest.findMany();
   const participants = await prisma.user.findMany();
+  const creator = (session as { user: { email: string } } | null)?.user?.email ?? '';
 
   return (
     <Container>
       <h1 className="text-center">Create Event</h1>
-      <CreateEventForm participants={participants} />
+      <CreateEventForm interests={interests} participants={participants} creator={creator} />
     </Container>
   );
 };
