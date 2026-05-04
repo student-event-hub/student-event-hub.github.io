@@ -142,7 +142,7 @@ const CreateEventForm = ({ participants }: { participants: User[] }) => {
               </Col>
             </Row>
             <Button variant="primary" type="submit">
-              Update
+              Create
             </Button>
           </Form>
         </Card.Body>
