@@ -131,8 +131,17 @@ const CreateEventForm = ({ interests, participants, creator }: Props) => {
                 </Form.Group>
               </Col>
               <Col xs={6}>
-                <Form.Group controlId="participants">
-                  <Form.Label>Participants</Form.Label>
+                <Form.Group controlId="description">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control as="textarea" placeholder="Describe the project here." {...register('description')} />
+                  <Form.Text muted>(optional)</Form.Text>
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row className={formPadding}>
+              <Col xs={12}>
+                <Form.Group controlId="category">
+                  <Form.Label>Category</Form.Label>
                   <Controller
                     control={control}
                     name="participants"
