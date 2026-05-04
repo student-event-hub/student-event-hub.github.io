@@ -11,47 +11,47 @@ import CardGrid from './CardGrid';
 const EventsPage = async () => {
   const events = await prisma.event.findMany();
   return (
-  <Container id={PageIDs.allEventsPage} style={pageStyle}>
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        marginBottom: '20px',
-        gap: '12px',
-      }}
-    >
-      <Button variant="outline-dark">
-        <FunnelFill className="me-2" />
-        Filter by
-      </Button>
-
+    <Container id={PageIDs.allEventsPage} style={pageStyle}>
       <div
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '8px',
-          border: '1px solid #ced4da',
-          borderRadius: '6px',
-          padding: '0 12px',
-          width: '420px',
-          marginLeft: 'auto',
-          backgroundColor: 'white',
+          marginBottom: '20px',
+          gap: '12px',
         }}
       >
-        <Search />
-        <Form.Control
-          type="text"
-          placeholder="Search events"
+        <Button variant="outline-dark">
+          <FunnelFill className="me-2" />
+          Filter by
+        </Button>
+
+        <div
           style={{
-            border: 'none',
-            boxShadow: 'none',
-            paddingLeft: 0,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            border: '1px solid #ced4da',
+            borderRadius: '6px',
+            padding: '0 12px',
+            width: '420px',
+            marginLeft: 'auto',
+            backgroundColor: 'white',
           }}
-        />
+        >
+          <Search />
+          <Form.Control
+            type="text"
+            placeholder="Search events"
+            style={{
+              border: 'none',
+              boxShadow: 'none',
+              paddingLeft: 0,
+            }}
+          />
+        </div>
       </div>
-    </div>
-    <CardGrid initialEvents={events} />
-  </Container>
+      <CardGrid initialEvents={events} />
+    </Container>
   );
 };
 
