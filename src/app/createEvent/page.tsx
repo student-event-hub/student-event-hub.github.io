@@ -12,7 +12,6 @@ const CreateEventPage = async () => {
       user: { email: string; id: string; randomKey: string };
     } | null,
   );
-
   const participants = await prisma.user.findMany();
 
   return (
