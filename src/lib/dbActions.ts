@@ -116,12 +116,12 @@ export async function updateEvent(id: number, data: any, originalStartISO: strin
   const updatedEvent = await prisma.event.update({
     where: { id },
     data: {
-      ...(data.eventName && { name: data.eventName }),
+      ...(data.name && { name: data.name }),
       description: data.description ?? null,
       location: data.location ?? undefined,
       startTime: combineDateTime(originalStartISO, data.startTime),
       endTime: combineDateTime(originalEndISO, data.endTime),
-      ...(data.owners?.[0] && { owner: data.owners[0] }),
+      ...(data.owners && { owner: data.owners.filter(Boolean) as string[] }),
       picture: data.picture || null,
     },
   });

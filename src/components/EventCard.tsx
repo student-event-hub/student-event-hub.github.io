@@ -58,7 +58,7 @@ const EventCard = ({ event, likeVal, onLikeClick }: Props) => {
           </Card.Text>
           <Card.Text>
             <strong>Owner(s): </strong>
-            {event.owner}
+            {event.owner.join(', ')}
           </Card.Text>
           <Card.Text>
             <strong>Description: </strong>

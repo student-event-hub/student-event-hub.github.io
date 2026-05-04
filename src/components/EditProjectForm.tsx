@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import swal from 'sweetalert';
 import Multiselect from 'multiselect-react-dropdown';
 import { User } from '@prisma/client';
-import { EditProjectSchema, IEditProject } from '@/lib/validationSchemas';
+import { EditProjectSchema } from '@/lib/validationSchemas';
 import { updateEvent } from '@/lib/dbActions';
 
 type EventData = {
@@ -22,7 +22,7 @@ type EventData = {
   endTime: string;
   originalStartISO: string;
   originalEndISO: string;
-  owner: string;
+  owner: string[];
   picture: string | null;
 } | null;
 
@@ -32,17 +32,27 @@ const EditProjectForm = ({ participants, event }: { participants: User[]; event:
   const participantNames = participants.map((participant) => participant.email);
   const categories = ['STEM', 'Art', 'Music', 'Sports', 'Technology', 'Business', 'Health', 'Social'];
 
-  const defaultValues = event
-    ? {
-      eventName: event.name,
-      description: event.description ?? '',
-      location: event.location,
-      startTime: event.startTime,
-      endTime: event.endTime,
-      owners: [event.owner],
-      picture: event.picture ?? '',
-    }
-    : {};
+  const buildValues = (e: typeof event) => (e ? {
+    name: e.name,
+    description: e.description ?? '',
+    location: e.location,
+    startTime: e.startTime,
+    endTime: e.endTime,
+    owners: e.owner,
+    picture: e.picture ?? '',
+    names: '',
+    category: '',
+  } : {
+    name: '',
+    description: '',
+    location: '',
+    startTime: '',
+    endTime: '',
+    owners: [] as string[],
+    picture: '',
+    names: '',
+    category: '',
+  });
 
   const {
     register,
@@ -50,27 +60,17 @@ const EditProjectForm = ({ participants, event }: { participants: User[]; event:
     control,
     reset,
     formState: { errors },
-  } = useForm<IEditProject>({
-    resolver: yupResolver(EditProjectSchema) as any,
-    defaultValues,
+  } = useForm({
+    resolver: yupResolver(EditProjectSchema),
+    defaultValues: buildValues(event),
   });
 
   useEffect(() => {
-    if (event) {
-      reset({
-        eventName: event.name,
-        description: event.description ?? '',
-        location: event.location,
-        startTime: event.startTime,
-        endTime: event.endTime,
-        owners: [event.owner],
-        picture: event.picture ?? '',
-      });
-    }
+    reset(buildValues(event));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [event]);
 
-  const onSubmit = async (data: IEditProject) => {
+  const onSubmit = async (data: any) => {
     if (!event) return;
     try {
       await updateEvent(event.id, data, event.originalStartISO, event.originalEndISO);
@@ -88,10 +88,10 @@ const EditProjectForm = ({ participants, event }: { participants: User[]; event:
         <Card.Body>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Row className={formPadding}>
-              <Form.Group controlId="eventName">
+              <Form.Group controlId="name">
                 <Form.Label>Name of Event</Form.Label>
-                <Form.Control type="text" {...register('eventName')} />
-                <Form.Text className="text-danger">{errors.eventName?.message}</Form.Text>
+                <Form.Control type="text" {...register('name')} />
+                <Form.Text className="text-danger">{errors.name?.message}</Form.Text>
               </Form.Group>
             </Row>
             <Row className={formPadding}>

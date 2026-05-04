@@ -49,10 +49,10 @@ const CreateEventForm = ({ participants }: { participants: User[] }) => {
               </Form.Group>
             </Row>
             <Row className={formPadding}>
-              <Form.Group controlId="eventName">
+              <Form.Group controlId="name">
                 <Form.Label>Name of Event</Form.Label>
-                <Form.Control type="text" {...register('eventName')} />
-                <Form.Text className="text-danger">{errors.eventName?.message}</Form.Text>
+                <Form.Control type="text" {...register('name')} />
+                <Form.Text className="text-danger">{errors.name?.message}</Form.Text>
               </Form.Group>
             </Row>
             <Row className={formPadding}>
