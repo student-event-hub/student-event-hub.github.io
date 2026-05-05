@@ -77,6 +77,14 @@ async function main() {
   }
 
   const password = await hash('foo', 10);
+
+  console.log('  Creating/Updating admin user admin@foo.com');
+  await prisma.user.upsert({
+    where: { email: 'admin@foo.com' },
+    update: {},
+    create: { email: 'admin@foo.com', password, role: 'ADMIN' },
+  });
+
   for (const profile of config.defaultProfiles) {
     console.log(`  Creating/Updating profile ${profile.email}`);
     for (const interest of profile.interests) {

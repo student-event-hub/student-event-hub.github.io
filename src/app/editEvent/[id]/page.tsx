@@ -5,7 +5,7 @@ import { loggedInProtectedPage } from '@/lib/page-protection';
 import { auth } from '@/lib/auth';
 import EditEventForm from '@/components/EditEventForm';
 
-const EditEventPage = async ({ params }: { params: { id: string } }) => {
+const EditEventPage = async ({ params, searchParams }: { params: { id: string }; searchParams: { from?: string } }) => {
   const session = await auth();
   loggedInProtectedPage(
     session as { user: { email: string; id: string; randomKey: string } } | null,
@@ -27,7 +27,12 @@ const EditEventPage = async ({ params }: { params: { id: string } }) => {
   return (
     <Container>
       <h1 className="text-center">Edit Event</h1>
-      <EditEventForm event={event} interests={allInterests} participants={allParticipants} />
+      <EditEventForm
+        event={event}
+        interests={allInterests}
+        participants={allParticipants}
+        redirectTo={searchParams.from === 'admin' ? '/admin' : '/events'}
+      />
     </Container>
   );
 };

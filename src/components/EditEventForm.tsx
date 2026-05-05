@@ -27,9 +27,10 @@ type Props = {
   event: EventWithInterests;
   interests: Interest[];
   participants: User[];
+  redirectTo?: string;
 };
 
-const EditEventForm = ({ event, interests, participants }: Props) => {
+const EditEventForm = ({ event, interests, participants, redirectTo = '/events' }: Props) => {
   const router = useRouter();
   const formPadding = 'py-1';
   const interestNames = interests.map((i) => i.name);
@@ -65,7 +66,7 @@ const EditEventForm = ({ event, interests, participants }: Props) => {
     try {
       await upsertEvent({ ...data, id: Number(data.id) });
       swal('Success!', 'Event updated successfully!', 'success');
-      setTimeout(() => router.push('/events'), 1500);
+      setTimeout(() => router.push(redirectTo), 1500);
     } catch {
       swal('Error!', 'Failed to update event!', 'error');
     }

@@ -14,8 +14,7 @@ const NavBar: React.FC = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
   const currentUser = session?.user?.email;
-  // const userWithRole = session?.user as { email: string; randomKey: string };
-  // const role = userWithRole?.randomKey;
+  const isAdmin = (session?.user as { role?: string })?.role === 'ADMIN';
   const menuStyle = { marginBottom: '0px' };
   const navbarClassName = currentUser ? 'bg-dark' : 'bg-light';
   // const navbarVariant = currentUser ? 'dark' : 'light';
@@ -40,34 +39,42 @@ const NavBar: React.FC = () => {
               All Events
             </Nav.Link>
 
-            {currentUser // Section for navbar components that should only be visible to logged in users.
-              ? [
-                            <Nav.Link
-                              id={ComponentIDs.addEventMenuItem}
-                              active={pathname === '/createEvent'}
-                              href="/createEvent"
-                              key="createEvent"
-                            >
-              Create Event
-                            </Nav.Link>,
-            <Nav.Link
-              id={ComponentIDs.yourEventsMenuItem}
-              active={pathname === '/your-events'}
-              href="/your-events"
-              key="yourEvents"
-            >
-              Your Events
-            </Nav.Link>,
-                  <Nav.Link
-                    id={ComponentIDs.filterMenuItem}
-                    active={pathname === '/filter'}
-                    href="/filter"
-                    key="filter"
-                  >
-                    Filter
-                  </Nav.Link>,
-                ]
-              : ''}
+            {currentUser ? [
+              <Nav.Link
+                id={ComponentIDs.addEventMenuItem}
+                active={pathname === '/createEvent'}
+                href="/createEvent"
+                key="createEvent"
+              >
+                Create Event
+              </Nav.Link>,
+              <Nav.Link
+                id={ComponentIDs.yourEventsMenuItem}
+                active={pathname === '/your-events'}
+                href="/your-events"
+                key="yourEvents"
+              >
+                Your Events
+              </Nav.Link>,
+              <Nav.Link
+                id={ComponentIDs.filterMenuItem}
+                active={pathname === '/filter'}
+                href="/filter"
+                key="filter"
+              >
+                Filter
+              </Nav.Link>,
+              isAdmin && (
+                <Nav.Link
+                  id={ComponentIDs.adminMenuItem}
+                  active={pathname === '/admin'}
+                  href="/admin"
+                  key="admin"
+                >
+                  Admin
+                </Nav.Link>
+              ),
+            ] : ''}
           </Nav>
           <Nav className="justify-content-end">
             {currentUser ? (

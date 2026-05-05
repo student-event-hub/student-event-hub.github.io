@@ -53,7 +53,13 @@ export const CreateEventSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
   picture: Yup.string().optional(),
   description: Yup.string().optional(),
-  date: Yup.string().required('Date is required'),
+  date: Yup.string()
+    .required('Date is required')
+    .test('is-not-past', 'Date cannot be in the past', (value) => {
+      if (!value) return true;
+      const today = new Date().toISOString().split('T')[0];
+      return value >= today;
+    }),
   startTime: Yup.string().required('Start time is required'),
   endTime: Yup.string()
     .required('End time is required')

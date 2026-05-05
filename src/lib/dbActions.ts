@@ -54,8 +54,8 @@ export async function createUser(credentials: { email: string; password: string 
 }
 
 export async function addEvent(event: any, creator: string) {
-  const startDateTime = new Date(`${event.date}T${event.startTime}:00`);
-  const endDateTime = new Date(`${event.date}T${event.endTime}:00`);
+  const startDateTime = new Date(`${event.date}T${event.startTime}:00Z`);
+  const endDateTime = new Date(`${event.date}T${event.endTime}:00Z`);
 
   const dbEvent = await prisma.event.create({
     data: {
@@ -150,7 +150,7 @@ export async function upsertProject(project: any) {
 export async function updateEvent(id: number, data: any, originalStartISO: string, originalEndISO: string) {
   const combineDateTime = (originalISO: string, timeHHMM: string): Date => {
     const datePart = originalISO.split('T')[0];
-    return new Date(`${datePart}T${timeHHMM}:00`);
+    return new Date(`${datePart}T${timeHHMM}:00Z`);
   };
 
   const updatedEvent = await prisma.event.update({
@@ -169,7 +169,6 @@ export async function updateEvent(id: number, data: any, originalStartISO: strin
   return updatedEvent;
 }
 
-<<<<<<< HEAD
 export async function updateEventLikeDislike(eventId: number, newValue: string) {
   const session = await auth();
   const userEmail = session?.user?.email;
@@ -281,10 +280,11 @@ export async function updateEventLikeDislike(eventId: number, newValue: string) 
   });
 
   return updatedEvent;
-=======
+}
+
 export async function upsertEvent(event: any) {
-  const startDateTime = new Date(`${event.date}T${event.startTime}:00`);
-  const endDateTime = new Date(`${event.date}T${event.endTime}:00`);
+  const startDateTime = new Date(`${event.date}T${event.startTime}:00Z`);
+  const endDateTime = new Date(`${event.date}T${event.endTime}:00Z`);
 
   const dbEvent = await prisma.event.update({
     where: { id: event.id },
@@ -310,7 +310,15 @@ export async function upsertEvent(event: any) {
   }
 
   return dbEvent;
->>>>>>> issue-25-Make-Create-Event-write-to-Postgres
+}
+
+export async function deleteEvent(eventId: number) {
+  await prisma.$transaction(async (tx) => {
+    await tx.eventVote.deleteMany({ where: { eventId } });
+    await tx.eventInterest.deleteMany({ where: { eventId } });
+    await tx.profileEvent.deleteMany({ where: { eventId } });
+    await tx.event.delete({ where: { id: eventId } });
+  });
 }
 
 export async function updateProfile(profile: any) {
