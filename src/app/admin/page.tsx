@@ -39,7 +39,7 @@ const AdminPage = async () => {
     location: event.location,
     upvotes: event.upvotes,
     downvotes: event.downvotes,
-    userVote: '0',
+    userVote: 0,
     interests: event.interests.map((ei) => ei.interest.name),
     participants: event.ProfileEvent.map((pe) => pe.profile),
   }));
