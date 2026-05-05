@@ -10,6 +10,7 @@ import pageStyle from '@/utilities/pageStyle';
 import type { EventCardData, LikeValue } from '@/app/lib/EventCardData';
 import CardGrid from './CardGrid';
 
+<<<<<<< HEAD
 export const dynamic = 'force-dynamic';
 
 type UserVoteData = {
@@ -78,6 +79,10 @@ const EventsPage = async () => {
     participants: event.ProfileEvent.map((eventParticipant) => eventParticipant.profile),
   }));
 
+=======
+const EventsPage = async () => {
+  const events = await prisma.event.findMany();
+>>>>>>> issue-25-Make-Create-Event-write-to-Postgres
   return (
     <Container id={PageIDs.allEventsPage} style={pageStyle}>
       <div
@@ -92,6 +97,10 @@ const EventsPage = async () => {
           <FunnelFill className="me-2" />
           Filter by
         </Button>
+<<<<<<< HEAD
+=======
+
+>>>>>>> issue-25-Make-Create-Event-write-to-Postgres
         <div
           style={{
             display: 'flex',
@@ -117,7 +126,11 @@ const EventsPage = async () => {
           />
         </div>
       </div>
+<<<<<<< HEAD
       <CardGrid initialEvents={eventData} />
+=======
+      <CardGrid initialEvents={events} />
+>>>>>>> issue-25-Make-Create-Event-write-to-Postgres
     </Container>
   );
 };

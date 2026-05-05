@@ -81,8 +81,15 @@ const EventCard = ({
             style={{ objectFit: 'cover', maxHeight: '300px' }}
           />
           <div className="d-flex gap-2 mt-3">
+<<<<<<< HEAD
             <Link href={`/edit?id=${event.id}`}>
               <Button variant="secondary" size="sm" className="flex-fill">Edit Event</Button>
+=======
+            <Link href={`/editEvent/${event.id}`}>
+              <Button variant="secondary" size="sm" className="flex-fill">
+                Edit Event
+              </Button>
+>>>>>>> issue-25-Make-Create-Event-write-to-Postgres
             </Link>
             <Button variant="primary" size="sm" className="flex-fill">View Details</Button>
             <Button variant="success" size="sm" className="flex-fill">Add Event</Button>
