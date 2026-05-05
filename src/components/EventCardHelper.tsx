@@ -7,7 +7,7 @@ import { EventCardData } from '@/app/lib/EventCardData';
 type Props = {
   event: Event;
   likeVal: number;
-  onLikeClick: (eventId: number, value: string) => void;
+  onLikeClick: (eventId: number, value: number) => void;
 };
 
 const EventCardHelper = async ({ event, likeVal, onLikeClick }: Props) => {
