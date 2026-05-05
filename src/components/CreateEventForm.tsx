@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 import Multiselect from 'multiselect-react-dropdown';
 import { Interest, User } from '@prisma/client';
 import { CreateEventSchema, IEvent } from '@/lib/validationSchemas';
-import { addEvent } from '@/lib/dbActions';
+import { createEvent } from '@/lib/dbActions';
 
 type Props = {
   interests: Interest[];
@@ -32,7 +32,7 @@ const CreateEventForm = ({ interests, participants, creator }: Props) => {
   });
 
   const onSubmit = async (data: IEvent) => {
-    const result = await addEvent(data, creator);
+    const result = await createEvent(data, creator);
     if (result) {
       swal('Success!', 'Event created successfully!', 'success');
       reset();
