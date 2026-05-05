@@ -32,6 +32,9 @@ const YourEventsPage = async () => {
           profileId: profile?.id,
         },
       },
+      endTime: {
+        gt: new Date(Date.now()),
+      },
     },
     include: {
       interests: {
