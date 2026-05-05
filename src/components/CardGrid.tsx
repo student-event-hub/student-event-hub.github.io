@@ -1,68 +1,124 @@
+'use client';
+
 /* eslint-disable import/extensions */
 /* eslint-disable react/jsx-no-bind */
 
-'use client';
-
 import { useState } from 'react';
 import { Row } from 'react-bootstrap';
-import EventCardHelper from '@/components/EventCardHelper';
-import { Event } from '@prisma/client';
+import { useSession } from 'next-auth/react';
+import EventCard from '@/components/EventCard';
+import { updateEventLikeDislike } from '@/lib/dbActions';
+import type { EventCardData, LikeValue } from '@/app/lib/EventCardData';
 
-const CardGrid = ({ initialEvents }: { initialEvents: Event[] }) => {
-  const [events, setEvents] = useState<Event[]>(initialEvents);
-  const [likes, setLikes] = useState(Array(events.length).fill('0'));
-  function handleLike(eventId: number, value: string) {
-    setEvents((prevEvents) => prevEvents.map((event) => {
-      if (event.id !== eventId) {
-        return event;
-      }
+const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
+  const { status } = useSession();
+  const [events, setEvents] = useState<EventCardData[]>(initialEvents);
+  const [likes, setLikes] = useState<Record<number, LikeValue>>(
+    initialEvents.reduce((acc, event) => ({
+      ...acc,
+      [event.id]: event.userVote,
+    }), {} as Record<number, LikeValue>),
+  );
+  const [updatingEventId, setUpdatingEventId] = useState<number | null>(null);
+  const userCanVote = status === 'authenticated';
 
-      let newLikeCount = event.upvotes;
-      let newDislikeCount = event.downvotes;
+  const getNewLikeValue = (currentValue: LikeValue, value: string): LikeValue => {
+    if (value !== '1' && value !== '2') {
+      return '0';
+    }
+    if (currentValue === value) {
+      return '0';
+    }
+    return value;
+  };
 
-      if (likes[event.id] === '1') {
-        newLikeCount -= 1;
-      } else if (likes[event.id] === '2') {
-        newDislikeCount -= 1;
-      }
+  const updateEventCounts = (
+    oldEvents: EventCardData[],
+    eventId: number,
+    oldValue: LikeValue,
+    newValue: LikeValue,
+  ) => oldEvents.map((event) => {
+    if (event.id !== eventId) {
+      return event;
+    }
 
-      if (value === '1') {
-        newLikeCount += 1;
-      } else if (value === '2') {
-        newDislikeCount += 1;
-      }
+    let newLikeCount = event.upvotes;
+    let newDislikeCount = event.downvotes;
 
-      return {
-        ...event,
-        upvotes: newLikeCount,
-        downvotes: newDislikeCount,
-      };
+    if (oldValue === '1') {
+      newLikeCount -= 1;
+    } else if (oldValue === '2') {
+      newDislikeCount -= 1;
+    }
+
+    if (newValue === '1') {
+      newLikeCount += 1;
+    } else if (newValue === '2') {
+      newDislikeCount += 1;
+    }
+
+    return {
+      ...event,
+      upvotes: newLikeCount,
+      downvotes: newDislikeCount,
+      userVote: newValue,
+    };
+  });
+
+  async function handleLike(eventId: number, value: string) {
+    if (!userCanVote || updatingEventId === eventId) {
+      return;
+    }
+
+    const oldValue = likes[eventId] || '0';
+    const newValue = getNewLikeValue(oldValue, value);
+    const oldEvents = events;
+    const oldLikes = likes;
+
+    setUpdatingEventId(eventId);
+    setEvents((prevEvents) => updateEventCounts(prevEvents, eventId, oldValue, newValue));
+    setLikes((prevLikes) => ({
+      ...prevLikes,
+      [eventId]: newValue,
     }));
-    setLikes((prevLikes) => prevLikes.map((event) => {
-      if (event.id !== eventId) {
-        return event;
-      }
 
-      let newLiked = value;
-      if (likes[event.id] === value) {
-        newLiked = '0';
-      }
+    try {
+      const updatedEvent = await updateEventLikeDislike(eventId, newValue);
 
-      return {
-        ...event,
-        liked: newLiked,
-      };
-    }));
+      setEvents((prevEvents) => prevEvents.map((event) => {
+        if (event.id !== eventId) {
+          return event;
+        }
+
+        return {
+          ...event,
+          upvotes: updatedEvent.upvotes,
+          downvotes: updatedEvent.downvotes,
+          userVote: updatedEvent.userVote,
+        };
+      }));
+
+      setLikes((prevLikes) => ({
+        ...prevLikes,
+        [eventId]: updatedEvent.userVote,
+      }));
+    } catch {
+      setEvents(oldEvents);
+      setLikes(oldLikes);
+    } finally {
+      setUpdatingEventId(null);
+    }
   }
 
   return (
     <Row xs={1} md={2} lg={4} className="g-2">
       {events.map((event) => (
-        <EventCardHelper
+        <EventCard
           key={event.id}
           event={event}
-          onLikeClick={(v: string) => handleLike(event.id, v)}
-          likeVal={likes[event.id]}
+          onLikeClick={handleLike}
+          likeVal={likes[event.id] || '0'}
+          disabled={!userCanVote || updatingEventId === event.id}
         />
       ))}
     </Row>
