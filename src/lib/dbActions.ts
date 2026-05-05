@@ -1,6 +1,7 @@
 'use server';
 
 import { compare, hash } from 'bcrypt';
+import { auth } from './auth';
 import { prisma } from './prisma';
 
 export async function getUser(email: string) {
@@ -115,6 +116,58 @@ export async function updateEvent(id: number, data: any, originalStartISO: strin
       endTime: combineDateTime(originalEndISO, data.endTime),
       ...(data.owners && { owner: data.owners.filter(Boolean) as string[] }),
       picture: data.picture || null,
+    },
+  });
+
+  return updatedEvent;
+}
+
+export async function updateEventLikeDislike(eventId: number, oldValue: string, newValue: string) {
+  const session = await auth();
+  if (!session?.user?.email) {
+    throw new Error('You must be signed in to like or dislike an event.');
+  }
+
+  let upvoteChange = 0;
+  let downvoteChange = 0;
+
+  if (oldValue === '1') {
+    upvoteChange -= 1;
+  } else if (oldValue === '2') {
+    downvoteChange -= 1;
+  }
+
+  if (newValue === '1') {
+    upvoteChange += 1;
+  } else if (newValue === '2') {
+    downvoteChange += 1;
+  }
+
+  if (upvoteChange === 0 && downvoteChange === 0) {
+    const event = await prisma.event.findUnique({
+      where: { id: eventId },
+      select: {
+        id: true,
+        upvotes: true,
+        downvotes: true,
+      },
+    });
+    if (!event) {
+      throw new Error('Event not found.');
+    }
+    return event;
+  }
+
+  const updatedEvent = await prisma.event.update({
+    where: { id: eventId },
+    data: {
+      ...(upvoteChange !== 0 && { upvotes: { increment: upvoteChange } }),
+      ...(downvoteChange !== 0 && { downvotes: { increment: downvoteChange } }),
+    },
+    select: {
+      id: true,
+      upvotes: true,
+      downvotes: true,
     },
   });
 

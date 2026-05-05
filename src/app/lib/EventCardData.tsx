@@ -1,5 +1,3 @@
-import { Profile } from '@prisma/client';
-
 export type EventCardData = {
   id: number;
   name: string;
@@ -13,5 +11,14 @@ export type EventCardData = {
   upvotes: number;
   downvotes: number;
   interests: string[];
-  participants: Profile[];
+  participants: {
+    id: number;
+    picture: string | null;
+    email: string;
+    username: string;
+    firstName: string | null;
+    lastName: string | null;
+    bio: string | null;
+    title: string | null;
+  }[];
 };
