@@ -1,5 +1,3 @@
-export type LikeValue = '0' | '1' | '2';
-
 export type EventCardData = {
   id: number;
   name: string;
@@ -12,7 +10,7 @@ export type EventCardData = {
   location: string;
   upvotes: number;
   downvotes: number;
-  userVote: LikeValue;
+  userVote: number;
   interests: string[];
   participants: {
     id: number;

@@ -7,7 +7,7 @@ import { PageIDs } from '@/utilities/ids';
 import { prisma } from '@/lib/prisma';
 import { auth } from '@/lib/auth';
 import pageStyle from '@/utilities/pageStyle';
-import type { EventCardData, LikeValue } from '@/app/lib/EventCardData';
+import type { EventCardData } from '@/app/lib/EventCardData';
 import CardGrid from './CardGrid';
 
 export const dynamic = 'force-dynamic';
@@ -15,16 +15,6 @@ export const dynamic = 'force-dynamic';
 type UserVoteData = {
   eventId: number;
   value: number;
-};
-
-const getVoteValue = (value: number): LikeValue => {
-  if (value === 1) {
-    return '1';
-  }
-  if (value === 2) {
-    return '2';
-  }
-  return '0';
 };
 
 const EventsPage = async () => {
@@ -77,7 +67,7 @@ const EventsPage = async () => {
     location: event.location,
     upvotes: event.upvotes,
     downvotes: event.downvotes,
-    userVote: getVoteValue(userVoteMap.get(event.id) || 0),
+    userVote: userVoteMap.get(event.id) || 0,
     interests: event.interests.map((eventInterest) => eventInterest.interest.name),
     participants: event.ProfileEvent.map((eventParticipant) => eventParticipant.profile),
   }));
