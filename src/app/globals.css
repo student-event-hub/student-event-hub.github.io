@@ -21,6 +21,7 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
 }
 
 .wrapper {
@@ -59,7 +60,16 @@ main {
 .landing-blue-background {
   background-color: var(--bowfolio-navbar-bg);
   color: var(--bowfolio-navbar-text);
-  padding-top: 20px;
+}
+
+.landing-image-col {
+  min-height: 300px;
+}
+
+@media (max-width: 991px) {
+  .landing-image-col {
+    height: 50vw;
+  }
 }
 
 .landing-white-background {
