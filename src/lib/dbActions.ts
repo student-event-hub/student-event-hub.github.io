@@ -51,7 +51,7 @@ export async function createUser(credentials: { email: string; password: string 
   });
 }
 
-export async function addEvent(event: any, creator: string) {
+export async function createEvent(event: any, creator: string) {
   const startDateTime = new Date(`${event.date}T${event.startTime}:00Z`);
   const endDateTime = new Date(`${event.date}T${event.endTime}:00Z`);
 
