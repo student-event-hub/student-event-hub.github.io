@@ -1,6 +1,7 @@
+'use client';
+
 /* eslint-disable import/extensions */
 /* eslint-disable react/jsx-no-bind */
-'use client';
 
 import { useState } from 'react';
 import { Row } from 'react-bootstrap';

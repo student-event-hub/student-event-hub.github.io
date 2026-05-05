@@ -10,11 +10,11 @@ type Props = {
   event: EventCardData;
   likeVal: string;
   onLikeClick: (eventId: number, value: string) => void;
-  disabled?: boolean;
+  disabled: boolean;
 };
 
 const EventCard = ({
-  event, likeVal, onLikeClick, disabled = false,
+  event, likeVal, onLikeClick, disabled,
 }: Props) => {
   const likeDislike: { name: string; value: string; variant: string; icon: typeof HandThumbsUp }[] = [
     { name: 'Like', value: '1', variant: 'outline-primary', icon: HandThumbsUp },
