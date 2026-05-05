@@ -34,7 +34,7 @@ const EditProjectPage = async ({ searchParams }: { searchParams: { id?: string }
       endTime: formatTimeForInput(event.endTime),
       originalStartISO: event.startTime.toISOString(),
       originalEndISO: event.endTime.toISOString(),
-      owner: [event.owner],
+      owner: event.owner,
       picture: event.picture,
     }
     : null;
