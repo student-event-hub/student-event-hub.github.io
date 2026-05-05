@@ -53,6 +53,44 @@ export async function createUser(credentials: { email: string; password: string 
   });
 }
 
+export async function addEvent(event: any, creator: string) {
+  const startDateTime = new Date(`${event.date}T${event.startTime}:00`);
+  const endDateTime = new Date(`${event.date}T${event.endTime}:00`);
+
+  const dbEvent = await prisma.event.create({
+    data: {
+      name: event.name,
+      description: event.description || null,
+      picture: event.picture || null,
+      startTime: startDateTime,
+      endTime: endDateTime,
+      location: event.location,
+      owner: [event.owner],
+      creator,
+    },
+  });
+
+  if (event.interests?.length > 0) {
+    for (const interestName of event.interests) {
+      const dbInterest = await prisma.interest.findUnique({ where: { name: interestName } });
+      if (dbInterest) {
+        await prisma.eventInterest.create({ data: { eventId: dbEvent.id, interestId: dbInterest.id } });
+      }
+    }
+  }
+
+  if (event.participants?.length > 0) {
+    for (const email of event.participants) {
+      const dbProfile = await prisma.profile.findUnique({ where: { email } });
+      if (dbProfile) {
+        await prisma.profileEvent.create({ data: { eventId: dbEvent.id, profileId: dbProfile.id } });
+      }
+    }
+  }
+
+  return dbEvent;
+}
+
 export async function createProject(project: any) {
   // console.log(`createProject data: ${JSON.stringify(project, null, 2)}`);
   const dbProject = await prisma.project.create({
@@ -73,7 +111,7 @@ export async function upsertProject(project: any) {
       picture: project.picture,
     },
   });
-  project.interests.forEach(async (intere: string) => {
+  project.interests?.forEach(async (intere: string) => {
     const dbInterest = await prisma.interest.findUnique({
       where: { name: intere },
     });
@@ -90,7 +128,7 @@ export async function upsertProject(project: any) {
       });
     }
   });
-  project.participants.forEach(async (email: string) => {
+  project.participants?.forEach(async (email: string) => {
     const dbProfile = await prisma.profile.findUnique({
       where: { email },
     });
@@ -131,6 +169,7 @@ export async function updateEvent(id: number, data: any, originalStartISO: strin
   return updatedEvent;
 }
 
+<<<<<<< HEAD
 export async function updateEventLikeDislike(eventId: number, newValue: string) {
   const session = await auth();
   const userEmail = session?.user?.email;
@@ -242,6 +281,36 @@ export async function updateEventLikeDislike(eventId: number, newValue: string) 
   });
 
   return updatedEvent;
+=======
+export async function upsertEvent(event: any) {
+  const startDateTime = new Date(`${event.date}T${event.startTime}:00`);
+  const endDateTime = new Date(`${event.date}T${event.endTime}:00`);
+
+  const dbEvent = await prisma.event.update({
+    where: { id: event.id },
+    data: {
+      name: event.name,
+      description: event.description || null,
+      picture: event.picture || null,
+      startTime: startDateTime,
+      endTime: endDateTime,
+      location: event.location,
+      owner: [event.owner],
+    },
+  });
+
+  await prisma.eventInterest.deleteMany({ where: { eventId: dbEvent.id } });
+  if (event.interests?.length > 0) {
+    for (const interestName of event.interests) {
+      const dbInterest = await prisma.interest.findUnique({ where: { name: interestName } });
+      if (dbInterest) {
+        await prisma.eventInterest.create({ data: { eventId: dbEvent.id, interestId: dbInterest.id } });
+      }
+    }
+  }
+
+  return dbEvent;
+>>>>>>> issue-25-Make-Create-Event-write-to-Postgres
 }
 
 export async function updateProfile(profile: any) {
