@@ -8,26 +8,26 @@ import { Row } from 'react-bootstrap';
 import { useSession } from 'next-auth/react';
 import EventCard from '@/components/EventCard';
 import { updateEventLikeDislike } from '@/lib/dbActions';
-import type { EventCardData, LikeValue } from '@/app/lib/EventCardData';
+import type { EventCardData } from '@/app/lib/EventCardData';
 
 const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
   const { status } = useSession();
   const [events, setEvents] = useState<EventCardData[]>(initialEvents);
-  const [likes, setLikes] = useState<Record<number, LikeValue>>(
+  const [likes, setLikes] = useState<Record<number, number>>(
     initialEvents.reduce((acc, event) => ({
       ...acc,
       [event.id]: event.userVote,
-    }), {} as Record<number, LikeValue>),
+    }), {} as Record<number, number>),
   );
   const [updatingEventId, setUpdatingEventId] = useState<number | null>(null);
   const userCanVote = status === 'authenticated';
 
-  const getNewLikeValue = (currentValue: LikeValue, value: string): LikeValue => {
-    if (value !== '1' && value !== '2') {
-      return '0';
+  const getNewLikeValue = (currentValue: number, value: number): number => {
+    if (value !== 1 && value !== 2) {
+      return 0;
     }
     if (currentValue === value) {
-      return '0';
+      return 0;
     }
     return value;
   };
@@ -35,8 +35,8 @@ const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
   const updateEventCounts = (
     oldEvents: EventCardData[],
     eventId: number,
-    oldValue: LikeValue,
-    newValue: LikeValue,
+    oldValue: number,
+    newValue: number,
   ) => oldEvents.map((event) => {
     if (event.id !== eventId) {
       return event;
@@ -45,15 +45,15 @@ const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
     let newLikeCount = event.upvotes;
     let newDislikeCount = event.downvotes;
 
-    if (oldValue === '1') {
+    if (oldValue === 1) {
       newLikeCount -= 1;
-    } else if (oldValue === '2') {
+    } else if (oldValue === 2) {
       newDislikeCount -= 1;
     }
 
-    if (newValue === '1') {
+    if (newValue === 1) {
       newLikeCount += 1;
-    } else if (newValue === '2') {
+    } else if (newValue === 2) {
       newDislikeCount += 1;
     }
 
@@ -65,12 +65,12 @@ const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
     };
   });
 
-  async function handleLike(eventId: number, value: string) {
+  async function handleLike(eventId: number, value: number) {
     if (!userCanVote || updatingEventId === eventId) {
       return;
     }
 
-    const oldValue = likes[eventId] || '0';
+    const oldValue = likes[eventId] || 0;
     const newValue = getNewLikeValue(oldValue, value);
     const oldEvents = events;
     const oldLikes = likes;
@@ -117,7 +117,7 @@ const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
           key={event.id}
           event={event}
           onLikeClick={handleLike}
-          likeVal={likes[event.id] || '0'}
+          likeVal={likes[event.id] || 0}
           disabled={!userCanVote || updatingEventId === event.id}
         />
       ))}

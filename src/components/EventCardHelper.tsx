@@ -6,7 +6,7 @@ import { EventCardData } from '@/app/lib/EventCardData';
 
 type Props = {
   event: Event;
-  likeVal: string;
+  likeVal: number;
   onLikeClick: (eventId: number, value: string) => void;
 };
 
@@ -37,7 +37,7 @@ const EventCardHelper = async ({ event, likeVal, onLikeClick }: Props) => {
     location: event.location,
     upvotes: event.upvotes,
     downvotes: event.downvotes,
-    userVote: '0',
+    userVote: 0,
     interests: interestNames,
     participants: profileParticipants,
   };

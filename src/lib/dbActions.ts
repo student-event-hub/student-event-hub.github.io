@@ -4,13 +4,11 @@ import { compare, hash } from 'bcrypt';
 import { auth } from './auth';
 import { prisma } from './prisma';
 
-type VoteValue = '0' | '1' | '2';
-
-const cleanVoteValue = (value: string): VoteValue => {
-  if (value === '1' || value === '2') {
+const cleanVoteValue = (value: number): number => {
+  if (value === 1 || value === 2) {
     return value;
   }
-  return '0';
+  return 0;
 };
 
 export async function getUser(email: string) {
@@ -169,7 +167,7 @@ export async function updateEvent(id: number, data: any, originalStartISO: strin
   return updatedEvent;
 }
 
-export async function updateEventLikeDislike(eventId: number, newValue: string) {
+export async function updateEventLikeDislike(eventId: number, newValue: number) {
   const session = await auth();
   const userEmail = session?.user?.email;
 
@@ -192,7 +190,7 @@ export async function updateEventLikeDislike(eventId: number, newValue: string) 
       },
     });
 
-    const previousValue = existingVote ? cleanVoteValue(String(existingVote.value)) : '0';
+    const previousValue = existingVote ? cleanVoteValue(existingVote.value) : 0;
 
     if (previousValue === nextValue) {
       const event = await tx.event.findUnique({
@@ -217,19 +215,19 @@ export async function updateEventLikeDislike(eventId: number, newValue: string) 
     let upvoteChange = 0;
     let downvoteChange = 0;
 
-    if (previousValue === '1') {
+    if (previousValue === 1) {
       upvoteChange -= 1;
-    } else if (previousValue === '2') {
+    } else if (previousValue === 2) {
       downvoteChange -= 1;
     }
 
-    if (nextValue === '1') {
+    if (nextValue === 1) {
       upvoteChange += 1;
-    } else if (nextValue === '2') {
+    } else if (nextValue === 2) {
       downvoteChange += 1;
     }
 
-    if (nextValue === '0') {
+    if (nextValue === 0) {
       await tx.eventVote.delete({
         where: {
           eventId_userEmail: {

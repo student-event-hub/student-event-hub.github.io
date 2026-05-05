@@ -9,17 +9,17 @@ import type { EventCardData } from '@/app/lib/EventCardData';
 
 type Props = {
   event: EventCardData;
-  likeVal: string;
-  onLikeClick: (eventId: number, value: string) => void;
+  likeVal: number;
+  onLikeClick: (eventId: number, value: number) => void;
   disabled: boolean;
 };
 
 const EventCard = ({
   event, likeVal, onLikeClick, disabled,
 }: Props) => {
-  const likeDislike: { name: string; value: string; variant: string; icon: typeof HandThumbsUp }[] = [
-    { name: 'Like', value: '1', variant: 'outline-primary', icon: HandThumbsUp },
-    { name: 'Dislike', value: '2', variant: 'outline-danger', icon: HandThumbsDown },
+  const likeDislike: { name: string; value: number; variant: string; icon: typeof HandThumbsUp }[] = [
+    { name: 'Like', value: 1, variant: 'outline-primary', icon: HandThumbsUp },
+    { name: 'Dislike', value: 2, variant: 'outline-danger', icon: HandThumbsDown },
   ];
 
   return (
@@ -40,12 +40,12 @@ const EventCard = ({
                     value={radio.value}
                     checked={likeVal === radio.value}
                     disabled={disabled}
-                    onChange={(e) => onLikeClick(event.id, e.currentTarget.value)}
+                    onChange={(e) => onLikeClick(event.id, parseInt(e.currentTarget.value, 10))}
                     className="justify-content-left"
                   >
                     <radio.icon />
                     {' '}
-                    {radio.value === '1' ? event.upvotes : event.downvotes}
+                    {radio.value === 1 ? event.upvotes : event.downvotes}
                   </ToggleButton>
                 ))}
               </div>
