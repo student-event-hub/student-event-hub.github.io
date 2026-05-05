@@ -14,5 +14,5 @@ export default async function createEventAction(data: any) {
     picture: data.picture,
   };
 
-  return createEvent(event);
+  return createEvent(event, data.creator);
 }
