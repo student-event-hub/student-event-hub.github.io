@@ -111,6 +111,7 @@ export async function upsertProject(project: any) {
       picture: project.picture,
     },
   });
+  project.interests?.forEach(async (intere: string) => {
     const dbInterest = await prisma.interest.findUnique({
       where: { name: intere },
     });
@@ -127,6 +128,7 @@ export async function upsertProject(project: any) {
       });
     }
   });
+  project.participants?.forEach(async (email: string) => {
     const dbProfile = await prisma.profile.findUnique({
       where: { email },
     });
