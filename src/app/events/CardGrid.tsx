@@ -8,9 +8,7 @@ import { Row } from 'react-bootstrap';
 import { useSession } from 'next-auth/react';
 import EventCard from '@/components/EventCard';
 import { updateEventLikeDislike } from '@/lib/dbActions';
-import type { EventCardData } from '@/app/lib/EventCardData';
-
-type LikeValue = '0' | '1' | '2';
+import type { EventCardData, LikeValue } from '@/app/lib/EventCardData';
 
 const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
   const { status } = useSession();
@@ -18,7 +16,7 @@ const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
   const [likes, setLikes] = useState<Record<number, LikeValue>>(
     initialEvents.reduce((acc, event) => ({
       ...acc,
-      [event.id]: '0',
+      [event.id]: event.userVote,
     }), {} as Record<number, LikeValue>),
   );
   const [updatingEventId, setUpdatingEventId] = useState<number | null>(null);
@@ -43,22 +41,27 @@ const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
     if (event.id !== eventId) {
       return event;
     }
+
     let newLikeCount = event.upvotes;
     let newDislikeCount = event.downvotes;
+
     if (oldValue === '1') {
       newLikeCount -= 1;
     } else if (oldValue === '2') {
       newDislikeCount -= 1;
     }
+
     if (newValue === '1') {
       newLikeCount += 1;
     } else if (newValue === '2') {
       newDislikeCount += 1;
     }
+
     return {
       ...event,
       upvotes: newLikeCount,
       downvotes: newDislikeCount,
+      userVote: newValue,
     };
   });
 
@@ -66,27 +69,38 @@ const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
     if (!userCanVote || updatingEventId === eventId) {
       return;
     }
+
     const oldValue = likes[eventId] || '0';
     const newValue = getNewLikeValue(oldValue, value);
     const oldEvents = events;
     const oldLikes = likes;
+
     setUpdatingEventId(eventId);
     setEvents((prevEvents) => updateEventCounts(prevEvents, eventId, oldValue, newValue));
     setLikes((prevLikes) => ({
       ...prevLikes,
       [eventId]: newValue,
     }));
+
     try {
-      const updatedEvent = await updateEventLikeDislike(eventId, oldValue, newValue);
+      const updatedEvent = await updateEventLikeDislike(eventId, newValue);
+
       setEvents((prevEvents) => prevEvents.map((event) => {
         if (event.id !== eventId) {
           return event;
         }
+
         return {
           ...event,
           upvotes: updatedEvent.upvotes,
           downvotes: updatedEvent.downvotes,
+          userVote: updatedEvent.userVote,
         };
+      }));
+
+      setLikes((prevLikes) => ({
+        ...prevLikes,
+        [eventId]: updatedEvent.userVote,
       }));
     } catch {
       setEvents(oldEvents);

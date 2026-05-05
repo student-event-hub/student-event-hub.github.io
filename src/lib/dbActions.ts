@@ -4,6 +4,15 @@ import { compare, hash } from 'bcrypt';
 import { auth } from './auth';
 import { prisma } from './prisma';
 
+type VoteValue = '0' | '1' | '2';
+
+const cleanVoteValue = (value: string): VoteValue => {
+  if (value === '1' || value === '2') {
+    return value;
+  }
+  return '0';
+};
+
 export async function getUser(email: string) {
   // console.log(`getUser data: ${email}`);
   // eslint-disable-next-line @typescript-eslint/return-await
@@ -122,53 +131,114 @@ export async function updateEvent(id: number, data: any, originalStartISO: strin
   return updatedEvent;
 }
 
-export async function updateEventLikeDislike(eventId: number, oldValue: string, newValue: string) {
+export async function updateEventLikeDislike(eventId: number, newValue: string) {
   const session = await auth();
-  if (!session?.user?.email) {
+  const userEmail = session?.user?.email;
+
+  if (!userEmail) {
     throw new Error('You must be signed in to like or dislike an event.');
   }
 
-  let upvoteChange = 0;
-  let downvoteChange = 0;
+  const nextValue = cleanVoteValue(newValue);
 
-  if (oldValue === '1') {
-    upvoteChange -= 1;
-  } else if (oldValue === '2') {
-    downvoteChange -= 1;
-  }
+  const updatedEvent = await prisma.$transaction(async (tx) => {
+    const existingVote = await tx.eventVote.findUnique({
+      where: {
+        eventId_userEmail: {
+          eventId,
+          userEmail,
+        },
+      },
+      select: {
+        value: true,
+      },
+    });
 
-  if (newValue === '1') {
-    upvoteChange += 1;
-  } else if (newValue === '2') {
-    downvoteChange += 1;
-  }
+    const previousValue = existingVote ? cleanVoteValue(String(existingVote.value)) : '0';
 
-  if (upvoteChange === 0 && downvoteChange === 0) {
-    const event = await prisma.event.findUnique({
+    if (previousValue === nextValue) {
+      const event = await tx.event.findUnique({
+        where: { id: eventId },
+        select: {
+          id: true,
+          upvotes: true,
+          downvotes: true,
+        },
+      });
+
+      if (!event) {
+        throw new Error('Event not found.');
+      }
+
+      return {
+        ...event,
+        userVote: previousValue,
+      };
+    }
+
+    let upvoteChange = 0;
+    let downvoteChange = 0;
+
+    if (previousValue === '1') {
+      upvoteChange -= 1;
+    } else if (previousValue === '2') {
+      downvoteChange -= 1;
+    }
+
+    if (nextValue === '1') {
+      upvoteChange += 1;
+    } else if (nextValue === '2') {
+      downvoteChange += 1;
+    }
+
+    if (nextValue === '0') {
+      await tx.eventVote.delete({
+        where: {
+          eventId_userEmail: {
+            eventId,
+            userEmail,
+          },
+        },
+      });
+    } else if (existingVote) {
+      await tx.eventVote.update({
+        where: {
+          eventId_userEmail: {
+            eventId,
+            userEmail,
+          },
+        },
+        data: {
+          value: Number(nextValue),
+        },
+      });
+    } else {
+      await tx.eventVote.create({
+        data: {
+          eventId,
+          userEmail,
+          value: Number(nextValue),
+        },
+      });
+    }
+
+    const event = await tx.event.update({
       where: { id: eventId },
+      data: {
+        ...(upvoteChange !== 0 && { upvotes: { increment: upvoteChange } }),
+        ...(downvoteChange !== 0 && { downvotes: { increment: downvoteChange } }),
+      },
       select: {
         id: true,
         upvotes: true,
         downvotes: true,
       },
     });
-    if (!event) {
-      throw new Error('Event not found.');
-    }
-    return event;
-  }
 
-  const updatedEvent = await prisma.event.update({
-    where: { id: eventId },
-    data: {
-      ...(upvoteChange !== 0 && { upvotes: { increment: upvoteChange } }),
-      ...(downvoteChange !== 0 && { downvotes: { increment: downvoteChange } }),
-    },
-    select: {
-      id: true,
-      upvotes: true,
-      downvotes: true,
-    },
+    return {
+      ...event,
+      userVote: nextValue,
+    };
   });
 
   return updatedEvent;
