@@ -71,21 +71,21 @@ export async function addEvent(event: any, creator: string) {
   });
 
   if (event.interests?.length > 0) {
-    for (const interestName of event.interests) {
+    await Promise.all(event.interests.map(async (interestName: string) => {
       const dbInterest = await prisma.interest.findUnique({ where: { name: interestName } });
       if (dbInterest) {
         await prisma.eventInterest.create({ data: { eventId: dbEvent.id, interestId: dbInterest.id } });
       }
-    }
+    }));
   }
 
   if (event.participants?.length > 0) {
-    for (const email of event.participants) {
+    await Promise.all(event.participants.map(async (email: string) => {
       const dbProfile = await prisma.profile.findUnique({ where: { email } });
       if (dbProfile) {
         await prisma.profileEvent.create({ data: { eventId: dbEvent.id, profileId: dbProfile.id } });
       }
-    }
+    }));
   }
 
   return dbEvent;
@@ -301,12 +301,12 @@ export async function upsertEvent(event: any) {
 
   await prisma.eventInterest.deleteMany({ where: { eventId: dbEvent.id } });
   if (event.interests?.length > 0) {
-    for (const interestName of event.interests) {
+    await Promise.all(event.interests.map(async (interestName: string) => {
       const dbInterest = await prisma.interest.findUnique({ where: { name: interestName } });
       if (dbInterest) {
         await prisma.eventInterest.create({ data: { eventId: dbEvent.id, interestId: dbInterest.id } });
       }
-    }
+    }));
   }
 
   return dbEvent;

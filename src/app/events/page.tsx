@@ -67,8 +67,12 @@ const EventsPage = async () => {
     owner: event.owner,
     picture: event.picture,
     eventDate: event.startTime.toLocaleDateString(),
-    startTime: event.startTime.toLocaleTimeString('en-US', { timeZone: 'UTC', hour: 'numeric', minute: '2-digit', hour12: true }),
-    endTime: event.endTime.toLocaleTimeString('en-US', { timeZone: 'UTC', hour: 'numeric', minute: '2-digit', hour12: true }),
+    startTime: event.startTime.toLocaleTimeString('en-US', {
+      timeZone: 'UTC', hour: 'numeric', minute: '2-digit', hour12: true,
+    }),
+    endTime: event.endTime.toLocaleTimeString('en-US', {
+      timeZone: 'UTC', hour: 'numeric', minute: '2-digit', hour12: true,
+    }),
     description: event.description,
     location: event.location,
     upvotes: event.upvotes,

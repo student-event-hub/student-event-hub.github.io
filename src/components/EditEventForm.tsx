@@ -136,7 +136,12 @@ const EditEventForm = ({ event, interests, participants, redirectTo = '/events' 
             <Row className={formPadding}>
               <Form.Group controlId="description">
                 <Form.Label>Description</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder="Describe the event here." {...register('description')} />
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  placeholder="Describe the event here."
+                  {...register('description')}
+                />
                 <Form.Text muted>(optional)</Form.Text>
               </Form.Group>
             </Row>
@@ -192,6 +197,10 @@ const EditEventForm = ({ event, interests, participants, redirectTo = '/events' 
       </Card>
     </Container>
   );
+};
+
+EditEventForm.defaultProps = {
+  redirectTo: '/events',
 };
 
 export default EditEventForm;
