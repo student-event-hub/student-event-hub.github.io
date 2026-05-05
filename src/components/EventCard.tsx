@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-nested-ternary */
+
 import { Card, Col, Button, ToggleButton, Stack } from 'react-bootstrap';
 import Link from 'next/link';
 import { HandThumbsDown, HandThumbsUp } from 'react-bootstrap-icons';
@@ -20,6 +21,7 @@ const EventCard = ({
     { name: 'Like', value: '1', variant: 'outline-primary', icon: HandThumbsUp },
     { name: 'Dislike', value: '2', variant: 'outline-danger', icon: HandThumbsDown },
   ];
+
   return (
     <Col>
       <Card>
