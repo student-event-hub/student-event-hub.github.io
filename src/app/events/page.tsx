@@ -6,7 +6,7 @@ import { FunnelFill, Search } from 'react-bootstrap-icons';
 import { PageIDs } from '@/utilities/ids';
 import { prisma } from '@/lib/prisma';
 import pageStyle from '@/utilities/pageStyle';
-import CardGrid from './CardGrid';
+import CardGrid from '@/components/CardGrid';
 
 const EventsPage = async () => {
   const events = await prisma.event.findMany();

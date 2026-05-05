@@ -5,6 +5,7 @@ import { auth } from '@/lib/auth';
 import { loggedInProtectedPage } from '@/lib/page-protection';
 import { prisma } from '@/lib/prisma';
 import pageStyle from '@/utilities/pageStyle';
+import CardGrid from '@/components/CardGrid';
 
 const YourEventsPage = async () => {
   const session = await auth();
@@ -13,12 +14,21 @@ const YourEventsPage = async () => {
       user: { email: string; id: string; name: string; randomKey: string };
     } | null,
   );
-  const owner = (session && session.user && session.user.email) || '';
   const profile = await prisma.profile.findUnique({
     where: {
-      email: owner,
+      email: session?.user.email === null ? undefined : session?.user.email,
     },
   });
+  const events = await prisma.event.findMany({
+    where: {
+      ProfileEvent: {
+        some: {
+          profileId: profile?.id,
+        },
+      },
+    },
+  });
+  // events.filter((event) => profileEvents.find((pe) => pe.eventId === event.id));
   return (
     <Container id={PageIDs.yourEventsPage} style={pageStyle}>
       <div
@@ -30,10 +40,13 @@ const YourEventsPage = async () => {
           backgroundColor: 'white',
         }}
       >
-        <h1 style={{ fontSize: '2rem', marginBottom: '16px' }}>{`${profile?.firstName} ${profile?.lastName}`}</h1>
+        <h1 style={{ fontSize: '2rem', marginBottom: '16px' }}>{/* `${profile?.firstName} ${profile?.lastName}` */}</h1>
         <p style={{ fontSize: '1.1rem', marginBottom: 0 }}>
-          We will implement some sort of data in this box, such as the amount of
-          events the user has saved and the amount of events created.
+          {
+          // We will implement some sort of data in this box, such as the amount of
+          // events the user has saved and the amount of events created.
+          `You have ${events.length} saved events.`
+          }
         </p>
       </div>
 
@@ -47,9 +60,7 @@ const YourEventsPage = async () => {
           backgroundColor: 'white',
         }}
       >
-        <p style={{ marginBottom: 0 }}>
-          Upcoming event cards will be rendered here once event data is connected.
-        </p>
+        <CardGrid initialEvents={events} />
       </div>
     </Container>
   );
