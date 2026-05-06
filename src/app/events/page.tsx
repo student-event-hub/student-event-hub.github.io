@@ -10,78 +10,8 @@ import pageStyle from '@/utilities/pageStyle';
 import type { EventCardData, LikeValue } from '@/app/lib/EventCardData';
 import CardGrid from './CardGrid';
 
-export const dynamic = 'force-dynamic';
-
-type UserVoteData = {
-  eventId: number;
-  value: number;
-};
-
-const getVoteValue = (value: number): LikeValue => {
-  if (value === 1) {
-    return '1';
-  }
-  if (value === 2) {
-    return '2';
-  }
-  return '0';
-};
-
 const EventsPage = async () => {
-  const session = await auth();
-
-  const events = await prisma.event.findMany({
-    include: {
-      interests: {
-        include: {
-          interest: true,
-        },
-      },
-      ProfileEvent: {
-        include: {
-          profile: true,
-        },
-      },
-    },
-  });
-
-  const userVotes: UserVoteData[] = session?.user?.email
-    ? await prisma.eventVote.findMany({
-      where: {
-        userEmail: session.user.email,
-      },
-      select: {
-        eventId: true,
-        value: true,
-      },
-    })
-    : [];
-
-  const userVoteMap = new Map<number, number>(
-    userVotes.map((vote) => [vote.eventId, vote.value]),
-  );
-
-  const eventData: EventCardData[] = events.map((event) => ({
-    id: event.id,
-    name: event.name,
-    owner: event.owner,
-    picture: event.picture,
-    eventDate: event.startTime.toLocaleDateString(),
-    startTime: event.startTime.toLocaleTimeString('en-US', {
-      timeZone: 'UTC', hour: 'numeric', minute: '2-digit', hour12: true,
-    }),
-    endTime: event.endTime.toLocaleTimeString('en-US', {
-      timeZone: 'UTC', hour: 'numeric', minute: '2-digit', hour12: true,
-    }),
-    description: event.description,
-    location: event.location,
-    upvotes: event.upvotes,
-    downvotes: event.downvotes,
-    userVote: getVoteValue(userVoteMap.get(event.id) || 0),
-    interests: event.interests.map((eventInterest) => eventInterest.interest.name),
-    participants: event.ProfileEvent.map((eventParticipant) => eventParticipant.profile),
-  }));
-
+  const events = await prisma.event.findMany();
   return (
     <Container id={PageIDs.allEventsPage} style={pageStyle}>
       <div
@@ -121,7 +51,7 @@ const EventsPage = async () => {
           />
         </div>
       </div>
-      <CardGrid initialEvents={eventData} />
+      <CardGrid initialEvents={events} />
     </Container>
   );
 };

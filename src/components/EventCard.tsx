@@ -24,8 +24,8 @@ const EventCard = ({
 
   return (
     <Col>
-      <Card className="h-100">
-        <Card.Body className="d-flex flex-column">
+      <Card>
+        <Card.Body>
           <Card.Title>
             <Stack direction="horizontal">
               <div>{event.name}</div>
@@ -74,17 +74,17 @@ const EventCard = ({
             <strong>End Time: </strong>
             {event.endTime}
           </Card.Text>
-          {event.picture && (
-            <Card.Img
-              variant="bottom"
-              src={event.picture}
-              alt={`${event.name} picture`}
-              style={{ objectFit: 'contain', height: '180px', backgroundColor: '#f8f9fa' }}
-            />
-          )}
-          <div className="d-flex gap-2 mt-auto pt-3">
+          <Card.Img
+            variant="bottom"
+            src={event.picture === null ? undefined : event.picture}
+            alt={`${event.name} picture`}
+            style={{ objectFit: 'cover', maxHeight: '300px' }}
+          />
+          <div className="d-flex gap-2 mt-3">
             <Link href={`/editEvent/${event.id}`}>
-              <Button variant="secondary" size="sm" className="flex-fill">Edit Event</Button>
+              <Button variant="secondary" size="sm" className="flex-fill">
+                Edit Event
+              </Button>
             </Link>
             <Button variant="primary" size="sm" className="flex-fill">View Details</Button>
             <Button variant="success" size="sm" className="flex-fill">Add Event</Button>
