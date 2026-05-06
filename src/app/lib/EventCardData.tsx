@@ -2,6 +2,7 @@ export type EventCardData = {
   id: number;
   name: string;
   owner: string[];
+  creator: string;
   picture: string | null;
   description: string | null;
   eventDate: string;

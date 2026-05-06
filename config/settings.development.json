@@ -133,7 +133,7 @@
         "endMinute": 0,
         "location": "ICSpace, POST 318B",
         "owner": ["ACM Manoa"],
-        "creator": "Philip_Johnson",
+        "creator": "johnson@hawaii.edu",
         "signedUp": 3
       },
       {
@@ -153,7 +153,7 @@
         "endMinute": 0,
         "location": "Campus Center Ballroom",
         "owner": ["UH Career Services"],
-        "creator": "Carleton_Moore",
+        "creator": "cmoore@hawaii.edu",
         "signedUp": 5
       },
       {
@@ -173,7 +173,7 @@
         "endMinute": 0,
         "location": "POST Building",
         "owner": ["ICS Department"],
-        "creator": "Henri_Casanova",
+        "creator": "henric@hawaii.edu",
         "signedUp": 4
       },
       {
@@ -193,7 +193,7 @@
         "endMinute": 0,
         "location": "Campus Center Courtyard",
         "owner": ["UH Multicultural Center"],
-        "creator": "Jason_Leigh",
+        "creator": "leighj@hawaii.edu",
         "signedUp": 2
       },
       {
@@ -213,7 +213,7 @@
         "endMinute": 30,
         "location": "POST 318B",
         "owner": ["ICS Department"],
-        "creator": "Philip_Johnson",
+        "creator": "johnson@hawaii.edu",
         "signedUp": 1
       },
       {
@@ -233,7 +233,7 @@
         "endMinute": 0,
         "location": "UH Manoa Recreation Fields",
         "owner": ["UH Intramurals"],
-        "creator": "Serge_Negrashov",
+        "creator": "sin8@hawaii.edu",
         "signedUp": 2
       }
     ],

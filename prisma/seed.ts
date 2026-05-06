@@ -18,7 +18,7 @@ async function main() {
     }
     const dbEvent = await prisma.event.upsert({
       where: { name: event.name },
-      update: {},
+      update: { creator: event.creator },
       create: {
         name: event.name,
         description: event.description,

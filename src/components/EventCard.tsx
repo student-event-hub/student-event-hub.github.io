@@ -12,11 +12,18 @@ type Props = {
   likeVal: number;
   onLikeClick: (eventId: number, value: number) => void;
   disabled: boolean;
+  currentUserEmail?: string | null;
+  currentUserRole?: string;
+  showEditDelete?: boolean;
+  showAddEvent?: boolean;
 };
 
 const EventCard = ({
   event, likeVal, onLikeClick, disabled,
+  currentUserEmail = null, currentUserRole = 'USER',
+  showEditDelete = false, showAddEvent = false,
 }: Props) => {
+  const canEditDelete = showEditDelete && (currentUserEmail === event.creator || currentUserRole === 'ADMIN');
   const likeDislike: { name: string; value: number; variant: string; icon: typeof HandThumbsUp }[] = [
     { name: 'Like', value: 1, variant: 'outline-primary', icon: HandThumbsUp },
     { name: 'Dislike', value: 2, variant: 'outline-danger', icon: HandThumbsDown },
@@ -82,13 +89,23 @@ const EventCard = ({
               style={{ objectFit: 'contain', height: '180px', backgroundColor: '#f8f9fa' }}
             />
           )}
-          <div className="d-flex gap-2 mt-auto pt-3">
-            <Link href={`/editEvent/${event.id}`}>
-              <Button variant="secondary" size="sm" className="flex-fill">Edit Event</Button>
-            </Link>
-            <Button variant="primary" size="sm" className="flex-fill">View Details</Button>
-            <Button variant="success" size="sm" className="flex-fill">Add Event</Button>
-          </div>
+          {(showAddEvent || canEditDelete) && (
+            <div className="d-flex gap-2 mt-auto pt-3">
+              {showAddEvent && (
+                <Button variant="success" size="sm" className="flex-fill">Add Event</Button>
+              )}
+              {canEditDelete && (
+                <>
+                  <Link href={`/editEvent/${event.id}`} className="flex-fill">
+                    <Button variant="secondary" size="sm" className="w-100">Edit Event</Button>
+                  </Link>
+                  <Link href={`/deleteEvent/${event.id}`} className="flex-fill">
+                    <Button variant="danger" size="sm" className="w-100">Delete Event</Button>
+                  </Link>
+                </>
+              )}
+            </div>
+          )}
         </Card.Body>
       </Card>
     </Col>

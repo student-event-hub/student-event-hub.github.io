@@ -10,7 +10,21 @@ import EventCard from '@/components/EventCard';
 import { updateEventLikeDislike } from '@/lib/dbActions';
 import type { EventCardData } from '@/app/lib/EventCardData';
 
-const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
+type CardGridProps = {
+  initialEvents: EventCardData[];
+  currentUserEmail?: string | null;
+  currentUserRole?: string;
+  showEditDelete?: boolean;
+  showAddEvent?: boolean;
+};
+
+const CardGrid = ({
+  initialEvents,
+  currentUserEmail = null,
+  currentUserRole = 'USER',
+  showEditDelete = false,
+  showAddEvent = false,
+}: CardGridProps) => {
   const { status } = useSession();
   const [events, setEvents] = useState<EventCardData[]>(initialEvents);
   const [likes, setLikes] = useState<Record<number, number>>(
@@ -119,6 +133,10 @@ const CardGrid = ({ initialEvents }: { initialEvents: EventCardData[] }) => {
           onLikeClick={handleLike}
           likeVal={likes[event.id] || 0}
           disabled={!userCanVote || updatingEventId === event.id}
+          currentUserEmail={currentUserEmail}
+          currentUserRole={currentUserRole}
+          showEditDelete={showEditDelete}
+          showAddEvent={showAddEvent}
         />
       ))}
     </Row>

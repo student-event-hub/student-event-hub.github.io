@@ -25,13 +25,18 @@ const YourEventsPage = async () => {
       email: session?.user.email === null ? undefined : session?.user.email,
     },
   });
+  const userEmail = session?.user?.email ?? null;
+  const orConditions: object[] = [];
+  if (profile) {
+    orConditions.push({ ProfileEvent: { some: { profileId: profile.id } } });
+  }
+  if (userEmail) {
+    orConditions.push({ creator: userEmail });
+  }
+
   const events = await prisma.event.findMany({
     where: {
-      ProfileEvent: {
-        some: {
-          profileId: profile?.id,
-        },
-      },
+      ...(orConditions.length > 0 ? { OR: orConditions } : {}),
       endTime: {
         gt: new Date(Date.now()),
       },
@@ -67,6 +72,7 @@ const YourEventsPage = async () => {
     id: event.id,
     name: event.name,
     owner: event.owner,
+    creator: event.creator,
     picture: event.picture,
     eventDate: event.startTime.toLocaleDateString(),
     startTime: event.startTime.toLocaleTimeString('en-US', {
@@ -110,7 +116,12 @@ const YourEventsPage = async () => {
           backgroundColor: 'white',
         }}
       >
-        <CardGrid initialEvents={eventData} />
+        <CardGrid
+          initialEvents={eventData}
+          showEditDelete
+          currentUserEmail={session?.user?.email ?? null}
+          currentUserRole={session?.user?.role ?? 'USER'}
+        />
       </div>
     </Container>
   );
