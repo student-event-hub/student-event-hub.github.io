@@ -232,9 +232,30 @@
         "endHour": 13,
         "endMinute": 0,
         "location": "UH Manoa Recreation Fields",
-        "owner": ["UH Intramurals"],
+        "owner": ["UH Volleyball Intramurals"],
         "creator": "Serge_Negrashov",
         "signedUp": 2
+      },
+      {
+        "name": "Campus Basketball Tournament",
+        "description": "Grab your friends and sign up for the semester intramural basketball tournament. All skill levels welcome!",
+        "interests": [
+          "Sports",
+          "Social"
+        ],
+        "picture": "https://www.wilson.com/en-us/media/catalog/product/article_images/WTB7500ID_/WTB7500ID__b722ae318490e0f2e686864dc70fd730.png",
+        "year": 2025,
+        "month": 2,
+        "day": 10,
+        "startHour": 8,
+        "startMinute": 2,
+        "endHour": 4,
+        "endMinute": 5,
+        "location": "UH Manoa Recreation Fields",
+        "owner": ["UH Basketball Intramurals"],
+        "creator": "Moni Nikolov",
+        "signedUp": 3
+
       }
     ],
     "defaultProjects": [
