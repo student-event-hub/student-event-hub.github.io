@@ -256,6 +256,46 @@
         "creator": "Moni Nikolov",
         "signedUp": 3
 
+      },
+      {
+        "name": "Campus Soccer Tournament",
+        "description": "Grab your friends and sign up for the semester intramural soccer tournament. All skill levels welcome!",
+        "interests": [
+          "Sports",
+          "Social"
+        ],
+        "picture": "https://www.pngall.com/wp-content/uploads/5/Soccer-Ball-PNG-High-Quality-Image.png",
+        "year": 2025,
+        "month": 3,
+        "day": 15,
+        "startHour": 9,
+        "startMinute": 0,
+        "endHour": 5,
+        "endMinute": 0,
+        "location": "UH Manoa Recreation Fields",
+        "owner": ["UH Soccer Intramurals"],
+        "creator": "Moni Nikolov",
+        "signedUp": 4
+      },
+      {
+        "name": "Campus Tennis Tournament",
+        "description": "Grab your friends and sign up for the semester intramural tennis tournament. All skill levels welcome!",
+        "interests": [
+          "Sports",
+          "Social"
+        ],
+        "picture": "https://www.pngall.com/wp-content/uploads/5/Tennis-Ball-PNG-High-Quality-Image.png",
+        "year": 2025,
+        "month": 4,
+        "day": 20,
+        "startHour": 10,
+        "startMinute": 0,
+        "endHour": 6,
+        "endMinute": 0,
+        "location": "UH Manoa Recreation Fields",
+        "owner": ["UH Tennis Intramurals"],
+        "creator": "Moni Nikolov",
+        "signedUp": 1
       }
     ],
     "defaultProjects": [
