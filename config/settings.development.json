@@ -496,6 +496,346 @@
         "owner": ["Hawaiian Airlines"],
         "creator": "Carleton_Moore",
         "signedUp": 3
+      },
+      {
+        "name": "Google Internship Info Session",
+        "description": "Learn about internship opportunities at Google, including software engineering, data science, and IT roles. Q&A session included.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/google/400/300",
+        "year": 2027,
+        "month": 0,
+        "day": 30,
+        "startHour": 14,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 30,
+        "location": "POST 318B",
+        "owner": ["Google"],
+        "creator": "Henri_Casanova",
+        "signedUp": 4
+      },
+      {
+        "name": "Microsoft Internship Info Session",
+        "description": "Learn about internship opportunities at Microsoft, including software engineering, data science, and IT roles. Q&A session included.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/microsoft/400/300",
+        "year": 2027,
+        "month": 1,
+        "day": 10,
+        "startHour": 14,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 30,
+        "location": "POST 318B",
+        "owner": ["Microsoft"],
+        "creator": "Anthony_Criste",
+        "signedUp": 5
+      },
+      {
+        "name": "Amazon Internship Info Session",
+        "description": "Learn about internship opportunities at Amazon, including software engineering, data science, and IT roles. Q&A session included.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/amazon/400/300",
+        "year": 2027,
+        "month": 1,
+        "day": 20,
+        "startHour": 14,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 30,
+        "location": "POST 318B",
+        "owner": ["Amazon"],
+        "creator": "Jason_Leigh",
+        "signedUp": 4
+      },
+      {
+        "name": "Apple Internship Info Session",
+        "description": "Learn about internship opportunities at Apple, including software engineering, data science, and IT roles. Q&A session included.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/apple/400/300",
+        "year": 2027,
+        "month": 1,
+        "day": 30,
+        "startHour": 14,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 30,
+        "location": "POST 318B",
+        "owner": ["Apple"],
+        "creator": "Serge_Negrashov",
+        "signedUp": 5
+      },
+      {
+        "name": "Facebook Internship Info Session",
+        "description": "Learn about internship opportunities at Facebook, including software engineering, data science, and IT roles. Q&A session included.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/facebook/400/300",
+        "year": 2027,
+        "month": 2,
+        "day": 10,
+        "startHour": 14,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 30,
+        "location": "POST 318B",
+        "owner": ["Facebook"],
+        "creator": "Philip_Johnson",
+        "signedUp": 4
+      },
+      {
+        "name": "Twitter Internship Info Session",
+        "description": "Learn about internship opportunities at Twitter, including software engineering, data science, and IT roles. Q&A session included.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/twitter/400/300",
+        "year": 2027,
+        "month": 2,
+        "day": 20,
+        "startHour": 14,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 30,
+        "location": "POST 318B",
+        "owner": ["Twitter"],
+        "creator": "Carleton_Moore",
+        "signedUp": 3
+      },
+      {
+        "name": "Senior Prom",
+        "description": "Dress to impress and dance the night away at the senior prom! Open to all graduating students.",
+        "interests": [
+          "Social",
+          "Dance"
+        ],
+        "picture": "https://picsum.photos/seed/prom/400/300",
+        "year": 2027,
+        "month": 3,
+        "day": 15,
+        "startHour": 19,
+        "startMinute": 0,
+        "endHour": 23,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Manoa Student Activities"],
+        "creator": "Anthony_Criste",
+        "signedUp": 5
+      },
+      {
+        "name": "Graduation Ceremony",
+        "description": "Celebrate your achievements with friends, family, and faculty at the graduation ceremony. Open to all graduating students.",
+        "interests": [
+          "Social",
+          "Ceremony"
+        ],
+        "picture": "https://picsum.photos/seed/graduation/400/300",
+        "year": 2027,
+        "month": 4,
+        "day": 30,
+        "startHour": 10,
+        "startMinute": 0,
+        "endHour": 12,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Manoa Student Activities"],
+        "creator": "Jason_Leigh",
+        "signedUp": 5
+      },
+      {
+        "name": "Alumni Networking Event",
+        "description": "Connect with alumni from your program and learn about their career paths. Open to all students and alumni.",
+        "interests": [
+          "Networking",
+          "Career"
+        ],
+        "picture": "https://picsum.photos/seed/alumni/400/300",
+        "year": 2027,
+        "month": 5,
+        "day": 15,
+        "startHour": 17,
+        "startMinute": 0,
+        "endHour": 19,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Manoa Alumni Association"],
+        "creator": "Serge_Negrashov",
+        "signedUp": 4
+      },
+      {
+        "name": "End of Year BBQ",
+        "description": "Celebrate the end of the school year with a BBQ! Food, games, and fun for all students.",
+        "interests": [
+          "Social",
+          "Food"
+        ],
+        "picture": "https://picsum.photos/seed/bbq/400/300",
+        "year": 2027,
+        "month": 5,
+        "day": 30,
+        "startHour": 12,
+        "startMinute": 0,
+        "endHour": 16,
+        "endMinute": 0,
+        "location": "Campus Center Courtyard",
+        "owner": ["UH Manoa Student Activities"],
+        "creator": "Philip_Johnson",
+        "signedUp": 5
+      },
+      {
+        "name": "Welcome Back Luau",
+        "description": "Kick off the new school year with a traditional Hawaiian luau! Food, music, and fun for all students.",
+        "interests": [
+          "Social",
+          "Cultural"
+        ],
+        "picture": "https://picsum.photos/seed/luau/400/300",
+        "year": 2027,
+        "month": 6,
+        "day": 15,
+        "startHour": 17,
+        "startMinute": 0,
+        "endHour": 20,
+        "endMinute": 0,
+        "location": "Campus Center Courtyard",
+        "owner": ["UH Manoa Student Activities"],
+        "creator": "Carleton_Moore",
+        "signedUp": 4
+      },
+      {
+        "name": "Spring Fling",
+        "description": "Celebrate the arrival of spring with a day of fun activities, food, and music! Open to all students.",
+        "interests": [
+          "Social",
+          "Outdoor"
+        ],
+        "picture": "https://picsum.photos/seed/spring/400/300",
+        "year": 2027,
+        "month": 6,
+        "day": 30,
+        "startHour": 12,
+        "startMinute": 0,
+        "endHour": 18,
+        "endMinute": 0,
+        "location": "Campus Center Courtyard",
+        "owner": ["UH Manoa Student Activities"],
+        "creator": "Anthony_Criste",
+        "signedUp": 5
+      },
+      {
+        "name": "Fall Festival",
+        "description": "Celebrate the arrival of fall with a day of fun activities, food, and music! Open to all students.",
+        "interests": [
+          "Social",
+          "Outdoor"
+        ],
+        "picture": "https://picsum.photos/seed/fall/400/300",
+        "year": 2027,
+        "month": 7,
+        "day": 15,
+        "startHour": 12,
+        "startMinute": 0,
+        "endHour": 18,
+        "endMinute": 0,
+        "location": "Campus Center Courtyard",
+        "owner": ["UH Manoa Student Activities"],
+        "creator": "Jason_Leigh",
+        "signedUp": 4
+      },
+      {
+        "name": "Winter Wonderland",
+        "description": "Celebrate the holiday season with a winter wonderland event! Food, music, and fun for all students.",
+        "interests": [
+          "Social",
+          "Holiday"
+        ],
+        "picture": "https://picsum.photos/seed/winter/400/300",
+        "year": 2027,
+        "month": 11,
+        "day": 15,
+        "startHour": 17,
+        "startMinute": 0,
+        "endHour": 20,
+        "endMinute": 0,
+        "location": "Campus Center Courtyard",
+        "owner": ["UH Manoa Student Activities"],
+        "creator": "Serge_Negrashov",
+        "signedUp": 5
+      },
+      {
+        "name": "Spring Career Fair",
+        "description": "Connect with top employers from tech, engineering, and business industries. Bring your resume and dress professionally.",
+        "interests": [
+          "Business",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/springcareer/400/300",
+        "year": 2027,
+        "month": 2,
+        "day": 25,
+        "startHour": 10,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Career Services"],
+        "creator": "Carleton_Moore",
+        "signedUp": 5
+      },
+      {
+        "name": "Fall Career Fair",
+        "description": "Connect with top employers from tech, engineering, and business industries. Bring your resume and dress professionally.",
+        "interests": [
+          "Business",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/fallcareer/400/300",
+        "year": 2027,
+        "month": 9,
+        "day": 25,
+        "startHour": 10,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Career Services"],
+        "creator": "Philip_Johnson",
+        "signedUp": 4
+      },
+      {
+        "name": "Tech Career Fair",
+        "description": "Connect with top employers from the tech industry. Bring your resume and dress professionally.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/techcareer/400/300",
+        "year": 2027,
+        "month": 10,
+        "day": 25,
+        "startHour": 10,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Career Services"],
+        "creator": "Henri_Casanova",
+        "signedUp": 5
       }
     ],
     "defaultProjects": [
