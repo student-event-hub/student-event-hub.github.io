@@ -35,7 +35,7 @@ const EventsPage = async () => {
   });
 
   const userVotes: UserVoteData[] = session?.user?.email
-    ? await (prisma as any).eventVote.findMany({
+    ? await prisma.eventVote.findMany({
       where: {
         userEmail: session.user.email,
       },
@@ -43,7 +43,7 @@ const EventsPage = async () => {
         eventId: true,
         value: true,
       },
-    }) as UserVoteData[]
+    })
     : [];
 
   const userVoteMap = new Map<number, number>(
@@ -74,7 +74,7 @@ const EventsPage = async () => {
 
   return (
     <Container id={PageIDs.allEventsPage} style={pageStyle}>
-      <EventSearch initialEvents={eventData} />
+      <EventSearch initialEvents={eventData} currentUserEmail={session?.user?.email ?? null} />
     </Container>
   );
 };
