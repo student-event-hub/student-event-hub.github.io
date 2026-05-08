@@ -142,6 +142,16 @@ $ npm run dev
 
 
 
+# Community Feedback
+- It’s working, the Ui could be refined further, it’s an event calendar, make sure all of it works. I liked it. (John Cruz)
+- I like it, it looks fairly professional, js it’s kinda tight like everything seems crammed and cannot move around too much or view all the text but it is good (Tainoa)
+- Okay, I liked how easy it is to access the events and the login. I wish I’d be able to like and dislike the events without being logged in. (Isaac)
+- Overall, I think the website is simple, easy to navigate, and well-structured, especially the Home, Events, and Login pages. However, I noticed a few improvements that could be made, such as fixing the blurry main image and capitalizing action labels like “Comment” and “Save” for clarity. I also suggest improving layout readability on the Admin Panel, combining event start and end times into a single time frame, and adding a location feature for events. Lastly, the “Filter By” button doesn’t seem to work and should be fixed. (Eric Ugale)
+- I saw the events and the times, but I couldn’t really do anything since I have to make an account right (Eric Villamor)
+
+
+
+
 # Goals of Implementation
 - Events are filterable by time/likeability/categories 
 - Each User has their own component, “Your Events Page”, which users can events to their own calendar and filter their calendar via event categories
