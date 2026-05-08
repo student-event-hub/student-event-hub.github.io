@@ -17,6 +17,9 @@ Create a digitized calendar board to help users to keep track of and find SLE Ev
 ## Team Contract
 <a href = "https://docs.google.com/document/d/1d2C_VM08IDHJyN53gbJdZNoIxGdcvA6N47JhRgeNg94/edit?usp=sharing" >Our Team Contract</a>
 
+## Effort Estimate Spreadsheet
+<a href = "https://docs.google.com/spreadsheets/d/1q7ABxG2j7QR1d19Z-CvLoe9Uk_MQA6PRMKrIIJa4HCs/edit?usp=sharing">Effort Estimate Spreadsheet</a>
+
 # Our Approach
 Student Events will include the time that each event will occur, a review system (Like/Dislike or Review by comment section), the place of event, description, categories, owner, and buttons to add to each user’s calendar
 
