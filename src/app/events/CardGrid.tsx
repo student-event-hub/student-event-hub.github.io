@@ -4,7 +4,7 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/require-default-props */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Row } from 'react-bootstrap';
 import { useSession } from 'next-auth/react';
 import EventCard from '@/components/EventCard';
@@ -50,6 +50,14 @@ const CardGrid = ({
   const [removingEventId, setRemovingEventId] = useState<number | null>(null);
   const [removedEventIds, setRemovedEventIds] = useState<Set<number>>(new Set());
   const userCanVote = status === 'authenticated';
+
+  useEffect(() => {
+    setJoinedEventIds(new Set(
+      initialEvents
+        .filter(event => event.participants.some(p => p.email === currentUserEmail))
+        .map(event => event.id),
+    ));
+  }, [initialEvents, currentUserEmail]);
 
   const getNewLikeValue = (currentValue: number, value: number): number => {
     if (value !== 1 && value !== 2) {

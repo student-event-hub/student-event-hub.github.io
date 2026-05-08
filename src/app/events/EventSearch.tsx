@@ -4,9 +4,10 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/require-default-props */
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { FunnelFill, Search } from 'react-bootstrap-icons';
+import { useRouter } from 'next/navigation';
 import type { EventCardData } from '@/app/lib/EventCardData';
 import CardGrid from './CardGrid';
 
@@ -16,7 +17,18 @@ type EventSearchProps = {
 };
 
 const EventSearch = ({ initialEvents, currentUserEmail = null }: EventSearchProps) => {
+  const router = useRouter();
   const [searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        router.refresh();
+      }
+    };
+    window.addEventListener('pageshow', handlePageShow);
+    return () => window.removeEventListener('pageshow', handlePageShow);
+  }, [router]);
 
   const filteredEvents = useMemo(() => {
     const searchValue = searchText.trim().toLowerCase();

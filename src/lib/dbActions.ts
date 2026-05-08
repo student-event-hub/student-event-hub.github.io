@@ -1,6 +1,7 @@
 'use server';
 
 import { compare, hash } from 'bcrypt';
+import { revalidatePath } from 'next/cache';
 import { auth } from './auth';
 import { prisma } from './prisma';
 
@@ -323,6 +324,8 @@ export async function leaveEvent(eventId: number, userEmail: string) {
   const profile = await prisma.profile.findUnique({ where: { email: userEmail } });
   if (!profile) return;
   await prisma.profileEvent.deleteMany({ where: { profileId: profile.id, eventId } });
+  revalidatePath('/events');
+  revalidatePath('/your-events');
 }
 
 export async function joinEvent(eventId: number, userEmail: string) {
@@ -338,6 +341,8 @@ export async function joinEvent(eventId: number, userEmail: string) {
   await prisma.profileEvent.create({
     data: { profileId: profile.id, eventId },
   });
+  revalidatePath('/events');
+  revalidatePath('/your-events');
 }
 
 export async function updateProfile(profile: any) {
