@@ -74,7 +74,7 @@ const EventsPage = async () => {
 
   return (
     <Container id={PageIDs.allEventsPage} style={pageStyle}>
-      <EventSearch initialEvents={eventData} />
+      <EventSearch initialEvents={eventData} currentUserEmail={session?.user?.email ?? null} />
     </Container>
   );
 };

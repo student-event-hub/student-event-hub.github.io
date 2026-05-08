@@ -2,6 +2,7 @@
 
 /* eslint-disable import/extensions */
 /* eslint-disable react/jsx-no-bind */
+/* eslint-disable react/require-default-props */
 
 import { useMemo, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
@@ -11,9 +12,10 @@ import CardGrid from './CardGrid';
 
 type EventSearchProps = {
   initialEvents: EventCardData[];
+  currentUserEmail?: string | null;
 };
 
-const EventSearch = ({ initialEvents }: EventSearchProps) => {
+const EventSearch = ({ initialEvents, currentUserEmail = null }: EventSearchProps) => {
   const [searchText, setSearchText] = useState('');
 
   const filteredEvents = useMemo(() => {
@@ -76,7 +78,7 @@ const EventSearch = ({ initialEvents }: EventSearchProps) => {
           />
         </div>
       </div>
-      <CardGrid key={searchText} initialEvents={filteredEvents} />
+      <CardGrid key={searchText} initialEvents={filteredEvents} showAddEvent currentUserEmail={currentUserEmail} />
     </>
   );
 };
