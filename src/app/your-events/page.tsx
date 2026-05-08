@@ -34,9 +34,9 @@ const YourEventsPage = async () => {
     orConditions.push({ creator: userEmail });
   }
 
-  const events = await prisma.event.findMany({
+  const events = orConditions.length === 0 ? [] : await prisma.event.findMany({
     where: {
-      ...(orConditions.length > 0 ? { OR: orConditions } : {}),
+      OR: orConditions,
       endTime: {
         gt: new Date(Date.now()),
       },
