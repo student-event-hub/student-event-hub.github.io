@@ -836,6 +836,106 @@
         "owner": ["UH Career Services"],
         "creator": "Henri_Casanova",
         "signedUp": 5
+      },
+      {
+        "name": "Engineering Career Fair",
+        "description": "Connect with top employers from the engineering industry. Bring your resume and dress professionally.",
+        "interests": [
+          "Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/engineeringcareer/400/300",
+        "year": 2027,
+        "month": 11,
+        "day": 25,
+        "startHour": 10,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Career Services"],
+        "creator": "Anthony_Criste",
+        "signedUp": 4
+      },
+      {
+        "name": "Business Career Fair",
+        "description": "Connect with top employers from the business industry. Bring your resume and dress professionally.",
+        "interests": [
+          "Business",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/businesscareer/400/300",
+        "year": 2027,
+        "month": 0,
+        "day": 25,
+        "startHour": 10,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Career Services"],
+        "creator": "Jason_Leigh",
+        "signedUp": 5
+      },
+      {
+        "name": "Government Career Fair",
+        "description": "Connect with top employers from the government sector. Bring your resume and dress professionally.",
+        "interests": [
+          "Government",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/governmentcareer/400/300",
+        "year": 2027,
+        "month": 1,
+        "day": 25,
+        "startHour": 10,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Career Services"],
+        "creator": "Serge_Negrashov",
+        "signedUp": 4
+      },
+      {
+        "name": "Nonprofit Career Fair",
+        "description": "Connect with top employers from the nonprofit sector. Bring your resume and dress professionally.",
+        "interests": [
+          "Nonprofit",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/nonprofitcareer/400/300",
+        "year": 2027,
+        "month": 2,
+        "day": 25,
+        "startHour": 10,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Career Services"],
+        "creator": "Philip_Johnson",
+        "signedUp": 5
+      },
+      {
+        "name": "Internship Fair",
+        "description": "Connect with employers offering internship opportunities. Bring your resume and dress professionally.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/internship/400/300",
+        "year": 2027,
+        "month": 3,
+        "day": 25,
+        "startHour": 10,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 0,
+        "location": "Campus Center Ballroom",
+        "owner": ["UH Career Services"],
+        "creator": "Carleton_Moore",
+        "signedUp": 5
       }
     ],
     "defaultProjects": [
