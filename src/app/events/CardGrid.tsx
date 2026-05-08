@@ -2,6 +2,7 @@
 
 /* eslint-disable import/extensions */
 /* eslint-disable react/jsx-no-bind */
+/* eslint-disable react/require-default-props */
 
 import { useState } from 'react';
 import { Row } from 'react-bootstrap';

@@ -3,8 +3,8 @@
 /* eslint-disable import/extensions */
 
 import { useState } from 'react';
-import CardGrid from '../events/CardGrid';
 import type { EventCardData } from '@/app/lib/EventCardData';
+import CardGrid from '../events/CardGrid';
 
 type Props = {
   profileFirstName: string | null;

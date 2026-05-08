@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-nested-ternary */
+/* eslint-disable react/require-default-props */
 
 import { Card, Col, Button, ToggleButton, Stack } from 'react-bootstrap';
 import Link from 'next/link';
