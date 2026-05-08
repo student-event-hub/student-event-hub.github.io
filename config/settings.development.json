@@ -296,6 +296,206 @@
         "owner": ["UH Tennis Intramurals"],
         "creator": "Moni Nikolov",
         "signedUp": 1
+      },
+      {
+        "name": "Campus Badminton Tournament",
+        "description": "Grab your friends and sign up for the semester intramural badminton tournament. All skill levels welcome!",
+        "interests": [
+          "Sports",
+          "Social"
+        ],
+        "picture": "https://www.pngall.com/wp-content/uploads/5/Badminton-PNG-High-Quality-Image.png",
+        "year": 2025,
+        "month": 5,
+        "day": 25,
+        "startHour": 11,
+        "startMinute": 0,
+        "endHour": 7,
+        "endMinute": 0,
+        "location": "UH Manoa Recreation Fields",
+        "owner": ["UH Badminton Intramurals"],
+        "creator": "Moni Nikolov",
+        "signedUp": 2
+      },
+      {
+        "name": "Campus Table Tennis Tournament",
+        "description": "Grab your friends and sign up for the semester intramural table tennis tournament. All skill levels welcome!",
+        "interests": [
+          "Sports",
+          "Social"
+        ],
+        "picture": "https://www.pngall.com/wp-content/uploads/5/Table-Tennis-PNG-High-Quality-Image.png",
+        "year": 2025,
+        "month": 6,
+        "day": 30,
+        "startHour": 12,
+        "startMinute": 0,
+        "endHour": 8,
+        "endMinute": 0,
+        "location": "UH Manoa Recreation Fields",
+        "owner": ["UH Table Tennis Intramurals"],
+        "creator": "Moni Nikolov",
+        "signedUp": 3
+      },
+      {
+        "name": "Workshop: Introduction to Machine Learning",
+        "description": "Learn the basics of machine learning, including common algorithms and applications. No prior experience required.",
+        "interests": [
+          "AI",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/mlworkshop/400/300",
+        "year": 2026,
+        "month": 11,
+        "day": 10,
+        "startHour": 13,
+        "startMinute": 0,
+        "endHour": 16,
+        "endMinute": 0,
+        "location": "POST 318B",
+        "owner": ["ICS Department"],
+        "creator": "Anthony_Criste",
+        "signedUp": 4
+      },
+      {
+        "name": "Workshop: Data Visualization with Python",
+        "description": "Learn how to create compelling data visualizations using Python libraries like Matplotlib and Seaborn. No prior experience required.",
+        "interests": [
+          "Visualization",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/dataviz/400/300",
+        "year": 2026,
+        "month": 11,
+        "day": 20,
+        "startHour": 13,
+        "startMinute": 0,
+        "endHour": 16,
+        "endMinute": 0,
+        "location": "POST 318B",
+        "owner": ["ICS Department"],
+        "creator": "Jason_Leigh",
+        "signedUp": 3
+      },
+      {
+        "name": "Workshop: Building Web Apps with React",
+        "description": "Learn how to build modern web applications using the React framework. No prior experience required.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/reactworkshop/400/300",
+        "year": 2026,
+        "month": 11,
+        "day": 30,
+        "startHour": 13,
+        "startMinute": 0,
+        "endHour": 16,
+        "endMinute": 0,
+        "location": "POST 318B",
+        "owner": ["ICS Department"],
+        "creator": "Carleton_Moore",
+        "signedUp": 5
+      },
+      {
+        "name": "Workshop: Introduction to Cloud Computing",
+        "description": "Learn the basics of cloud computing, including common services and deployment models. No prior experience required.",
+        "interests": [
+          "Distributed Computing",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/cloudworkshop/400/300",
+        "year": 2026,
+        "month": 12,
+        "day": 10,
+        "startHour": 13,
+        "startMinute": 0,
+        "endHour": 16,
+        "endMinute": 0,
+        "location": "POST 318B",
+        "owner": ["ICS Department"],
+        "creator": "Henri_Casanova",
+        "signedUp": 4
+      },
+      {
+        "name": "Workshop: Mobile App Development with Flutter",
+        "description": "Learn how to build cross-platform mobile applications using the Flutter framework. No prior experience required.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/flutterworkshop/400/300",
+        "year": 2026,
+        "month": 12,
+        "day": 20,
+        "startHour": 13,
+        "startMinute": 0,
+        "endHour": 16,
+        "endMinute": 0,
+        "location": "POST 318B",
+        "owner": ["ICS Department"],
+        "creator": "Anthony_Criste",
+        "signedUp": 3
+      },
+      {
+        "name": "Workshop: Introduction to Cybersecurity",
+        "description": "Learn the basics of cybersecurity, including common threats and best practices for staying safe online. No prior experience required.",
+        "interests": [
+          "Security",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/cybersecurity/400/300",
+        "year": 2026,
+        "month": 12,
+        "day": 30,
+        "startHour": 13,
+        "startMinute": 0,
+        "endHour": 16,
+        "endMinute": 0,
+        "location": "POST 318B",
+        "owner": ["ICS Department"],
+        "creator": "Serge_Negrashov",
+        "signedUp": 4
+      },
+      {
+        "name": "Workshop: Introduction to DevOps",
+        "description": "Learn the basics of DevOps, including common tools and practices for continuous integration and deployment. No prior experience required.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/devops/400/300",
+        "year": 2027,
+        "month": 0,
+        "day": 10,
+        "startHour": 13,
+        "startMinute": 0,
+        "endHour": 16,
+        "endMinute": 0,
+        "location": "POST 318B",
+        "owner": ["ICS Department"],
+        "creator": "Philip_Johnson",
+        "signedUp": 5
+      },
+      {
+        "name": "Hawaiian Airlines Internship Info Session",
+        "description": "Learn about internship opportunities at Hawaiian Airlines, including software engineering, data science, and IT roles. Q&A session included.",
+        "interests": [
+          "Software Engineering",
+          "Technology"
+        ],
+        "picture": "https://picsum.photos/seed/hawaiian/400/300",
+        "year": 2027,
+        "month": 0,
+        "day": 20,
+        "startHour": 14,
+        "startMinute": 0,
+        "endHour": 15,
+        "endMinute": 30,
+        "location": "POST 318B",
+        "owner": ["Hawaiian Airlines"],
+        "creator": "Carleton_Moore",
+        "signedUp": 3
       }
     ],
     "defaultProjects": [
