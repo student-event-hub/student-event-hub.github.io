@@ -112,7 +112,11 @@ const EventsPage = async () => {
           />
         </div>
       </div>
-      <CardGrid initialEvents={eventData} showAddEvent />
+      <CardGrid
+        initialEvents={eventData}
+        showAddEvent
+        currentUserEmail={session?.user?.email ?? null}
+      />
     </Container>
   );
 };

@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import { useSession } from 'next-auth/react';
 import EventCard from '@/components/EventCard';
-import { updateEventLikeDislike } from '@/lib/dbActions';
+import { updateEventLikeDislike, joinEvent, leaveEvent } from '@/lib/dbActions';
 import type { EventCardData } from '@/app/lib/EventCardData';
 
 type CardGridProps = {
@@ -16,6 +16,8 @@ type CardGridProps = {
   currentUserRole?: string;
   showEditDelete?: boolean;
   showAddEvent?: boolean;
+  showRemoveEvent?: boolean;
+  onEventRemoved?: () => void;
 };
 
 const CardGrid = ({
@@ -24,6 +26,8 @@ const CardGrid = ({
   currentUserRole = 'USER',
   showEditDelete = false,
   showAddEvent = false,
+  showRemoveEvent = false,
+  onEventRemoved,
 }: CardGridProps) => {
   const { status } = useSession();
   const [events, setEvents] = useState<EventCardData[]>(initialEvents);
@@ -34,6 +38,16 @@ const CardGrid = ({
     }), {} as Record<number, number>),
   );
   const [updatingEventId, setUpdatingEventId] = useState<number | null>(null);
+  const [joiningEventId, setJoiningEventId] = useState<number | null>(null);
+  const [joinedEventIds, setJoinedEventIds] = useState<Set<number>>(
+    new Set(
+      initialEvents
+        .filter(event => event.participants.some(p => p.email === currentUserEmail))
+        .map(event => event.id),
+    ),
+  );
+  const [removingEventId, setRemovingEventId] = useState<number | null>(null);
+  const [removedEventIds, setRemovedEventIds] = useState<Set<number>>(new Set());
   const userCanVote = status === 'authenticated';
 
   const getNewLikeValue = (currentValue: number, value: number): number => {
@@ -124,9 +138,38 @@ const CardGrid = ({
     }
   }
 
+  async function handleAddEvent(eventId: number) {
+    if (!currentUserEmail || joiningEventId === eventId) return;
+    setJoiningEventId(eventId);
+    try {
+      await joinEvent(eventId, currentUserEmail);
+      setJoinedEventIds(prev => new Set([...prev, eventId]));
+      setRemovedEventIds(prev => { const next = new Set(prev); next.delete(eventId); return next; });
+    } finally {
+      setJoiningEventId(null);
+    }
+  }
+
+  async function handleRemoveEvent(eventId: number) {
+    if (!currentUserEmail || removingEventId === eventId) return;
+    setRemovingEventId(eventId);
+    try {
+      await leaveEvent(eventId, currentUserEmail);
+      setRemovedEventIds(prev => new Set([...prev, eventId]));
+      setJoinedEventIds(prev => { const next = new Set(prev); next.delete(eventId); return next; });
+      onEventRemoved?.();
+    } finally {
+      setRemovingEventId(null);
+    }
+  }
+
+  const visibleEvents = showRemoveEvent
+    ? events.filter(event => !removedEventIds.has(event.id))
+    : events;
+
   return (
     <Row xs={1} md={2} lg={4} className="g-2">
-      {events.map((event) => (
+      {visibleEvents.map((event) => (
         <EventCard
           key={event.id}
           event={event}
@@ -137,6 +180,12 @@ const CardGrid = ({
           currentUserRole={currentUserRole}
           showEditDelete={showEditDelete}
           showAddEvent={showAddEvent}
+          onAddEvent={handleAddEvent}
+          alreadyJoined={joinedEventIds.has(event.id)}
+          joiningThisEvent={joiningEventId === event.id}
+          showRemoveEvent={showRemoveEvent}
+          onRemoveEvent={handleRemoveEvent}
+          removingThisEvent={removingEventId === event.id}
         />
       ))}
     </Row>

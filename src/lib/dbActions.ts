@@ -319,6 +319,27 @@ export async function deleteEvent(eventId: number) {
   });
 }
 
+export async function leaveEvent(eventId: number, userEmail: string) {
+  const profile = await prisma.profile.findUnique({ where: { email: userEmail } });
+  if (!profile) return;
+  await prisma.profileEvent.deleteMany({ where: { profileId: profile.id, eventId } });
+}
+
+export async function joinEvent(eventId: number, userEmail: string) {
+  const profile = await prisma.profile.upsert({
+    where: { email: userEmail },
+    update: {},
+    create: { email: userEmail, username: userEmail },
+  });
+  const existing = await prisma.profileEvent.findFirst({
+    where: { profileId: profile.id, eventId },
+  });
+  if (existing) return;
+  await prisma.profileEvent.create({
+    data: { profileId: profile.id, eventId },
+  });
+}
+
 export async function updateProfile(profile: any) {
   console.log(`updateProfile data: ${JSON.stringify(profile, null, 2)}`);
   const dbProfile = await prisma.profile.upsert({

@@ -16,12 +16,20 @@ type Props = {
   currentUserRole?: string;
   showEditDelete?: boolean;
   showAddEvent?: boolean;
+  onAddEvent?: (eventId: number) => void;
+  alreadyJoined?: boolean;
+  joiningThisEvent?: boolean;
+  showRemoveEvent?: boolean;
+  onRemoveEvent?: (eventId: number) => void;
+  removingThisEvent?: boolean;
 };
 
 const EventCard = ({
   event, likeVal, onLikeClick, disabled,
   currentUserEmail = null, currentUserRole = 'USER',
   showEditDelete = false, showAddEvent = false,
+  onAddEvent, alreadyJoined = false, joiningThisEvent = false,
+  showRemoveEvent = false, onRemoveEvent, removingThisEvent = false,
 }: Props) => {
   const canEditDelete = showEditDelete && (currentUserEmail === event.creator || currentUserRole === 'ADMIN');
   const likeDislike: { name: string; value: number; variant: string; icon: typeof HandThumbsUp }[] = [
@@ -89,20 +97,41 @@ const EventCard = ({
               style={{ objectFit: 'contain', height: '180px', backgroundColor: '#f8f9fa' }}
             />
           )}
-          {(showAddEvent || canEditDelete) && (
-            <div className="d-flex gap-2 mt-auto pt-3">
+          {(showAddEvent || canEditDelete || (showRemoveEvent && !canEditDelete)) && (
+            <div className="mt-auto pt-3">
               {showAddEvent && (
-                <Button variant="success" size="sm" className="flex-fill">Add Event</Button>
+                <div className="d-flex gap-2">
+                  <Button
+                    variant={alreadyJoined ? 'outline-success' : 'success'}
+                    size="sm"
+                    className="flex-fill"
+                    disabled={alreadyJoined || joiningThisEvent || !currentUserEmail}
+                    onClick={() => onAddEvent?.(event.id)}
+                  >
+                    {alreadyJoined ? 'Added' : joiningThisEvent ? 'Adding...' : 'Add Event'}
+                  </Button>
+                </div>
               )}
               {canEditDelete && (
-                <>
+                <div className="d-flex gap-2 mb-2">
                   <Link href={`/editEvent/${event.id}`} className="flex-fill">
                     <Button variant="secondary" size="sm" className="w-100">Edit Event</Button>
                   </Link>
                   <Link href={`/deleteEvent/${event.id}`} className="flex-fill">
                     <Button variant="danger" size="sm" className="w-100">Delete Event</Button>
                   </Link>
-                </>
+                </div>
+              )}
+              {showRemoveEvent && !canEditDelete && (
+                <Button
+                  variant="outline-danger"
+                  size="sm"
+                  className="w-100"
+                  disabled={removingThisEvent}
+                  onClick={() => onRemoveEvent?.(event.id)}
+                >
+                  {removingThisEvent ? 'Removing...' : 'Remove from Your Events'}
+                </Button>
               )}
             </div>
           )}
