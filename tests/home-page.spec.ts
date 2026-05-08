@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { login } from './helpers/login';
 
 test.describe('Home Page', () => {
   test('redirects unauthenticated users', async ({ page }) => {
