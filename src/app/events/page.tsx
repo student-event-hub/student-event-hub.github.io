@@ -69,6 +69,7 @@ const EventsPage = async () => {
     userVote: userVoteMap.get(event.id) || 0,
     interests: event.interests.map((eventInterest) => eventInterest.interest.name),
     participants: event.ProfileEvent.map((eventParticipant) => eventParticipant.profile),
+    creator: event.creator,
   }));
 
   return (
