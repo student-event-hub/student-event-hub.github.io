@@ -15,3 +15,17 @@ export async function login(page: Page) {
     name: /sign in/i,
   }).click();
 }
+
+export async function loginAsEmptyUser(page: Page) {
+  await page.goto('/auth/signin');
+
+  await page.getByLabel('Email')
+    .fill('empty@example.com');
+
+  await page.getByLabel('Password')
+    .fill('password123');
+
+  await page.getByRole('button', {
+    name: /sign in/i,
+  }).click();
+}
