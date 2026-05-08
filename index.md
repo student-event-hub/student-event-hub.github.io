@@ -142,6 +142,18 @@ $ npm run dev
 
 
 
+# Community Feedback
+- It’s working; the UI could be refined further. It’s an event calendar; make sure all of it works. I liked it. (Local Software Engineer)
+- I like it, it looks fairly professional, but it’s kinda tight, like everything seems crammed and I cannot move around too much or view all the text, but it is good (Sophomore at UH Manoa)
+- Okay, I liked how easy it is to access the events and the login. I wish I’d be able to like and dislike the events without being logged in. (Sophomore at UH Manoa)
+- Overall, I think the website is simple, easy to navigate, and well-structured, especially the Home, Events, and Login pages. However, I noticed a few improvements that could be made, such as fixing the blurry main image and capitalizing action labels like “Comment” and “Save” for clarity. I also suggest improving layout readability on the Admin Panel, combining event start and end times into a single time frame, and adding a location feature for events. Lastly, the “Filter By” button doesn’t seem to work and should be fixed. (Freshman at UH Manoa)
+- I saw the events and the times, but I couldn’t really do anything since I have to make an account right now (Junior at UH Manoa)
+
+After receiving feedback from the community, as a group, we realize that one thing that we can implement in the future would be another system of the filter button, filtering the events by categories, and having our website be better accommodating to users on phones, compared to only targeting users with desktops and laptops. Overall, we had many strengths in having a system where many students can see different events, but we need to improve on the user interface and user experience.
+
+
+
+
 # Goals of Implementation
 - Events are filterable by time/likeability/categories 
 - Each User has their own component, “Your Events Page”, which users can events to their own calendar and filter their calendar via event categories
